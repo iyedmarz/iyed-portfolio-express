@@ -37,10 +37,10 @@ const SocialLinks = () => {
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`p-2 transition-all duration-300 hover:-translate-y-1 ${link.color}`}
+          className={`p-2 transition-all duration-300 hover:-translate-y-1 group ${link.color}`}
           aria-label={link.name}
         >
-          <link.icon size={24} />
+          <link.icon size={24} className="group-hover:animate-rev-up" />
         </a>
       ))}
     </div>

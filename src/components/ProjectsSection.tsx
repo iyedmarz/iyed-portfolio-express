@@ -34,7 +34,9 @@ const ProjectsSection = () => {
           {projects.map((project, index) => (
             <div
               key={project.title}
-              className="bg-white/5 backdrop-blur-sm p-6 rounded-xl hover:shadow-xl transition-all duration-300 hover:bg-white/10"
+              className={`bg-white/5 backdrop-blur-sm p-6 rounded-xl hover:shadow-xl transition-all duration-300 hover:bg-white/10 animate-fade-in ${
+                index % 2 === 0 ? 'hover:animate-drift-left' : 'hover:animate-drift-right'
+              }`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
@@ -43,7 +45,7 @@ const ProjectsSection = () => {
                 {project.tech.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm"
+                    className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm hover:animate-rev-light"
                   >
                     {tech}
                   </span>
@@ -54,14 +56,14 @@ const ProjectsSection = () => {
                   href={project.github}
                   className="inline-flex items-center gap-2 text-gray-300 hover:text-primary transition-colors"
                 >
-                  <Github size={20} />
+                  <Github size={20} className="hover:animate-rev-up" />
                   <span>Code</span>
                 </a>
                 <a
                   href={project.live}
                   className="inline-flex items-center gap-2 text-gray-300 hover:text-primary transition-colors"
                 >
-                  <ExternalLink size={20} />
+                  <ExternalLink size={20} className="hover:animate-rev-up" />
                   <span>Live Demo</span>
                 </a>
               </div>

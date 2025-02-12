@@ -50,6 +50,25 @@ export default {
         "rev-up": {
           "0%": { transform: "scale(0.9) rotate(-3deg)" },
           "100%": { transform: "scale(1) rotate(0)" },
+        },
+        "speedometer": {
+          "0%": { transform: "rotate(-120deg)" },
+          "100%": { transform: "rotate(120deg)" },
+        },
+        "drift-left": {
+          "0%": { transform: "translateX(0) rotate(0)" },
+          "50%": { transform: "translateX(-10px) rotate(-2deg)" },
+          "100%": { transform: "translateX(0) rotate(0)" },
+        },
+        "drift-right": {
+          "0%": { transform: "translateX(0) rotate(0)" },
+          "50%": { transform: "translateX(10px) rotate(2deg)" },
+          "100%": { transform: "translateX(0) rotate(0)" },
+        },
+        "rev-light": {
+          "0%": { opacity: "0.5", transform: "scale(0.95)" },
+          "50%": { opacity: "1", transform: "scale(1.05)" },
+          "100%": { opacity: "0.5", transform: "scale(0.95)" },
         }
       },
       animation: {
@@ -57,6 +76,10 @@ export default {
         "fade-in-slow": "fade-in-slow 0.8s ease-out",
         "slide-in": "slide-in 0.6s ease-out",
         "rev-up": "rev-up 0.4s ease-out",
+        "speedometer": "speedometer 2s ease-in-out infinite alternate",
+        "drift-left": "drift-left 2s ease-in-out infinite",
+        "drift-right": "drift-right 2s ease-in-out infinite",
+        "rev-light": "rev-light 2s ease-in-out infinite"
       },
     },
   },
