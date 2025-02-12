@@ -16,12 +16,20 @@ const HeroSection = () => {
         <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
           A passionate fresh graduate who turns coffee into code and dreams about both algorithms and automobiles.
         </p>
-        <a
-          href="#contact"
-          className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-full font-medium hover:bg-primary/90 transition-all hover:scale-105 duration-300 hover:shadow-lg hover:shadow-primary/20"
-        >
-          Get in Touch
-        </a>
+        <div className="flex items-center justify-center gap-4">
+          <a
+            href="#contact"
+            className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-full font-medium hover:bg-primary/90 transition-all hover:scale-105 duration-300 hover:shadow-lg hover:shadow-primary/20"
+          >
+            Get in Touch
+          </a>
+          <a
+            href="#projects"
+            className="inline-flex items-center px-6 py-3 bg-white/10 text-white rounded-full font-medium hover:bg-white/20 transition-all hover:scale-105 duration-300"
+          >
+            View Projects
+          </a>
+        </div>
       </div>
     </section>
   );
