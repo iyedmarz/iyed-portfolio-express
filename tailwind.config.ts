@@ -26,12 +26,12 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#9b87f5",
+          DEFAULT: "#FF3E4D", // Racing red
           foreground: "#ffffff",
         },
         secondary: {
-          DEFAULT: "#f4f4f5",
-          foreground: "#18181b",
+          DEFAULT: "#1E293B", // Dark blue-gray
+          foreground: "#ffffff",
         },
       },
       keyframes: {
@@ -43,10 +43,20 @@ export default {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        "slide-in": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        "rev-up": {
+          "0%": { transform: "scale(0.9) rotate(-3deg)" },
+          "100%": { transform: "scale(1) rotate(0)" },
+        }
       },
       animation: {
         "fade-in": "fade-in 0.5s ease-out",
         "fade-in-slow": "fade-in-slow 0.8s ease-out",
+        "slide-in": "slide-in 0.6s ease-out",
+        "rev-up": "rev-up 0.4s ease-out",
       },
     },
   },

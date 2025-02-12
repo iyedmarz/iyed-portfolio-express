@@ -17,5 +17,28 @@
 }
 
 .glass-effect {
-  @apply backdrop-blur-md bg-white/80;
+  @apply backdrop-blur-md bg-white/10;
+}
+
+/* Smooth scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1E293B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF3E4D;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff2d3d;
 }
