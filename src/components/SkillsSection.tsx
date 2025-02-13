@@ -27,7 +27,7 @@ const SkillsSection = () => {
               <div className="flex items-center gap-2">
                 <div className="flex-1 h-2 bg-gray-700 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-primary rounded-full transition-all duration-1000 group-hover:animate-speedometer"
+                    className="h-full bg-primary rounded-full transition-all duration-1000"
                     style={{
                       width:
                         skill.level === "Advanced"
