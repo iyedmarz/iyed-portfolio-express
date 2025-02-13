@@ -1,6 +1,47 @@
+
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { useRef, useState } from "react";
+import emailjs from '@emailjs/browser';
+import { useToast } from "../hooks/use-toast";
 
 const ContactSection = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    if (!formRef.current) return;
+    
+    setIsSubmitting(true);
+    
+    try {
+      const result = await emailjs.sendForm(
+        'YOUR_SERVICE_ID', // Vous devrez remplacer ceci
+        'YOUR_TEMPLATE_ID', // Vous devrez remplacer ceci
+        formRef.current,
+        'YOUR_PUBLIC_KEY' // Vous devrez remplacer ceci
+      );
+
+      if (result.text === 'OK') {
+        toast({
+          title: "Message envoyé !",
+          description: "Merci de m'avoir contacté. Je vous répondrai dès que possible.",
+        });
+        formRef.current.reset();
+      }
+    } catch (error) {
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-20 px-4 bg-white">
       <div className="max-w-4xl mx-auto">
@@ -34,31 +75,38 @@ const ContactSection = () => {
               />
               <div>
                 <h3 className="font-semibold mb-1">Location</h3>
-                <p className="text-gray-600">,Tunis,Tunisia</p>
+                <p className="text-gray-600">Tunis, Tunisia</p>
               </div>
             </div>
           </div>
-          <form className="space-y-4">
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
             <input
               type="text"
+              name="user_name"
               placeholder="Your Name"
+              required
               className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
             />
             <input
               type="email"
+              name="user_email"
               placeholder="Your Email"
+              required
               className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
             />
             <textarea
+              name="message"
               placeholder="Your Message"
+              required
               rows={4}
               className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
             />
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 hover:scale-105 group flex items-center justify-center gap-2"
+              disabled={isSubmitting}
+              className="w-full px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 hover:scale-105 group flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span>Send Message</span>
+              <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
               <Send
                 size={18}
                 className="group-hover:translate-x-1 transition-transform"
