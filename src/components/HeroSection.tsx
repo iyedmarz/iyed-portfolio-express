@@ -34,11 +34,10 @@ const HeroSection = () => {
         </div>
         <div className="md:flex-1 flex justify-center md:justify-end animate-fade-in">
           <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary to-primary/50 animate-rev-light" />
             <img
               src="/lovable-uploads/6e928848-6d41-4d40-a5b0-bd618017e9b3.png"
               alt="Iyed Marzouki"
-              className="absolute inset-2 rounded-full object-cover border-4 border-white/10 hover:scale-105 transition-transform duration-300"
+              className="rounded-full object-cover hover:scale-105 transition-transform duration-300 shadow-xl"
             />
           </div>
         </div>
