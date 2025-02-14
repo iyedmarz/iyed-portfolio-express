@@ -38,7 +38,7 @@ const HeroSection = () => {
             <img
               src="/lovable-uploads/26e439cf-e0f5-41d2-baba-495715e4ae9d.png"
               alt="Iyed Marzouki"
-              className="absolute inset-2 rounded-full object-cover border-4 border-white/10 hover:scale-105 transition-transform duration-300"
+              className="absolute inset-0 w-full h-full rounded-full object-cover border-4 border-white/10 hover:scale-105 transition-transform duration-300"
             />
           </div>
         </div>
