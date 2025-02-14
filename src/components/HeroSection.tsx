@@ -36,7 +36,7 @@ const HeroSection = () => {
           <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary to-primary/50 animate-rev-light" />
             <img
-              src="/placeholder.svg" // Replace this with your actual photo path
+              src="/lovable-uploads/26e439cf-e0f5-41d2-baba-495715e4ae9d.png"
               alt="Iyed Marzouki"
               className="absolute inset-2 rounded-full object-cover border-4 border-white/10 hover:scale-105 transition-transform duration-300"
             />
