@@ -29,29 +29,17 @@ const AboutSection = () => {
 
     // Earth
     const earthGeometry = new THREE.SphereGeometry(2, 32, 32);
-    const earthTexture = new THREE.TextureLoader().load('/earth-texture.jpg');
+    const earthTexture = new THREE.TextureLoader().load('/lovable-uploads/275e43ac-5499-426d-8afb-381a7c387c6d.png');
     const earthMaterial = new THREE.MeshPhongMaterial({
       map: earthTexture,
-      bumpMap: earthTexture,
-      bumpScale: 0.1,
+      emissive: new THREE.Color(0xffd700),
+      emissiveIntensity: 0.1,
+      shininess: 5,
     });
     
     const earth = new THREE.Mesh(earthGeometry, earthMaterial);
     scene.add(earth);
     earthRef.current = earth;
-
-    // Clouds
-    const cloudGeometry = new THREE.SphereGeometry(2.05, 32, 32);
-    const cloudTexture = new THREE.TextureLoader().load('/clouds.png');
-    const cloudMaterial = new THREE.MeshPhongMaterial({
-      map: cloudTexture,
-      transparent: true,
-      opacity: 0.4,
-    });
-    
-    const clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
-    scene.add(clouds);
-    cloudRef.current = clouds;
 
     // Camera position
     camera.position.z = 6;
@@ -61,11 +49,7 @@ const AboutSection = () => {
       requestAnimationFrame(animate);
 
       if (earthRef.current) {
-        earthRef.current.rotation.y += 0.001;
-      }
-
-      if (cloudRef.current) {
-        cloudRef.current.rotation.y += 0.0015;
+        earthRef.current.rotation.y += 0.0005; // Rotation plus lente
       }
 
       renderer.render(scene, camera);
@@ -89,7 +73,6 @@ const AboutSection = () => {
       window.removeEventListener('resize', handleResize);
       mountRef.current?.removeChild(renderer.domElement);
       scene.remove(earth);
-      scene.remove(clouds);
     };
   }, []);
 
