@@ -8,7 +8,7 @@ import SocialLinks from "@/components/SocialLinks";
 
 const Index = () => {
   return (
-    <main className="bg-white">
+    <main className="bg-[#0B0B1E]">
       <SocialLinks />
       <HeroSection />
       <AboutSection />
