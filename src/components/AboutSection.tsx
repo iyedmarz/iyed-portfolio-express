@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { User, Award } from "lucide-react";
@@ -20,21 +19,20 @@ const AboutSection = () => {
     mountRef.current.appendChild(renderer.domElement);
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
     
-    const pointLight = new THREE.PointLight(0xffffff, 1);
+    const pointLight = new THREE.PointLight(0xffffff, 0.5);
     pointLight.position.set(5, 3, 5);
     scene.add(pointLight);
 
     // Earth
     const earthGeometry = new THREE.SphereGeometry(2, 32, 32);
     const earthTexture = new THREE.TextureLoader().load('/lovable-uploads/275e43ac-5499-426d-8afb-381a7c387c6d.png');
-    const earthMaterial = new THREE.MeshPhongMaterial({
+    const earthMaterial = new THREE.MeshStandardMaterial({
       map: earthTexture,
-      emissive: new THREE.Color(0xffd700),
-      emissiveIntensity: 0.1,
-      shininess: 5,
+      roughness: 1,
+      metalness: 0,
     });
     
     const earth = new THREE.Mesh(earthGeometry, earthMaterial);
@@ -49,7 +47,7 @@ const AboutSection = () => {
       requestAnimationFrame(animate);
 
       if (earthRef.current) {
-        earthRef.current.rotation.y += 0.0005; // Rotation plus lente
+        earthRef.current.rotation.y += 0.0005;
       }
 
       renderer.render(scene, camera);
