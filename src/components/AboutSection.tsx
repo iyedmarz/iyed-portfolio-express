@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { User, Award } from "lucide-react";
@@ -5,7 +6,6 @@ import { User, Award } from "lucide-react";
 const AboutSection = () => {
   const mountRef = useRef<HTMLDivElement>(null);
   const earthRef = useRef<THREE.Mesh>();
-  const cloudRef = useRef<THREE.Mesh>();
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -19,19 +19,21 @@ const AboutSection = () => {
     mountRef.current.appendChild(renderer.domElement);
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2); // Augmenté l'intensité
     scene.add(ambientLight);
     
-    const pointLight = new THREE.PointLight(0xffffff, 0.5);
-    pointLight.position.set(5, 3, 5);
+    const pointLight = new THREE.PointLight(0xffffff, 1);
+    pointLight.position.set(10, 10, 10); // Éloigné la lumière
     scene.add(pointLight);
 
     // Earth
-    const earthGeometry = new THREE.SphereGeometry(2, 32, 32);
+    const earthGeometry = new THREE.SphereGeometry(1.5, 32, 32); // Réduit la taille
     const earthTexture = new THREE.TextureLoader().load('/lovable-uploads/275e43ac-5499-426d-8afb-381a7c387c6d.png');
+    earthTexture.minFilter = THREE.LinearFilter; // Améliore la qualité de la texture
+    
     const earthMaterial = new THREE.MeshStandardMaterial({
       map: earthTexture,
-      roughness: 1,
+      roughness: 0.5, // Réduit la rugosité
       metalness: 0,
     });
     
@@ -40,7 +42,7 @@ const AboutSection = () => {
     earthRef.current = earth;
 
     // Camera position
-    camera.position.z = 6;
+    camera.position.z = 4; // Rapproché la caméra
 
     // Animation
     const animate = () => {
