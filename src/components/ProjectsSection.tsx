@@ -3,23 +3,26 @@ import { Github, ExternalLink } from "lucide-react";
 
 const projects = [
   {
-    title: "Car Service Booking App",
-    description: "A modern web application for scheduling car maintenance and repair services",
-    tech: ["React", "Node.js", "MongoDB"],
+    title: "E-commerce Platform",
+    description: "A full-featured online shopping platform with modern UI/UX design.",
+    image: "/lovable-uploads/117d6f0d-db13-4e50-ab27-18cf4524808f.png",
+    tech: ["React", "Node.js"],
     github: "#",
     live: "#",
   },
   {
-    title: "Auto Parts Inventory",
-    description: "Inventory management system for automotive parts with real-time tracking",
-    tech: ["TypeScript", "Express", "PostgreSQL"],
+    title: "Fitness App",
+    description: "Mobile application for tracking workouts and health metrics.",
+    image: "/lovable-uploads/117d6f0d-db13-4e50-ab27-18cf4524808f.png",
+    tech: ["Flutter", "Firebase"],
     github: "#",
     live: "#",
   },
   {
-    title: "Vehicle Analytics Dashboard",
-    description: "Interactive dashboard for analyzing vehicle performance metrics",
-    tech: ["React", "Chart.js", "Firebase"],
+    title: "Analytics Dashboard",
+    description: "Real-time data visualization and analytics platform.",
+    image: "/lovable-uploads/117d6f0d-db13-4e50-ab27-18cf4524808f.png",
+    tech: ["Vue.js", "D3.js"],
     github: "#",
     live: "#",
   },
@@ -45,44 +48,63 @@ const ProjectsSection = () => {
         ))}
       </div>
 
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         <h2 className="text-3xl font-bold mb-12 text-center text-white">Featured Projects</h2>
-        <div className="grid gap-8">
+        <div className="grid gap-8 md:gap-12">
           {projects.map((project, index) => (
             <div
               key={project.title}
-              className={`bg-white/5 backdrop-blur-sm p-6 rounded-xl hover:shadow-xl transition-all duration-300 hover:bg-white/10 animate-fade-in border border-purple-500/20 ${
-                index % 2 === 0 ? 'hover:animate-drift-left' : 'hover:animate-drift-right'
-              }`}
+              className="group bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-purple-500/20 animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-              <p className="text-purple-200 mb-4">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm hover:animate-rev-light border border-purple-500/20"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <div className="flex gap-4">
-                <a
-                  href={project.github}
-                  className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-400 transition-colors"
-                >
-                  <Github size={20} className="hover:animate-rev-up" />
-                  <span>Code</span>
-                </a>
-                <a
-                  href={project.live}
-                  className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-400 transition-colors"
-                >
-                  <ExternalLink size={20} className="hover:animate-rev-up" />
-                  <span>Live Demo</span>
-                </a>
+              <div className="grid md:grid-cols-2 gap-6 p-6">
+                {/* Project Image */}
+                <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-transparent group-hover:scale-110 transition-transform duration-500" />
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Project Info */}
+                <div className="flex flex-col justify-center">
+                  <h3 className="text-2xl font-semibold text-white mb-3 group-hover:text-purple-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-purple-200 mb-4">{project.description}</p>
+                  
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-purple-500/10 text-purple-300 rounded-full text-sm border border-purple-500/20 hover:bg-purple-500/20 transition-colors"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Links */}
+                  <div className="flex gap-4">
+                    <a
+                      href={project.github}
+                      className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-400 transition-colors group/link"
+                    >
+                      <Github size={20} className="group-hover/link:rotate-12 transition-transform" />
+                      <span>Code</span>
+                    </a>
+                    <a
+                      href={project.live}
+                      className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-400 transition-colors group/link"
+                    >
+                      <ExternalLink size={20} className="group-hover/link:rotate-12 transition-transform" />
+                      <span>Live Demo</span>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
