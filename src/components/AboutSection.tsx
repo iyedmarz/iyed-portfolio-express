@@ -2,8 +2,12 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { User, Award } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/utils/translations";
 
 const AboutSection = () => {
+  const { language } = useLanguage();
+  const t = translations[language].about;
   const mountRef = useRef<HTMLDivElement>(null);
   const earthRef = useRef<THREE.Mesh>();
   const cloudRef = useRef<THREE.Mesh>();
@@ -115,7 +119,7 @@ const AboutSection = () => {
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center gap-2 mb-8 text-white">
           <User className="text-purple-400" size={24} />
-          <h2 className="text-3xl font-bold">About Me</h2>
+          <h2 className="text-3xl font-bold">{t.title}</h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -130,25 +134,21 @@ const AboutSection = () => {
             <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20">
               <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <Award className="text-purple-400" />
-                Mission Overview
+                {t.mission}
               </h3>
               <p className="text-gray-300 leading-relaxed">
-                En tant que développeur fraîchement diplômé, je navigue à travers le vaste
-                univers du développement web, explorant de nouvelles technologies et
-                créant des expériences numériques innovantes. Ma passion pour le code
-                et ma curiosité insatiable me poussent à repousser constamment les
-                limites de ce qui est possible.
+                {t.description}
               </p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 border border-purple-500/20">
-                <h4 className="font-medium mb-2">Origine</h4>
-                <p className="text-gray-400">Tunisie</p>
+                <h4 className="font-medium mb-2">{t.origin}</h4>
+                <p className="text-gray-400">{t.originValue}</p>
               </div>
               <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 border border-purple-500/20">
-                <h4 className="font-medium mb-2">Base Actuelle</h4>
-                <p className="text-gray-400">France</p>
+                <h4 className="font-medium mb-2">{t.currentBase}</h4>
+                <p className="text-gray-400">{t.currentBaseValue}</p>
               </div>
             </div>
           </div>

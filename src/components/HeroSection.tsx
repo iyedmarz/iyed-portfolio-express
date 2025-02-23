@@ -1,7 +1,12 @@
 
 import { GraduationCap, Rocket } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/utils/translations";
 
 const HeroSection = () => {
+  const { language } = useLanguage();
+  const t = translations[language].hero;
+
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 bg-[#0B0B1E] overflow-hidden">
       {/* Stars background */}
@@ -26,27 +31,27 @@ const HeroSection = () => {
         <div className="text-center md:text-left animate-fade-in-slow md:flex-1">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 text-purple-400 mb-6 animate-rev-up">
             <Rocket size={18} className="animate-bounce" />
-            <span className="text-sm font-medium">Explorateur du Code</span>
+            <span className="text-sm font-medium">{t.role}</span>
             <GraduationCap size={18} />
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white animate-slide-in">
             Iyed Marzouki
           </h1>
           <p className="text-xl text-purple-200 max-w-2xl mx-auto md:mx-0 mb-8">
-            Navigateur à travers les galaxies du développement web, créant des expériences numériques qui dépassent les frontières terrestres.
+            {t.description}
           </p>
           <div className="flex items-center justify-center md:justify-start gap-4">
             <a
               href="#contact"
               className="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-full font-medium hover:bg-purple-500 transition-all hover:scale-105 duration-300 hover:shadow-lg hover:shadow-purple-500/20"
             >
-              Commencer l'Exploration
+              {t.explore}
             </a>
             <a
               href="#projects"
               className="inline-flex items-center px-6 py-3 bg-white/10 text-white rounded-full font-medium hover:bg-white/20 transition-all hover:scale-105 duration-300"
             >
-              Voir les Projets
+              {t.projects}
             </a>
           </div>
         </div>
@@ -58,7 +63,6 @@ const HeroSection = () => {
               alt="Iyed Marzouki"
               className="absolute inset-0 w-full h-full rounded-full object-cover border-4 border-purple-400/20 hover:scale-105 transition-transform duration-300"
             />
-            {/* Orbital ring */}
             <div className="absolute inset-[-10px] rounded-full border-2 border-purple-400/20 animate-spin-slow" style={{ animationDuration: '20s' }} />
           </div>
         </div>
