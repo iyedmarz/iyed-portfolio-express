@@ -18,23 +18,23 @@ const ContactSection = () => {
     
     try {
       const result = await emailjs.sendForm(
-        'YOUR_SERVICE_ID', // Vous devrez remplacer ceci
-        'YOUR_TEMPLATE_ID', // Vous devrez remplacer ceci
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
         formRef.current,
-        'YOUR_PUBLIC_KEY' // Vous devrez remplacer ceci
+        'YOUR_PUBLIC_KEY'
       );
 
       if (result.text === 'OK') {
         toast({
-          title: "Message envoyé !",
-          description: "Merci de m'avoir contacté. Je vous répondrai dès que possible.",
+          title: "Message sent!",
+          description: "Thanks for reaching out. I'll get back to you soon.",
         });
         formRef.current.reset();
       }
     } catch (error) {
       toast({
-        title: "Erreur",
-        description: "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.",
+        title: "Error",
+        description: "Something went wrong. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -43,39 +43,56 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold mb-12 text-center">Get in Touch</h2>
+    <section id="contact" className="py-20 px-4 bg-[#0B0B1E] relative overflow-hidden">
+      {/* Stars background */}
+      <div className="absolute inset-0">
+        {[...Array(50)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-white"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              width: `${Math.random() * 3}px`,
+              height: `${Math.random() * 3}px`,
+              animation: `twinkle ${Math.random() * 5 + 3}s infinite`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-4xl mx-auto relative z-10">
+        <h2 className="text-3xl font-bold mb-12 text-center text-white">Get in Touch</h2>
         <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-6">
             <div className="flex items-start gap-4 group hover:scale-105 transition-all duration-300">
               <Mail
-                className="text-primary mt-1 group-hover:rotate-12 transition-transform"
+                className="text-purple-400 mt-1 group-hover:rotate-12 transition-transform"
                 size={24}
               />
               <div>
-                <h3 className="font-semibold mb-1">Email</h3>
-                <p className="text-gray-600">iyedmarz@gmail.com</p>
+                <h3 className="font-semibold mb-1 text-white">Email</h3>
+                <p className="text-purple-200">iyedmarz@gmail.com</p>
               </div>
             </div>
             <div className="flex items-start gap-4 group hover:scale-105 transition-all duration-300">
               <Phone
-                className="text-primary mt-1 group-hover:rotate-12 transition-transform"
+                className="text-purple-400 mt-1 group-hover:rotate-12 transition-transform"
                 size={24}
               />
               <div>
-                <h3 className="font-semibold mb-1">Phone</h3>
-                <p className="text-gray-600">+216 96 950 288</p>
+                <h3 className="font-semibold mb-1 text-white">Phone</h3>
+                <p className="text-purple-200">+216 96 950 288</p>
               </div>
             </div>
             <div className="flex items-start gap-4 group hover:scale-105 transition-all duration-300">
               <MapPin
-                className="text-primary mt-1 group-hover:rotate-12 transition-transform"
+                className="text-purple-400 mt-1 group-hover:rotate-12 transition-transform"
                 size={24}
               />
               <div>
-                <h3 className="font-semibold mb-1">Location</h3>
-                <p className="text-gray-600">Tunis, Tunisia</p>
+                <h3 className="font-semibold mb-1 text-white">Location</h3>
+                <p className="text-purple-200">Tunis, Tunisia</p>
               </div>
             </div>
           </div>
@@ -85,26 +102,26 @@ const ContactSection = () => {
               name="user_name"
               placeholder="Your Name"
               required
-              className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-purple-500/20 text-white placeholder:text-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300"
             />
             <input
               type="email"
               name="user_email"
               placeholder="Your Email"
               required
-              className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-purple-500/20 text-white placeholder:text-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300"
             />
             <textarea
               name="message"
               placeholder="Your Message"
               required
               rows={4}
-              className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300"
+              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-purple-500/20 text-white placeholder:text-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300"
             />
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 hover:scale-105 group flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-6 py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-500 transition-all duration-300 hover:scale-105 group flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
               <Send
