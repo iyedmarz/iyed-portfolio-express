@@ -32,7 +32,7 @@ const AboutSection = () => {
           <h2 className="text-3xl font-bold">{t.title}</h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* About Content */}
           <div className="space-y-6 text-white z-10">
             <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20">
@@ -57,12 +57,50 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Image Container */}
-          <div className="flex justify-center items-center">
-            <div className="relative rounded-2xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 w-80 h-80 group">
+          {/* Gallery Grid */}
+          <div className="grid grid-cols-2 gap-4">
+            {/* Main Photo */}
+            <div className="relative col-span-2 aspect-square rounded-2xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
               <img 
                 src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb"
                 alt="Starry Night Sky"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
+            </div>
+            
+            {/* Additional Photos */}
+            <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
+              <img 
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+                alt="Working on projects"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
+            </div>
+            
+            <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
+              <img 
+                src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b"
+                alt="Innovation"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
+            </div>
+            
+            <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
+              <img 
+                src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
+                alt="Code"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
+            </div>
+            
+            <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
+              <img 
+                src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843"
+                alt="Inspiration"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
