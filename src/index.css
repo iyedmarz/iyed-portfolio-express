@@ -12,7 +12,15 @@
   }
 
   body {
-    @apply bg-[#0B0B1E] text-zinc-900;
+    @apply transition-colors duration-300;
+  }
+
+  body.dark {
+    @apply bg-[#0B0B1E] text-zinc-100;
+  }
+
+  body.light {
+    @apply bg-white text-zinc-900;
   }
 }
 
@@ -22,7 +30,15 @@
 }
 
 .glass-effect {
-  @apply backdrop-blur-md bg-white/10;
+  @apply backdrop-blur-md;
+}
+
+.glass-effect.dark {
+  @apply bg-white/10;
+}
+
+.glass-effect.light {
+  @apply bg-black/5;
 }
 
 /* Smooth scrolling for the whole page */
@@ -35,11 +51,20 @@ html {
   width: 8px;
 }
 
-::-webkit-scrollbar-track {
+::-webkit-scrollbar-track.dark {
   background: #0B0B1E;
 }
 
-::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-track.light {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb.dark {
+  background: #9333EA;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb.light {
   background: #9333EA;
   border-radius: 4px;
 }
