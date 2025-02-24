@@ -57,9 +57,14 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Decorative Image */}
-          <div className="relative rounded-2xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 aspect-square">
-            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-transparent" />
+          {/* Image Container */}
+          <div className="relative rounded-2xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 aspect-square group">
+            <img 
+              src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb"
+              alt="Starry Night Sky"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
           </div>
         </div>
       </div>
