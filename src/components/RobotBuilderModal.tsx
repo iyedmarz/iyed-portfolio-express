@@ -10,6 +10,7 @@ interface RobotPart {
   icon: JSX.Element;
   placed: boolean;
   position?: { x: number; y: number };
+  targetZone: { x: number; y: number; radius: number };
 }
 
 interface RobotBuilderModalProps {
@@ -20,15 +21,46 @@ interface RobotBuilderModalProps {
 const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
   const [draggedPart, setDraggedPart] = useState<string | null>(null);
   const [robotParts, setRobotParts] = useState<RobotPart[]>([
-    { id: "cpu", name: "CPU", icon: <Cpu className="h-8 w-8" />, placed: false },
-    { id: "wheels", name: "Wheels", icon: <Circle className="h-8 w-8" />, placed: false },
-    { id: "sensors", name: "Sensors", icon: <Eye className="h-8 w-8" />, placed: false },
-    { id: "battery", name: "Battery", icon: <BatteryFull className="h-8 w-8" />, placed: false },
-    { id: "antenna", name: "Antenna", icon: <Circle className="h-8 w-8" />, placed: false },
+    { 
+      id: "cpu", 
+      name: "CPU", 
+      icon: <Cpu className="h-8 w-8" />, 
+      placed: false,
+      targetZone: { x: 50, y: 30, radius: 15 } 
+    },
+    { 
+      id: "wheels", 
+      name: "Wheels", 
+      icon: <Circle className="h-8 w-8" />, 
+      placed: false,
+      targetZone: { x: 50, y: 80, radius: 15 } 
+    },
+    { 
+      id: "sensors", 
+      name: "Sensors", 
+      icon: <Eye className="h-8 w-8" />, 
+      placed: false,
+      targetZone: { x: 50, y: 15, radius: 15 } 
+    },
+    { 
+      id: "battery", 
+      name: "Battery", 
+      icon: <BatteryFull className="h-8 w-8" />, 
+      placed: false,
+      targetZone: { x: 30, y: 50, radius: 15 } 
+    },
+    { 
+      id: "antenna", 
+      name: "Antenna", 
+      icon: <Circle className="h-8 w-8" />, 
+      placed: false,
+      targetZone: { x: 70, y: 50, radius: 15 } 
+    },
   ]);
   
   const [isComplete, setIsComplete] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [dropFeedback, setDropFeedback] = useState<{ message: string; isSuccess: boolean } | null>(null);
 
   useEffect(() => {
     // Check if all parts are placed
@@ -52,6 +84,15 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
     }
   }, [robotParts, isComplete]);
 
+  useEffect(() => {
+    if (dropFeedback) {
+      const timer = setTimeout(() => {
+        setDropFeedback(null);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [dropFeedback]);
+
   const handleDragStart = (partId: string) => {
     setDraggedPart(partId);
   };
@@ -69,14 +110,36 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
     const x = ((e.clientX - assemblyArea.left) / assemblyArea.width) * 100;
     const y = ((e.clientY - assemblyArea.top) / assemblyArea.height) * 100;
 
-    // Update the part's position
-    setRobotParts(prevParts => 
-      prevParts.map(part => 
-        part.id === draggedPart 
-          ? { ...part, placed: true, position: { x, y } } 
-          : part
-      )
+    // Find the part being dragged
+    const part = robotParts.find(p => p.id === draggedPart);
+    if (!part) return;
+
+    // Calculate distance to target zone
+    const distance = Math.sqrt(
+      Math.pow(x - part.targetZone.x, 2) + 
+      Math.pow(y - part.targetZone.y, 2)
     );
+
+    // Check if dropped in the correct zone
+    if (distance <= part.targetZone.radius) {
+      // Update the part's position to the center of the target zone
+      setRobotParts(prevParts => 
+        prevParts.map(p => 
+          p.id === draggedPart 
+            ? { ...p, placed: true, position: { x: p.targetZone.x, y: p.targetZone.y } } 
+            : p
+        )
+      );
+      setDropFeedback({
+        message: `${part.name} placed correctly!`,
+        isSuccess: true
+      });
+    } else {
+      setDropFeedback({
+        message: `Try placing the ${part.name.toLowerCase()} in its correct position`,
+        isSuccess: false
+      });
+    }
 
     setDraggedPart(null);
   };
@@ -127,14 +190,45 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
             onDragOver={handleDragOver}
             onDrop={handleDrop}
           >
+            {/* Drop feedback message */}
+            {dropFeedback && (
+              <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-full text-white text-sm font-medium z-10 ${
+                dropFeedback.isSuccess ? 'bg-green-500' : 'bg-red-500'
+              } animate-fade-in`}>
+                {dropFeedback.message}
+              </div>
+            )}
+            
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-gray-400 dark:text-gray-500 text-center">
-                {robotParts.some(part => part.placed) ? "" : "Drag and drop parts here"}
+                {robotParts.some(part => part.placed) ? "" : "Drag parts to the highlighted zones on the robot"}
               </div>
             </div>
             
             {/* Robot body outline */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-48 border-2 border-dashed border-gray-400 dark:border-gray-500 rounded-lg"></div>
+            
+            {/* Target zones */}
+            {robotParts.map((part) => (
+              !part.placed && (
+                <div
+                  key={`target-${part.id}`}
+                  className="absolute border-2 border-dashed border-primary animate-pulse"
+                  style={{ 
+                    left: `${part.targetZone.x}%`, 
+                    top: `${part.targetZone.y}%`,
+                    width: `${part.targetZone.radius * 2}px`,
+                    height: `${part.targetZone.radius * 2}px`,
+                    borderRadius: '50%',
+                    transform: 'translate(-50%, -50%)'
+                  }}
+                >
+                  <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 text-xs text-primary dark:text-primary-foreground whitespace-nowrap">
+                    {part.name} goes here
+                  </span>
+                </div>
+              )
+            ))}
             
             {/* Placed parts */}
             {robotParts.map((part) => (
