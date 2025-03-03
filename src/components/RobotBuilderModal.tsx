@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { toast } from "@/components/ui/use-toast";
-import { X, Cpu, Circle, Circle2, BatteryFull, Eye } from "lucide-react";
+import { X, Cpu, Circle, BatteryFull, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface RobotPart {
@@ -24,7 +24,7 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
     { id: "wheels", name: "Wheels", icon: <Circle className="h-8 w-8" />, placed: false },
     { id: "sensors", name: "Sensors", icon: <Eye className="h-8 w-8" />, placed: false },
     { id: "battery", name: "Battery", icon: <BatteryFull className="h-8 w-8" />, placed: false },
-    { id: "antenna", name: "Antenna", icon: <Circle2 className="h-8 w-8" />, placed: false },
+    { id: "antenna", name: "Antenna", icon: <Circle className="h-8 w-8" />, placed: false },
   ]);
   
   const [isComplete, setIsComplete] = useState(false);

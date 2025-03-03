@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import { useGame } from "@/context/GameContext";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
-import { Robot } from "lucide-react";
-import { useTranslation } from "@/utils/translations";
+import { Bot } from "lucide-react";
+import { translations } from "@/utils/translations";
 
 const RobotWelcome = () => {
   const { robotCompleted } = useGame();
   const { theme } = useTheme();
   const { language } = useLanguage();
-  const t = useTranslation(language);
+  const t = translations[language];
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const RobotWelcome = () => {
           : "bg-white/90 text-gray-800"
       } flex flex-col items-center max-w-md backdrop-blur-sm`}
       >
-        <Robot className="w-16 h-16 text-primary mb-4 animate-rev-light" />
+        <Bot className="w-16 h-16 text-primary mb-4 animate-rev-light" />
         <h2 className="text-2xl font-bold mb-2">
           {t.robotWelcomeTitle || "Robot Assistant Activated!"}
         </h2>

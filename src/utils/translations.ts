@@ -1,3 +1,4 @@
+
 export const translations = {
   en: {
     hero: {
@@ -45,4 +46,9 @@ export const translations = {
     allPartsPlaced: "Toutes les pièces sont placées! Votre robot est prêt.",
     enterPortfolio: "Entrer dans le Portfolio",
   }
+};
+
+// Helper function to get translations
+export const getTranslation = (language: 'en' | 'fr', key: string) => {
+  return language === 'en' ? translations.en[key] : translations.fr[key];
 };
