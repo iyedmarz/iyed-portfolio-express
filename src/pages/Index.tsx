@@ -6,7 +6,7 @@ import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
 import SocialLinks from "@/components/SocialLinks";
-import CameraModal from "@/components/CameraModal";
+import MoodSelectorModal from "@/components/MoodSelectorModal";
 import MoodWelcome from "@/components/MoodWelcome";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
@@ -17,37 +17,37 @@ import { Toaster } from "@/components/ui/toaster";
 const Index = () => {
   const { language, setLanguage } = useLanguage();
   const { theme, setTheme } = useTheme();
-  const { mood, setMood, showedCamera, setShowedCamera } = useMood();
-  const [showCameraModal, setShowCameraModal] = useState(false);
+  const { mood, setMood, showedMoodSelector, setShowedMoodSelector } = useMood();
+  const [showMoodSelector, setShowMoodSelector] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
 
   useEffect(() => {
     document.body.className = theme;
     
-    // Check if this is the first visit and we haven't shown the camera modal yet
-    if (!showedCamera) {
-      // Short delay before showing camera modal for better UX
+    // Check if this is the first visit and we haven't shown the mood selector yet
+    if (!showedMoodSelector) {
+      // Short delay before showing mood selector for better UX
       const timer = setTimeout(() => {
-        setShowCameraModal(true);
+        setShowMoodSelector(true);
       }, 1000);
       
       return () => clearTimeout(timer);
     } else {
-      // If we've already shown the camera modal before, show content immediately
+      // If we've already shown the mood selector before, show content immediately
       setContentVisible(true);
     }
-  }, [theme, showedCamera]);
+  }, [theme, showedMoodSelector]);
 
-  const handleMoodDetected = (detectedMood: 'happy' | 'neutral' | 'surprised' | 'sad') => {
-    setMood(detectedMood);
-    setShowCameraModal(false);
-    setShowedCamera(true);
+  const handleMoodSelected = (selectedMood: 'happy' | 'neutral' | 'surprised' | 'sad') => {
+    setMood(selectedMood);
+    setShowMoodSelector(false);
+    setShowedMoodSelector(true);
     setContentVisible(true);
   };
 
-  const handleSkipCamera = () => {
-    setShowCameraModal(false);
-    setShowedCamera(true);
+  const handleSkipMoodSelector = () => {
+    setShowMoodSelector(false);
+    setShowedMoodSelector(true);
     setContentVisible(true);
   };
 
@@ -80,11 +80,11 @@ const Index = () => {
       className={theme === "dark" ? "bg-[#0B0B1E]" : "bg-white"}
       style={getMoodStyles()}
     >
-      {/* Camera modal for the interactive experience */}
-      {showCameraModal && (
-        <CameraModal 
-          onClose={handleSkipCamera} 
-          onMoodDetected={handleMoodDetected} 
+      {/* Mood selector modal for the interactive experience */}
+      {showMoodSelector && (
+        <MoodSelectorModal 
+          onClose={handleSkipMoodSelector} 
+          onMoodSelected={handleMoodSelected} 
         />
       )}
       
@@ -118,7 +118,7 @@ const Index = () => {
         </button>
       </div>
       
-      {/* Main content - only shown after camera interaction or skip */}
+      {/* Main content - only shown after mood selector interaction or skip */}
       <div className={`transition-opacity duration-700 ${contentVisible ? 'opacity-100' : 'opacity-0'}`}>
         <SocialLinks />
         <HeroSection />

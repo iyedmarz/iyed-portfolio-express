@@ -69,6 +69,10 @@ export default {
           "0%": { opacity: "0.5", transform: "scale(0.95)" },
           "50%": { opacity: "1", transform: "scale(1.05)" },
           "100%": { opacity: "0.5", transform: "scale(0.95)" },
+        },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
         }
       },
       animation: {
@@ -79,7 +83,8 @@ export default {
         "speedometer": "speedometer 2s ease-in-out infinite alternate",
         "drift-left": "drift-left 2s ease-in-out infinite",
         "drift-right": "drift-right 2s ease-in-out infinite",
-        "rev-light": "rev-light 2s ease-in-out infinite"
+        "rev-light": "rev-light 2s ease-in-out infinite",
+        "spin-slow": "spin-slow 3s linear infinite"
       },
     },
   },
