@@ -26,26 +26,38 @@ const CameraModal = ({ onClose, onMoodDetected }: CameraModalProps) => {
   const [detectedMood, setDetectedMood] = useState<string | null>(null);
   const [overlayImage, setOverlayImage] = useState<string | null>(null);
   const [showOverlay, setShowOverlay] = useState(false);
+  const [modelLoadError, setModelLoadError] = useState(false);
 
   // Load face-api models
   useEffect(() => {
     const loadModels = async () => {
       try {
         setIsLoading(true);
-        await Promise.all([
+        // Try to load models with a timeout to prevent hanging
+        const timeoutPromise = new Promise((_, reject) => 
+          setTimeout(() => reject(new Error('Model loading timed out')), 5000)
+        );
+        
+        // Create a promise that attempts to load the models
+        const loadPromise = Promise.all([
           faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
           faceapi.nets.faceExpressionNet.loadFromUri('/models'),
         ]);
+        
+        // Race between the timeout and loading
+        await Promise.race([timeoutPromise, loadPromise]);
+        
         setModelsLoaded(true);
         setIsLoading(false);
       } catch (error) {
         console.error('Error loading face-api models:', error);
+        setModelLoadError(true);
         toast({
-          title: language === 'en' ? 'Error' : 'Erreur',
+          title: language === 'en' ? 'Notice' : 'Avis',
           description: language === 'en' 
-            ? 'Failed to load face detection models. Please try again.' 
-            : 'Impossible de charger les modèles de détection de visage. Veuillez réessayer.',
-          variant: 'destructive',
+            ? 'Switching to interactive mode without face detection.' 
+            : 'Passage en mode interactif sans détection de visage.',
+          variant: 'default',
         });
         setIsLoading(false);
       }
@@ -64,6 +76,12 @@ const CameraModal = ({ onClose, onMoodDetected }: CameraModalProps) => {
   }, [language, toast]);
 
   const startCamera = async () => {
+    if (modelLoadError) {
+      // If models failed to load, just simulate a mood detection
+      simulateMoodDetection();
+      return;
+    }
+    
     if (!modelsLoaded) return;
     
     try {
@@ -77,11 +95,36 @@ const CameraModal = ({ onClose, onMoodDetected }: CameraModalProps) => {
       toast({
         title: language === 'en' ? 'Camera Error' : 'Erreur de Caméra',
         description: language === 'en' 
-          ? 'Unable to access your camera. Please check permissions and try again.' 
-          : 'Impossible d\'accéder à votre caméra. Veuillez vérifier les autorisations et réessayer.',
+          ? 'Unable to access your camera. Using fallback mode.' 
+          : 'Impossible d\'accéder à votre caméra. Utilisation du mode de secours.',
         variant: 'destructive',
       });
+      simulateMoodDetection();
     }
+  };
+
+  const simulateMoodDetection = () => {
+    // Randomly select a mood if face detection fails
+    const moods = ['happy', 'neutral', 'surprised', 'sad'];
+    const randomMood = moods[Math.floor(Math.random() * moods.length)];
+    
+    setDetectedMood(randomMood);
+    
+    // Set overlay based on mood
+    if (randomMood === 'happy') {
+      setOverlayImage('/lovable-uploads/happy-overlay.png');
+    } else if (randomMood === 'surprised') {
+      setOverlayImage('/lovable-uploads/surprised-overlay.png');
+    } else if (randomMood === 'sad') {
+      setOverlayImage('/lovable-uploads/sad-overlay.png');
+    } else {
+      setOverlayImage('/lovable-uploads/neutral-overlay.png');
+    }
+    
+    setShowOverlay(true);
+    setTimeout(() => {
+      onMoodDetected(randomMood as any);
+    }, 2000);
   };
 
   const detectExpressions = async () => {
@@ -93,59 +136,65 @@ const CameraModal = ({ onClose, onMoodDetected }: CameraModalProps) => {
     
     faceapi.matchDimensions(canvas, displaySize);
     
-    const detections = await faceapi
-      .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
-      .withFaceExpressions();
-    
-    if (detections.length > 0) {
-      const expressions = detections[0].expressions;
+    try {
+      const detections = await faceapi
+        .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
+        .withFaceExpressions();
       
-      // Get the expression with the highest score
-      let highestExpression = 'neutral';
-      let highestScore = expressions.neutral;
-      
-      if (expressions.happy > highestScore) {
-        highestExpression = 'happy';
-        highestScore = expressions.happy;
-      }
-      if (expressions.surprised > highestScore) {
-        highestExpression = 'surprised';
-        highestScore = expressions.surprised;
-      }
-      if (expressions.sad > highestScore || expressions.fearful > highestScore || expressions.angry > highestScore) {
-        highestExpression = 'sad';
-        highestScore = Math.max(expressions.sad, expressions.fearful, expressions.angry);
-      }
-      
-      if (highestScore > 0.5) {
-        setDetectedMood(highestExpression);
+      if (detections.length > 0) {
+        const expressions = detections[0].expressions;
         
-        // Set overlay based on mood
-        if (highestExpression === 'happy') {
-          setOverlayImage('/lovable-uploads/happy-overlay.png');
-        } else if (highestExpression === 'surprised') {
-          setOverlayImage('/lovable-uploads/surprised-overlay.png');
-        } else if (highestExpression === 'sad') {
-          setOverlayImage('/lovable-uploads/sad-overlay.png');
-        } else {
-          setOverlayImage('/lovable-uploads/neutral-overlay.png');
+        // Get the expression with the highest score
+        let highestExpression = 'neutral';
+        let highestScore = expressions.neutral;
+        
+        if (expressions.happy > highestScore) {
+          highestExpression = 'happy';
+          highestScore = expressions.happy;
+        }
+        if (expressions.surprised > highestScore) {
+          highestExpression = 'surprised';
+          highestScore = expressions.surprised;
+        }
+        if (expressions.sad > highestScore || expressions.fearful > highestScore || expressions.angry > highestScore) {
+          highestExpression = 'sad';
+          highestScore = Math.max(expressions.sad, expressions.fearful, expressions.angry);
         }
         
-        setShowOverlay(true);
-        setTimeout(() => {
-          onMoodDetected(highestExpression as any);
-        }, 2000);
+        if (highestScore > 0.5) {
+          setDetectedMood(highestExpression);
+          
+          // Set overlay based on mood
+          if (highestExpression === 'happy') {
+            setOverlayImage('/lovable-uploads/happy-overlay.png');
+          } else if (highestExpression === 'surprised') {
+            setOverlayImage('/lovable-uploads/surprised-overlay.png');
+          } else if (highestExpression === 'sad') {
+            setOverlayImage('/lovable-uploads/sad-overlay.png');
+          } else {
+            setOverlayImage('/lovable-uploads/neutral-overlay.png');
+          }
+          
+          setShowOverlay(true);
+          setTimeout(() => {
+            onMoodDetected(highestExpression as any);
+          }, 2000);
+        }
       }
-    }
-    
-    // Draw the detections on the canvas
-    const resizedDetections = faceapi.resizeResults(detections, displaySize);
-    canvas.getContext('2d')?.clearRect(0, 0, canvas.width, canvas.height);
-    faceapi.draw.drawDetections(canvas, resizedDetections);
-    
-    // Continue detecting if no mood has been confirmed yet
-    if (!detectedMood) {
-      requestAnimationFrame(detectExpressions);
+      
+      // Draw the detections on the canvas
+      const resizedDetections = faceapi.resizeResults(detections, displaySize);
+      canvas.getContext('2d')?.clearRect(0, 0, canvas.width, canvas.height);
+      faceapi.draw.drawDetections(canvas, resizedDetections);
+      
+      // Continue detecting if no mood has been confirmed yet
+      if (!detectedMood) {
+        requestAnimationFrame(detectExpressions);
+      }
+    } catch (error) {
+      console.error('Error during face detection:', error);
+      // If face detection fails, simulate a mood detection
+      simulateMoodDetection();
     }
   };
 
@@ -174,9 +223,13 @@ const CameraModal = ({ onClose, onMoodDetected }: CameraModalProps) => {
         </h2>
         
         <p className={`mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-          {language === 'en' 
-            ? "Let's get interactive! Allow camera access to unlock the fun." 
-            : "Soyons interactifs! Autorisez l'accès à la caméra pour débloquer le plaisir."}
+          {modelLoadError 
+            ? (language === 'en' 
+                ? "Let's get interactive! Using the fun mode without face detection." 
+                : "Soyons interactifs! Utilisation du mode amusant sans détection de visage.")
+            : (language === 'en' 
+                ? "Let's get interactive! Allow camera access to unlock the fun." 
+                : "Soyons interactifs! Autorisez l'accès à la caméra pour débloquer le plaisir.")}
         </p>
         
         <div className="relative aspect-video bg-black rounded-md overflow-hidden mb-4">
@@ -184,12 +237,23 @@ const CameraModal = ({ onClose, onMoodDetected }: CameraModalProps) => {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-10 h-10 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
             </div>
-          ) : !cameraActive ? (
+          ) : !cameraActive && !modelLoadError ? (
             <div className="absolute inset-0 flex items-center justify-center flex-col gap-4">
               <Camera size={48} className="text-gray-400" />
               <p className="text-gray-400">
                 {language === 'en' ? 'Camera is inactive' : 'La caméra est inactive'}
               </p>
+            </div>
+          ) : modelLoadError ? (
+            <div className="absolute inset-0 flex items-center justify-center flex-col gap-4">
+              <div className="text-center p-4">
+                <Smile size={48} className="mx-auto text-purple-400 mb-2" />
+                <p className="text-gray-300">
+                  {language === 'en' 
+                    ? 'Click "Enter with Mood" to continue with a random mood!' 
+                    : 'Cliquez sur "Entrer avec humeur" pour continuer avec une humeur aléatoire!'}
+                </p>
+              </div>
             </div>
           ) : null}
           
@@ -251,13 +315,20 @@ const CameraModal = ({ onClose, onMoodDetected }: CameraModalProps) => {
         </div>
         
         <div className="flex flex-col sm:flex-row gap-3 justify-between">
-          {!cameraActive && modelsLoaded ? (
+          {!cameraActive && !modelLoadError && modelsLoaded ? (
             <Button 
               onClick={startCamera}
               className={`flex items-center gap-2 ${theme === 'dark' ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-500 hover:bg-purple-600'}`}
             >
               <Camera size={18} />
               {language === 'en' ? 'Start Camera' : 'Démarrer la Caméra'}
+            </Button>
+          ) : modelLoadError ? (
+            <Button
+              onClick={simulateMoodDetection}
+              className={`flex-1 ${theme === 'dark' ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-500 hover:bg-purple-600'}`}
+            >
+              {language === 'en' ? 'Enter with Mood' : 'Entrer avec Humeur'}
             </Button>
           ) : (
             <Button

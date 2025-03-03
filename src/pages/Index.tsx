@@ -12,6 +12,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { useMood } from "@/context/MoodContext";
 import { Languages, Sun, Moon } from "lucide-react";
+import { Toaster } from "@/components/ui/toaster";
 
 const Index = () => {
   const { language, setLanguage } = useLanguage();
@@ -126,6 +127,9 @@ const Index = () => {
         <ProjectsSection />
         <ContactSection />
       </div>
+      
+      {/* Toaster for notifications */}
+      <Toaster />
     </main>
   );
 };
