@@ -73,6 +73,17 @@ export default {
         "spin-slow": {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(360deg)" },
+        },
+        "robot-wave": {
+          "0%": { transform: "rotate(0deg)" },
+          "25%": { transform: "rotate(15deg)" },
+          "75%": { transform: "rotate(-15deg)" },
+          "100%": { transform: "rotate(0deg)" },
+        },
+        "hover-bot": {
+          "0%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+          "100%": { transform: "translateY(0)" },
         }
       },
       animation: {
@@ -84,7 +95,9 @@ export default {
         "drift-left": "drift-left 2s ease-in-out infinite",
         "drift-right": "drift-right 2s ease-in-out infinite",
         "rev-light": "rev-light 2s ease-in-out infinite",
-        "spin-slow": "spin-slow 3s linear infinite"
+        "spin-slow": "spin-slow 3s linear infinite",
+        "robot-wave": "robot-wave 2s ease-in-out infinite",
+        "hover-bot": "hover-bot 3s ease-in-out infinite"
       },
     },
   },
