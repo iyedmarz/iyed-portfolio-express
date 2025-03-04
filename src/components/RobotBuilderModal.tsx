@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { toast } from "@/components/ui/use-toast";
 import { X, Cpu, Circle, BatteryFull, Eye, Hand } from "lucide-react";
@@ -63,7 +62,6 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
   const [dropFeedback, setDropFeedback] = useState<{ message: string; isSuccess: boolean } | null>(null);
 
   useEffect(() => {
-    // Check if all parts are placed
     const allPlaced = robotParts.every(part => part.placed);
     if (allPlaced && !isComplete) {
       setIsComplete(true);
@@ -73,7 +71,6 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
         description: "Your robot is ready to assist you",
       });
       
-      // Import and trigger confetti effect
       import("canvas-confetti").then((confetti) => {
         confetti.default({
           particleCount: 100,
@@ -105,24 +102,19 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
     e.preventDefault();
     if (!draggedPart) return;
 
-    // Get the position in the robot assembly area
     const assemblyArea = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - assemblyArea.left) / assemblyArea.width) * 100;
     const y = ((e.clientY - assemblyArea.top) / assemblyArea.height) * 100;
 
-    // Find the part being dragged
     const part = robotParts.find(p => p.id === draggedPart);
     if (!part) return;
 
-    // Calculate distance to target zone
     const distance = Math.sqrt(
       Math.pow(x - part.targetZone.x, 2) + 
       Math.pow(y - part.targetZone.y, 2)
     );
 
-    // Check if dropped in the correct zone
     if (distance <= part.targetZone.radius) {
-      // Update the part's position to the center of the target zone
       setRobotParts(prevParts => 
         prevParts.map(p => 
           p.id === draggedPart 
@@ -159,7 +151,6 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
         </h2>
         
         <div className="flex flex-col md:flex-row gap-6">
-          {/* Parts inventory */}
           <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg flex flex-wrap gap-4 md:w-1/3">
             <h3 className="w-full text-lg font-semibold dark:text-white">Parts</h3>
             {robotParts.map((part) => (
@@ -184,7 +175,6 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
             )}
           </div>
           
-          {/* Robot assembly area */}
           <div 
             className="bg-gray-200 dark:bg-gray-600 rounded-lg flex-1 h-96 md:h-[450px] relative overflow-hidden"
             onDragOver={handleDragOver}
@@ -196,7 +186,6 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
               backgroundRepeat: "no-repeat"
             }}
           >
-            {/* Drop feedback message */}
             {dropFeedback && (
               <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-full text-white text-sm font-medium z-10 ${
                 dropFeedback.isSuccess ? 'bg-green-500' : 'bg-red-500'
@@ -205,7 +194,6 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
               </div>
             )}
             
-            {/* Target zones */}
             {robotParts.map((part) => (
               !part.placed && (
                 <div
@@ -227,7 +215,6 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
               )
             ))}
             
-            {/* Placed parts */}
             {robotParts.map((part) => (
               part.placed && part.position && (
                 <div
