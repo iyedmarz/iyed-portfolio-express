@@ -66,7 +66,7 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
 
   useEffect(() => {
     // Check if all parts are placed
-    const allPlaced = robotParts.every((part) => part.placed);
+    const allPlaced = robotParts.every(part => part.placed);
     if (allPlaced && !isComplete) {
       setIsComplete(true);
       setShowConfetti(true);
@@ -74,7 +74,7 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
         title: "Robot completed!",
         description: "Your robot is ready to assist you",
       });
-
+      
       // Import and trigger confetti effect
       import("canvas-confetti").then((confetti) => {
         confetti.default({
@@ -107,31 +107,24 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
     e.preventDefault();
     if (!draggedPart) return;
 
-    // Get the position in the robot assembly area
     const assemblyArea = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - assemblyArea.left) / assemblyArea.width) * 100;
     const y = ((e.clientY - assemblyArea.top) / assemblyArea.height) * 100;
 
     // Find the part being dragged
-    const part = robotParts.find((p) => p.id === draggedPart);
+    const part = robotParts.find(p => p.id === draggedPart);
     if (!part) return;
 
-    // Calculate distance to target zone
     const distance = Math.sqrt(
       Math.pow(x - part.targetZone.x, 2) + Math.pow(y - part.targetZone.y, 2)
     );
 
-    // Check if dropped in the correct zone
     if (distance <= part.targetZone.radius) {
       // Update the part's position to the center of the target zone
-      setRobotParts((prevParts) =>
-        prevParts.map((p) =>
-          p.id === draggedPart
-            ? {
-                ...p,
-                placed: true,
-                position: { x: p.targetZone.x, y: p.targetZone.y },
-              }
+      setRobotParts(prevParts => 
+        prevParts.map(p => 
+          p.id === draggedPart 
+            ? { ...p, placed: true, position: { x: p.targetZone.x, y: p.targetZone.y } } 
             : p
         )
       );
@@ -164,7 +157,6 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
         </h2>
 
         <div className="flex flex-col md:flex-row gap-6">
-          {/* Parts inventory */}
           <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg flex flex-wrap gap-4 md:w-1/3">
             <h3 className="w-full text-lg font-semibold dark:text-white">
               Parts
@@ -193,9 +185,9 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
               </div>
             )}
           </div>
-
+          
           {/* Robot assembly area */}
-          <div
+          <div 
             className="bg-gray-200 dark:bg-gray-600 rounded-lg flex-1 h-96 md:h-[450px] relative overflow-hidden"
             onDragOver={handleDragOver}
             onDrop={handleDrop}
@@ -206,7 +198,6 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
               backgroundRepeat: "no-repeat",
             }}
           >
-            {/* Drop feedback message */}
             {dropFeedback && (
               <div
                 className={`absolute top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-full text-white text-sm font-medium z-10 ${
@@ -216,51 +207,48 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
                 {dropFeedback.message}
               </div>
             )}
-
+            
             {/* Target zones */}
-            {robotParts.map(
-              (part) =>
-                !part.placed && (
-                  <div
-                    key={`target-${part.id}`}
-                    className="absolute border-2 border-dashed border-primary animate-pulse z-10"
-                    style={{
-                      left: `${part.targetZone.x}%`,
-                      top: `${part.targetZone.y}%`,
-                      width: `${part.targetZone.radius * 2}px`,
-                      height: `${part.targetZone.radius * 2}px`,
-                      borderRadius: "50%",
-                      transform: "translate(-50%, -50%)",
-                    }}
-                  >
-                    <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 text-xs text-primary dark:text-primary-foreground whitespace-nowrap">
-                      {part.name}
-                    </span>
-                  </div>
-                )
-            )}
-
+            {robotParts.map((part) => (
+              !part.placed && (
+                <div
+                  key={`target-${part.id}`}
+                  className="absolute border-2 border-dashed border-primary animate-pulse z-10"
+                  style={{ 
+                    left: `${part.targetZone.x}%`, 
+                    top: `${part.targetZone.y}%`,
+                    width: `${part.targetZone.radius * 2}px`,
+                    height: `${part.targetZone.radius * 2}px`,
+                    borderRadius: '50%',
+                    transform: 'translate(-50%, -50%)'
+                  }}
+                >
+                  <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 text-xs text-primary dark:text-primary-foreground whitespace-nowrap">
+                    {part.name}
+                  </span>
+                </div>
+              )
+            ))}
+            
             {/* Placed parts */}
-            {robotParts.map(
-              (part) =>
-                part.placed &&
-                part.position && (
-                  <div
-                    key={part.id}
-                    className="absolute transition-all duration-300 animate-rev-up z-20"
-                    style={{
-                      left: `${part.position.x}%`,
-                      top: `${part.position.y}%`,
-                      transform: "translate(-50%, -50%)",
-                    }}
-                  >
-                    <div className="text-primary dark:text-primary-foreground bg-white/80 dark:bg-gray-800/80 rounded-full p-1">
-                      {part.icon}
-                    </div>
-                    <span className="sr-only">{part.name}</span>
+            {robotParts.map((part) => (
+              part.placed && part.position && (
+                <div
+                  key={part.id}
+                  className="absolute transition-all duration-300 animate-rev-up z-20"
+                  style={{ 
+                    left: `${part.position.x}%`, 
+                    top: `${part.position.y}%`,
+                    transform: 'translate(-50%, -50%)'
+                  }}
+                >
+                  <div className="text-primary dark:text-primary-foreground bg-white/80 dark:bg-gray-800/80 rounded-full p-1">
+                    {part.icon}
                   </div>
-                )
-            )}
+                  <span className="sr-only">{part.name}</span>
+                </div>
+              )
+            ))}
           </div>
         </div>
 
