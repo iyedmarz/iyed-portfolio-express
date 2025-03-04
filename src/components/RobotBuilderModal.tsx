@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { toast } from "@/components/ui/use-toast";
-import { X, Cpu, Circle, BatteryFull, Eye } from "lucide-react";
+import { X, Cpu, Circle, BatteryFull, Eye, Hand } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface RobotPart {
@@ -22,39 +22,39 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
   const [draggedPart, setDraggedPart] = useState<string | null>(null);
   const [robotParts, setRobotParts] = useState<RobotPart[]>([
     { 
-      id: "cpu", 
-      name: "CPU", 
+      id: "brain", 
+      name: "Brain (Contrôleur)", 
       icon: <Cpu className="h-8 w-8" />, 
       placed: false,
-      targetZone: { x: 50, y: 30, radius: 15 } 
+      targetZone: { x: 20, y: 18, radius: 15 } 
     },
     { 
       id: "wheels", 
-      name: "Wheels", 
+      name: "Wheels (Roues)", 
       icon: <Circle className="h-8 w-8" />, 
       placed: false,
-      targetZone: { x: 50, y: 80, radius: 15 } 
+      targetZone: { x: 50, y: 90, radius: 15 } 
     },
     { 
       id: "sensors", 
-      name: "Sensors", 
+      name: "Sensors (Capteurs)", 
       icon: <Eye className="h-8 w-8" />, 
       placed: false,
-      targetZone: { x: 50, y: 15, radius: 15 } 
+      targetZone: { x: 80, y: 18, radius: 15 } 
     },
     { 
       id: "battery", 
-      name: "Battery", 
+      name: "Power Source (Source d'énergie)", 
       icon: <BatteryFull className="h-8 w-8" />, 
       placed: false,
-      targetZone: { x: 30, y: 50, radius: 15 } 
+      targetZone: { x: 80, y: 55, radius: 15 } 
     },
     { 
-      id: "antenna", 
-      name: "Antenna", 
-      icon: <Circle className="h-8 w-8" />, 
+      id: "hand", 
+      name: "Actuators (Actionneurs)", 
+      icon: <Hand className="h-8 w-8" />, 
       placed: false,
-      targetZone: { x: 70, y: 50, radius: 15 } 
+      targetZone: { x: 20, y: 75, radius: 15 } 
     },
   ]);
   
@@ -146,7 +146,7 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-xl w-full max-w-3xl relative">
+      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-xl w-full max-w-4xl relative">
         <button 
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
@@ -186,9 +186,15 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
           
           {/* Robot assembly area */}
           <div 
-            className="bg-gray-200 dark:bg-gray-600 rounded-lg flex-1 h-64 md:h-auto relative overflow-hidden"
+            className="bg-gray-200 dark:bg-gray-600 rounded-lg flex-1 h-96 md:h-[450px] relative overflow-hidden"
             onDragOver={handleDragOver}
             onDrop={handleDrop}
+            style={{
+              backgroundImage: "url('/lovable-uploads/98a59aec-8be9-4fea-87f1-31b6558bd709.png')",
+              backgroundSize: "contain",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat"
+            }}
           >
             {/* Drop feedback message */}
             {dropFeedback && (
@@ -199,21 +205,12 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
               </div>
             )}
             
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-gray-400 dark:text-gray-500 text-center">
-                {robotParts.some(part => part.placed) ? "" : "Drag parts to the highlighted zones on the robot"}
-              </div>
-            </div>
-            
-            {/* Robot body outline */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-48 border-2 border-dashed border-gray-400 dark:border-gray-500 rounded-lg"></div>
-            
             {/* Target zones */}
             {robotParts.map((part) => (
               !part.placed && (
                 <div
                   key={`target-${part.id}`}
-                  className="absolute border-2 border-dashed border-primary animate-pulse"
+                  className="absolute border-2 border-dashed border-primary animate-pulse z-10"
                   style={{ 
                     left: `${part.targetZone.x}%`, 
                     top: `${part.targetZone.y}%`,
@@ -224,7 +221,7 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
                   }}
                 >
                   <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 text-xs text-primary dark:text-primary-foreground whitespace-nowrap">
-                    {part.name} goes here
+                    {part.name}
                   </span>
                 </div>
               )
@@ -235,14 +232,14 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
               part.placed && part.position && (
                 <div
                   key={part.id}
-                  className="absolute transition-all duration-300 animate-rev-up"
+                  className="absolute transition-all duration-300 animate-rev-up z-20"
                   style={{ 
                     left: `${part.position.x}%`, 
                     top: `${part.position.y}%`,
                     transform: 'translate(-50%, -50%)'
                   }}
                 >
-                  <div className="text-primary dark:text-primary-foreground">
+                  <div className="text-primary dark:text-primary-foreground bg-white/80 dark:bg-gray-800/80 rounded-full p-1">
                     {part.icon}
                   </div>
                   <span className="sr-only">{part.name}</span>

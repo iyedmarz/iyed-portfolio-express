@@ -29,6 +29,13 @@
   50% { opacity: 0.2; }
 }
 
+@keyframes placepart {
+  0% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
+  75% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
 .glass-effect {
   @apply backdrop-blur-md;
 }
@@ -71,4 +78,8 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #A855F7;
+}
+
+.animate-rev-up {
+  animation: placepart 0.5s ease-out forwards;
 }
