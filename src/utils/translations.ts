@@ -14,7 +14,7 @@ export const translations = {
       origin: "Origin",
       originValue: "Tunisia",
       currentBase: "Current Base",
-      currentBaseValue: "France"
+      currentBaseValue: "Tunisia, Tunis"
     },
     robotWelcomeTitle: "Robot Assistant Activated!",
     robotWelcomeMessage: "Welcome to my portfolio. Your robot assistant is ready to help you navigate through my work and projects.",
@@ -37,7 +37,7 @@ export const translations = {
       origin: "Origine",
       originValue: "Tunisie",
       currentBase: "Base Actuelle",
-      currentBaseValue: "France"
+      currentBaseValue: "Tunisie, Tunis"
     },
     robotWelcomeTitle: "Assistant Robot Activé!",
     robotWelcomeMessage: "Bienvenue sur mon portfolio. Votre assistant robot est prêt à vous aider à naviguer à travers mes travaux et projets.",

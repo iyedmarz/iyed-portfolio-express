@@ -1,31 +1,31 @@
-
 import { Github, Linkedin, Twitter, Instagram } from "lucide-react";
 
 const socialLinks = [
   {
-    name: "GitHub",
-    url: "https://github.com/yourusername",
-    icon: Github,
-    color: "hover:text-purple-400",
-  },
-  {
     name: "LinkedIn",
-    url: "https://linkedin.com/in/yourusername",
+    url: "https://www.linkedin.com/in/iyed-marzouki/",
     icon: Linkedin,
     color: "hover:text-purple-400",
   },
   {
-    name: "Twitter",
-    url: "https://twitter.com/yourusername",
-    icon: Twitter,
+    name: "GitHub",
+    url: "https://github.com/iyedmarz",
+    icon: Github,
     color: "hover:text-purple-400",
   },
-  {
-    name: "Instagram",
-    url: "https://instagram.com/yourusername",
-    icon: Instagram,
-    color: "hover:text-purple-400",
-  },
+
+  // {
+  //   name: "Twitter",
+  //   url: "https://twitter.com/yourusername",
+  //   icon: Twitter,
+  //   color: "hover:text-purple-400",
+  // },
+  // {
+  //   name: "Instagram",
+  //   url: "https://instagram.com/yourusername",
+  //   icon: Instagram,
+  //   color: "hover:text-purple-400",
+  // },
 ];
 
 const SocialLinks = () => {
@@ -40,9 +40,9 @@ const SocialLinks = () => {
           className={`p-2 transition-all duration-300 hover:-translate-y-1 group backdrop-blur-sm bg-white/5 rounded-full border border-purple-500/10 ${link.color}`}
           aria-label={link.name}
         >
-          <link.icon 
-            size={20} 
-            className="group-hover:animate-rev-up text-purple-300 group-hover:text-purple-400 transition-colors" 
+          <link.icon
+            size={20}
+            className="group-hover:animate-rev-up text-purple-300 group-hover:text-purple-400 transition-colors"
           />
         </a>
       ))}
