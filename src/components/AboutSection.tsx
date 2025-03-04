@@ -57,10 +57,10 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Gallery Grid */}
+          {/* Gallery Grid with 4 images */}
           <div className="grid grid-cols-2 gap-4">
-            {/* Main Photo */}
-            <div className="relative col-span-2 aspect-square rounded-2xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
+            {/* Main Photo 1 - Top left */}
+            <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
               <img 
                 src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb"
                 alt="Starry Night Sky"
@@ -69,38 +69,31 @@ const AboutSection = () => {
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
             </div>
             
-            {/* Additional Photos */}
+            {/* Photo 2 - Top right */}
             <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
               <img 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
-                alt="Working on projects"
+                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
+                alt="Technology"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
             </div>
             
+            {/* Photo 3 - Bottom left */}
             <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
               <img 
-                src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b"
-                alt="Innovation"
+                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6"
+                alt="Programming"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
             </div>
             
+            {/* Photo 4 - Bottom right */}
             <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
               <img 
-                src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
-                alt="Code"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
-            </div>
-            
-            <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
-              <img 
-                src="https://images.unsplash.com/photo-1523712999610-f77fbcfc3843"
-                alt="Inspiration"
+                src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+                alt="Person using laptop"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
