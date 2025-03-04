@@ -1,7 +1,6 @@
-
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useRef, useState } from "react";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 import { useToast } from "../hooks/use-toast";
 
 const ContactSection = () => {
@@ -11,20 +10,20 @@ const ContactSection = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     if (!formRef.current) return;
-    
+
     setIsSubmitting(true);
-    
+
     try {
       const result = await emailjs.sendForm(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        "service_48njowf",
+        "template_0inc7kn",
         formRef.current,
-        'YOUR_PUBLIC_KEY'
+        "xte223UBcDtxZBAWZ"
       );
 
-      if (result.text === 'OK') {
+      if (result.text === "OK") {
         toast({
           title: "Message sent!",
           description: "Thanks for reaching out. I'll get back to you soon.",
@@ -43,7 +42,10 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 bg-[#0B0B1E] relative overflow-hidden">
+    <section
+      id="contact"
+      className="py-20 px-4 bg-[#0B0B1E] relative overflow-hidden"
+    >
       {/* Stars background */}
       <div className="absolute inset-0">
         {[...Array(50)].map((_, i) => (
@@ -62,7 +64,9 @@ const ContactSection = () => {
       </div>
 
       <div className="max-w-4xl mx-auto relative z-10">
-        <h2 className="text-3xl font-bold mb-12 text-center text-white">Get in Touch</h2>
+        <h2 className="text-3xl font-bold mb-12 text-center text-white">
+          Get in Touch
+        </h2>
         <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-6">
             <div className="flex items-start gap-4 group hover:scale-105 transition-all duration-300">
