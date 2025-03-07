@@ -22,6 +22,26 @@ export const translations = {
     buildRobotInstructions: "Drag and drop robot parts to assemble your robot assistant",
     allPartsPlaced: "All parts placed! Your robot is ready.",
     enterPortfolio: "Enter Portfolio",
+    entryOptions: {
+      title: "Choose Your Path",
+      robotBuilder: "Robot Builder",
+      robotDescription: "Assemble a robot assistant to help navigate the portfolio",
+      codingChallenge: "Coding Challenge",
+      codingDescription: "Solve a mini coding puzzle to unlock the portfolio",
+      directEntry: "Direct Entry",
+      directDescription: "Skip the challenges and explore the portfolio right away",
+      footer: "Choose any option to continue. You can always return later."
+    },
+    codingChallenge: {
+      title: "Coding Challenge",
+      submit: "Submit Solution",
+      skip: "Skip Challenge",
+      newChallenge: "New Challenge",
+      success: "Success!",
+      successMessage: "Your solution is correct!",
+      error: "Not quite right",
+      errorMessage: "Try again or select another challenge"
+    }
   },
   fr: {
     hero: {
@@ -45,6 +65,26 @@ export const translations = {
     buildRobotInstructions: "Glissez et déposez les pièces du robot pour assembler votre assistant robot",
     allPartsPlaced: "Toutes les pièces sont placées! Votre robot est prêt.",
     enterPortfolio: "Entrer dans le Portfolio",
+    entryOptions: {
+      title: "Choisissez Votre Voie",
+      robotBuilder: "Constructeur de Robot",
+      robotDescription: "Assemblez un assistant robot pour vous aider à naviguer dans le portfolio",
+      codingChallenge: "Défi de Codage",
+      codingDescription: "Résolvez un mini puzzle de codage pour débloquer le portfolio",
+      directEntry: "Entrée Directe",
+      directDescription: "Ignorez les défis et explorez immédiatement le portfolio",
+      footer: "Choisissez n'importe quelle option pour continuer. Vous pourrez toujours revenir plus tard."
+    },
+    codingChallenge: {
+      title: "Défi de Codage",
+      submit: "Soumettre la Solution",
+      skip: "Ignorer le Défi",
+      newChallenge: "Nouveau Défi",
+      success: "Succès !",
+      successMessage: "Votre solution est correcte !",
+      error: "Pas tout à fait",
+      errorMessage: "Essayez à nouveau ou sélectionnez un autre défi"
+    }
   }
 };
 

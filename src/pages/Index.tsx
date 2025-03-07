@@ -8,6 +8,8 @@ import ContactSection from "@/components/ContactSection";
 import SocialLinks from "@/components/SocialLinks";
 import RobotBuilderModal from "@/components/RobotBuilderModal";
 import RobotWelcome from "@/components/RobotWelcome";
+import EntryOptionsModal from "@/components/EntryOptionsModal";
+import CodingChallengeModal from "@/components/CodingChallengeModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { useGame } from "@/context/GameContext";
@@ -17,26 +19,57 @@ import { Toaster } from "@/components/ui/toaster";
 const Index = () => {
   const { language, setLanguage } = useLanguage();
   const { theme, setTheme } = useTheme();
-  const { robotCompleted, setRobotCompleted, showedRobotBuilder, setShowedRobotBuilder } = useGame();
+  const { 
+    robotCompleted, 
+    setRobotCompleted, 
+    showedRobotBuilder, 
+    setShowedRobotBuilder,
+    codingCompleted,
+    setCodingCompleted,
+    entryOption,
+    setEntryOption
+  } = useGame();
+  
+  const [showEntryOptions, setShowEntryOptions] = useState(false);
   const [showRobotBuilder, setShowRobotBuilder] = useState(false);
+  const [showCodingChallenge, setShowCodingChallenge] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
 
   useEffect(() => {
     document.body.className = theme;
     
-    // Check if this is the first visit and we haven't shown the robot builder yet
-    if (!showedRobotBuilder) {
-      // Short delay before showing robot builder for better UX
+    // Check if this is the first visit and we haven't shown any entry options yet
+    if (!showedRobotBuilder && !entryOption) {
+      // Short delay before showing entry options for better UX
       const timer = setTimeout(() => {
-        setShowRobotBuilder(true);
+        setShowEntryOptions(true);
       }, 1000);
       
       return () => clearTimeout(timer);
     } else {
-      // If we've already shown the robot builder before, show content immediately
+      // If we've already shown an entry option before, show content immediately
       setContentVisible(true);
     }
-  }, [theme, showedRobotBuilder]);
+  }, [theme, showedRobotBuilder, entryOption]);
+
+  const handleSelectRobotBuilder = () => {
+    setEntryOption("robot");
+    setShowEntryOptions(false);
+    setShowRobotBuilder(true);
+  };
+
+  const handleSelectCodingChallenge = () => {
+    setEntryOption("coding");
+    setShowEntryOptions(false);
+    setShowCodingChallenge(true);
+  };
+
+  const handleDirectEntry = () => {
+    setEntryOption("direct");
+    setShowEntryOptions(false);
+    setShowedRobotBuilder(true);
+    setContentVisible(true);
+  };
 
   const handleRobotComplete = () => {
     setRobotCompleted(true);
@@ -45,8 +78,17 @@ const Index = () => {
     setContentVisible(true);
   };
 
-  const handleSkipRobotBuilder = () => {
+  const handleCodingComplete = () => {
+    setCodingCompleted(true);
+    setShowCodingChallenge(false);
+    setShowedRobotBuilder(true);
+    setContentVisible(true);
+  };
+
+  const handleSkipEntryOption = () => {
+    setShowEntryOptions(false);
     setShowRobotBuilder(false);
+    setShowCodingChallenge(false);
     setShowedRobotBuilder(true);
     setContentVisible(true);
   };
@@ -65,11 +107,29 @@ const Index = () => {
       className={theme === "dark" ? "bg-[#0B0B1E]" : "bg-white"}
       style={getRobotStyles()}
     >
-      {/* Robot builder modal for the interactive experience */}
+      {/* Entry options modal */}
+      {showEntryOptions && (
+        <EntryOptionsModal
+          onSelectRobotBuilder={handleSelectRobotBuilder}
+          onSelectCodingChallenge={handleSelectCodingChallenge}
+          onDirectEntry={handleDirectEntry}
+          onClose={handleSkipEntryOption}
+        />
+      )}
+      
+      {/* Robot builder modal */}
       {showRobotBuilder && (
         <RobotBuilderModal 
-          onClose={handleSkipRobotBuilder} 
+          onClose={handleSkipEntryOption} 
           onComplete={handleRobotComplete} 
+        />
+      )}
+      
+      {/* Coding challenge modal */}
+      {showCodingChallenge && (
+        <CodingChallengeModal
+          onClose={handleSkipEntryOption}
+          onComplete={handleCodingComplete}
         />
       )}
       
@@ -103,7 +163,7 @@ const Index = () => {
         </button>
       </div>
       
-      {/* Main content - only shown after robot builder interaction or skip */}
+      {/* Main content - only shown after interaction or skip */}
       <div className={`transition-opacity duration-700 ${contentVisible ? 'opacity-100' : 'opacity-0'}`}>
         <SocialLinks />
         <HeroSection />

@@ -6,6 +6,10 @@ interface GameContextType {
   setRobotCompleted: (completed: boolean) => void;
   showedRobotBuilder: boolean;
   setShowedRobotBuilder: (showed: boolean) => void;
+  codingCompleted: boolean;
+  setCodingCompleted: (completed: boolean) => void;
+  entryOption: "robot" | "coding" | "direct" | null;
+  setEntryOption: (option: "robot" | "coding" | "direct" | null) => void;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -13,13 +17,19 @@ const GameContext = createContext<GameContextType | undefined>(undefined);
 export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [robotCompleted, setRobotCompleted] = useState<boolean>(false);
   const [showedRobotBuilder, setShowedRobotBuilder] = useState(false);
+  const [codingCompleted, setCodingCompleted] = useState<boolean>(false);
+  const [entryOption, setEntryOption] = useState<"robot" | "coding" | "direct" | null>(null);
 
   return (
     <GameContext.Provider value={{ 
       robotCompleted, 
       setRobotCompleted, 
       showedRobotBuilder, 
-      setShowedRobotBuilder 
+      setShowedRobotBuilder,
+      codingCompleted,
+      setCodingCompleted,
+      entryOption,
+      setEntryOption
     }}>
       {children}
     </GameContext.Provider>
