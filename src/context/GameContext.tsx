@@ -1,5 +1,5 @@
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 interface GameContextType {
   robotCompleted: boolean;
@@ -15,10 +15,42 @@ interface GameContextType {
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
 export const GameProvider = ({ children }: { children: ReactNode }) => {
-  const [robotCompleted, setRobotCompleted] = useState<boolean>(false);
-  const [showedRobotBuilder, setShowedRobotBuilder] = useState(false);
-  const [codingCompleted, setCodingCompleted] = useState<boolean>(false);
-  const [entryOption, setEntryOption] = useState<"robot" | "coding" | "direct" | null>(null);
+  // Initialize state from localStorage if available
+  const [robotCompleted, setRobotCompleted] = useState<boolean>(() => {
+    return localStorage.getItem("robotCompleted") === "true";
+  });
+  
+  const [showedRobotBuilder, setShowedRobotBuilder] = useState(() => {
+    return localStorage.getItem("showedRobotBuilder") === "true";
+  });
+  
+  const [codingCompleted, setCodingCompleted] = useState<boolean>(() => {
+    return localStorage.getItem("codingCompleted") === "true";
+  });
+  
+  const [entryOption, setEntryOption] = useState<"robot" | "coding" | "direct" | null>(() => {
+    const saved = localStorage.getItem("entryOption");
+    return (saved as "robot" | "coding" | "direct" | null) || null;
+  });
+
+  // Save state to localStorage when changed
+  useEffect(() => {
+    localStorage.setItem("robotCompleted", robotCompleted.toString());
+  }, [robotCompleted]);
+
+  useEffect(() => {
+    localStorage.setItem("showedRobotBuilder", showedRobotBuilder.toString());
+  }, [showedRobotBuilder]);
+
+  useEffect(() => {
+    localStorage.setItem("codingCompleted", codingCompleted.toString());
+  }, [codingCompleted]);
+
+  useEffect(() => {
+    if (entryOption) {
+      localStorage.setItem("entryOption", entryOption);
+    }
+  }, [entryOption]);
 
   return (
     <GameContext.Provider value={{ 

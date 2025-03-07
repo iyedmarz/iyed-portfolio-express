@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
+import { translations } from "@/utils/translations";
 
 interface CodingChallengeModalProps {
   onClose: () => void;
@@ -28,6 +29,9 @@ const CodingChallengeModal = ({ onClose, onComplete }: CodingChallengeModalProps
   });
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const isDark = theme === "dark";
+  const t = translations[language as 'en' | 'fr'];
 
   const challenges = [
     {
@@ -73,10 +77,8 @@ const CodingChallengeModal = ({ onClose, onComplete }: CodingChallengeModalProps
       
       if (result) {
         toast({
-          title: language === "en" ? "Success!" : "Succès !",
-          description: language === "en" 
-            ? "Your solution is correct!" 
-            : "Votre solution est correcte !",
+          title: t.codingChallenge.success,
+          description: t.codingChallenge.successMessage,
         });
         
         // Short delay before completing
@@ -85,10 +87,8 @@ const CodingChallengeModal = ({ onClose, onComplete }: CodingChallengeModalProps
         }, 1500);
       } else {
         toast({
-          title: language === "en" ? "Not quite right" : "Pas tout à fait",
-          description: language === "en" 
-            ? "Try again or select another challenge" 
-            : "Essayez à nouveau ou sélectionnez un autre défi",
+          title: t.codingChallenge.error,
+          description: t.codingChallenge.errorMessage,
           variant: "destructive",
         });
       }
@@ -109,22 +109,30 @@ const CodingChallengeModal = ({ onClose, onComplete }: CodingChallengeModalProps
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-xl w-full max-w-4xl relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+      <div className={`${
+        isDark 
+          ? "bg-gray-900/95 text-white border border-purple-500/20" 
+          : "bg-white/95 text-gray-800 border border-purple-200"
+        } rounded-xl p-8 shadow-xl w-full max-w-4xl relative animate-fade-in`}>
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+          className={`absolute top-4 right-4 ${
+            isDark 
+              ? "text-gray-400 hover:text-white" 
+              : "text-gray-400 hover:text-gray-700"
+          }`}
         >
           <X size={24} />
         </button>
 
-        <h2 className="text-2xl font-bold text-center mb-6 dark:text-white">
-          {language === "en" ? "Coding Challenge" : "Défi de Codage"}
+        <h2 className="text-3xl font-bold text-center mb-8">
+          {t.codingChallenge.title}
         </h2>
 
         <div className="mb-6">
-          <h3 className="text-xl font-semibold mb-2 dark:text-white">{challenge.title}</h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-4">{challenge.description}</p>
+          <h3 className="text-xl font-semibold mb-2">{challenge.title}</h3>
+          <p className={`mb-4 ${isDark ? "text-gray-300" : "text-gray-600"}`}>{challenge.description}</p>
           
           <div className="flex justify-end mb-2">
             <Button 
@@ -132,10 +140,14 @@ const CodingChallengeModal = ({ onClose, onComplete }: CodingChallengeModalProps
               size="sm" 
               onClick={selectNewChallenge}
               disabled={isSubmitting}
-              className="flex items-center gap-1"
+              className={`flex items-center gap-1 ${
+                isDark 
+                  ? "bg-gray-800 border-gray-600 hover:bg-gray-700 text-gray-200" 
+                  : "bg-gray-100 border-gray-300 hover:bg-gray-200 text-gray-700"
+              }`}
             >
               <RefreshCw size={16} />
-              {language === "en" ? "New Challenge" : "Nouveau Défi"}
+              {t.codingChallenge.newChallenge}
             </Button>
           </div>
           
@@ -143,19 +155,20 @@ const CodingChallengeModal = ({ onClose, onComplete }: CodingChallengeModalProps
             <textarea
               value={code}
               onChange={(e) => setCode(e.target.value)}
-              className={`w-full min-h-[200px] p-4 font-mono text-sm border rounded-md focus:outline-none focus:ring-2 ${
+              className={`w-full min-h-[220px] p-4 font-mono text-sm rounded-lg focus:outline-none focus:ring-2 ${
                 isCorrect === true 
-                  ? "border-green-500 focus:ring-green-500/20" 
+                  ? `border-2 border-green-500 focus:ring-green-500/20 ${isDark ? "bg-green-950/30" : "bg-green-50"}` 
                   : isCorrect === false 
-                    ? "border-red-500 focus:ring-red-500/20" 
-                    : "border-gray-300 dark:border-gray-600 focus:ring-primary/20"
-              } bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200`}
+                    ? `border-2 border-red-500 focus:ring-red-500/20 ${isDark ? "bg-red-950/30" : "bg-red-50"}` 
+                    : `border border-gray-600 focus:ring-purple-500/20 ${isDark ? "bg-gray-800 text-gray-200" : "bg-gray-50 text-gray-800"}`
+              }`}
               disabled={isSubmitting}
+              spellCheck="false"
             />
             
             {isSubmitting && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/10 dark:bg-black/20 rounded-md">
-                <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full"></div>
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20 dark:bg-black/40 rounded-lg">
+                <div className="animate-spin w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full"></div>
               </div>
             )}
           </div>
@@ -166,17 +179,26 @@ const CodingChallengeModal = ({ onClose, onComplete }: CodingChallengeModalProps
             variant="outline" 
             onClick={onClose}
             disabled={isSubmitting}
+            className={`${
+              isDark 
+                ? "bg-gray-800 border-gray-600 hover:bg-gray-700 text-gray-200" 
+                : "bg-gray-100 border-gray-300 hover:bg-gray-200 text-gray-700"
+            }`}
           >
-            {language === "en" ? "Skip Challenge" : "Ignorer le Défi"}
+            {t.codingChallenge.skip}
           </Button>
           
           <Button 
             onClick={checkSolution}
             disabled={isSubmitting}
-            className="flex items-center gap-2"
+            className={`flex items-center gap-2 ${
+              isDark 
+                ? "bg-purple-700 hover:bg-purple-600 text-white" 
+                : "bg-purple-600 hover:bg-purple-700 text-white"
+            }`}
           >
             <Check size={18} />
-            {language === "en" ? "Submit Solution" : "Soumettre la Solution"}
+            {t.codingChallenge.submit}
           </Button>
         </div>
       </div>

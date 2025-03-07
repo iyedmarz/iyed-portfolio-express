@@ -33,6 +33,32 @@ export default {
           DEFAULT: "#1E293B", // Dark blue-gray
           foreground: "#ffffff",
         },
+        purple: {
+          50: "#F5F3FF",
+          100: "#EDE9FE",
+          200: "#DDD6FE",
+          300: "#C4B5FD",
+          400: "#A78BFA",
+          500: "#8B5CF6",
+          600: "#7C3AED",
+          700: "#6D28D9",
+          800: "#5B21B6",
+          900: "#4C1D95",
+          950: "#2E1065",
+        },
+        gray: {
+          50: "#F9FAFB",
+          100: "#F3F4F6",
+          200: "#E5E7EB",
+          300: "#D1D5DB",
+          400: "#9CA3AF",
+          500: "#6B7280",
+          600: "#4B5563",
+          700: "#374151",
+          800: "#1F2937",
+          900: "#111827",
+          950: "#030712",
+        },
       },
       keyframes: {
         "fade-in": {
@@ -84,6 +110,10 @@ export default {
           "0%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
           "100%": { transform: "translateY(0)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { boxShadow: "0 0 0 0 rgba(139, 92, 246, 0)" },
+          "50%": { boxShadow: "0 0 10px 2px rgba(139, 92, 246, 0.3)" },
         }
       },
       animation: {
@@ -97,7 +127,8 @@ export default {
         "rev-light": "rev-light 2s ease-in-out infinite",
         "spin-slow": "spin-slow 3s linear infinite",
         "robot-wave": "robot-wave 2s ease-in-out infinite",
-        "hover-bot": "hover-bot 3s ease-in-out infinite"
+        "hover-bot": "hover-bot 3s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite"
       },
     },
   },

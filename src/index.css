@@ -83,3 +83,46 @@ html {
 .animate-rev-up {
   animation: placepart 0.5s ease-out forwards;
 }
+
+/* Modal backdrop styles */
+.modal-backdrop {
+  @apply bg-black/70 backdrop-blur-sm;
+}
+
+/* Entry card hover effects */
+.entry-card {
+  @apply transition-all duration-300 border-2;
+}
+
+.entry-card:hover {
+  @apply shadow-xl scale-105;
+}
+
+.entry-card.dark {
+  @apply bg-gradient-to-b from-gray-800/80 to-gray-900/80 border-gray-700/50;
+}
+
+.entry-card.dark:hover {
+  @apply border-purple-500/70;
+}
+
+.entry-card.light {
+  @apply bg-gradient-to-b from-gray-50 to-gray-100 border-gray-200;
+}
+
+.entry-card.light:hover {
+  @apply border-purple-300;
+}
+
+/* Code editor styles */
+.code-editor {
+  @apply font-mono text-sm rounded-lg focus:outline-none focus:ring-2;
+}
+
+.code-editor.dark {
+  @apply bg-gray-800 text-gray-200 border border-gray-600;
+}
+
+.code-editor.light {
+  @apply bg-gray-50 text-gray-800 border border-gray-300;
+}
