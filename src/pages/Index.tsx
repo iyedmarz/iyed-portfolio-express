@@ -28,7 +28,9 @@ const Index = () => {
     setCodingCompleted,
     entryOption,
     setEntryOption,
-    resetEntryState
+    resetEntryState,
+    entryOptionsShownInSession,
+    setEntryOptionsShownInSession
   } = useGame();
   
   const [showEntryOptions, setShowEntryOptions] = useState(false);
@@ -39,16 +41,23 @@ const Index = () => {
   useEffect(() => {
     document.body.className = theme;
     
-    // Reset entry state on each page load to show options modal
-    resetEntryState();
-    
-    // Short delay before showing entry options for better UX
-    const timer = setTimeout(() => {
-      setShowEntryOptions(true);
-    }, 1000);
-    
-    return () => clearTimeout(timer);
-  }, [theme, resetEntryState]);
+    // Only show entry options if they haven't been shown in this session
+    if (!entryOptionsShownInSession) {
+      // Reset entry state on initial page load only
+      resetEntryState();
+      
+      // Short delay before showing entry options for better UX
+      const timer = setTimeout(() => {
+        setShowEntryOptions(true);
+        setEntryOptionsShownInSession(true); // Mark as shown for this session
+      }, 1000);
+      
+      return () => clearTimeout(timer);
+    } else {
+      // If already shown in this session, make content visible
+      setContentVisible(true);
+    }
+  }, [theme, resetEntryState, entryOptionsShownInSession, setEntryOptionsShownInSession]);
 
   // Effect to handle content visibility after entry options interaction
   useEffect(() => {
