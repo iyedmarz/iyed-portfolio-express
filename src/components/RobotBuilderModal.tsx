@@ -291,7 +291,19 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
           </div>
         </div>
 
-        <div className="mt-6 flex justify-center">
+        <div className="mt-6 flex justify-between">
+          <Button 
+            variant="outline" 
+            onClick={onClose}
+            className={`${
+              isDark 
+                ? "bg-gray-800 border-gray-600 hover:bg-gray-700 text-gray-200" 
+                : "bg-gray-100 border-gray-300 hover:bg-gray-200 text-gray-700"
+            }`}
+          >
+            {t.codingChallenge?.skip || "Skip Challenge"}
+          </Button>
+
           {isComplete ? (
             <Button
               onClick={onComplete}
