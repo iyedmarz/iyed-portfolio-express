@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -19,10 +18,10 @@ import { Toaster } from "@/components/ui/toaster";
 const Index = () => {
   const { language, setLanguage } = useLanguage();
   const { theme, setTheme } = useTheme();
-  const { 
-    robotCompleted, 
-    setRobotCompleted, 
-    showedRobotBuilder, 
+  const {
+    robotCompleted,
+    setRobotCompleted,
+    showedRobotBuilder,
     setShowedRobotBuilder,
     codingCompleted,
     setCodingCompleted,
@@ -30,9 +29,9 @@ const Index = () => {
     setEntryOption,
     resetEntryState,
     entryOptionsShownInSession,
-    setEntryOptionsShownInSession
+    setEntryOptionsShownInSession,
   } = useGame();
-  
+
   const [showEntryOptions, setShowEntryOptions] = useState(false);
   const [showRobotBuilder, setShowRobotBuilder] = useState(false);
   const [showCodingChallenge, setShowCodingChallenge] = useState(false);
@@ -40,24 +39,29 @@ const Index = () => {
 
   useEffect(() => {
     document.body.className = theme;
-    
+
     // Only show entry options if they haven't been shown in this session
     if (!entryOptionsShownInSession) {
       // Reset entry state on initial page load only
       resetEntryState();
-      
+
       // Short delay before showing entry options for better UX
       const timer = setTimeout(() => {
         setShowEntryOptions(true);
         setEntryOptionsShownInSession(true); // Mark as shown for this session
       }, 1000);
-      
+
       return () => clearTimeout(timer);
     } else {
       // If already shown in this session, make content visible
       setContentVisible(true);
     }
-  }, [theme, resetEntryState, entryOptionsShownInSession, setEntryOptionsShownInSession]);
+  }, [
+    theme,
+    resetEntryState,
+    entryOptionsShownInSession,
+    setEntryOptionsShownInSession,
+  ]);
 
   // Effect to handle content visibility after entry options interaction
   useEffect(() => {
@@ -113,14 +117,14 @@ const Index = () => {
   // Apply dynamic CSS based on robot completion
   const getRobotStyles = () => {
     if (!robotCompleted) return {};
-    
-    return theme === 'dark' 
-      ? { background: 'linear-gradient(180deg, #0B0B1E 0%, #16123a 100%)' }
-      : { background: 'linear-gradient(180deg, #ffffff 0%, #f3f0ff 100%)' };
+
+    return theme === "dark"
+      ? { background: "linear-gradient(180deg, #0B0B1E 0%, #16123a 100%)" }
+      : { background: "linear-gradient(180deg, #ffffff 0%, #f3f0ff 100%)" };
   };
 
   return (
-    <main 
+    <main
       className={theme === "dark" ? "bg-[#0B0B1E]" : "bg-white"}
       style={getRobotStyles()}
     >
@@ -133,15 +137,15 @@ const Index = () => {
           onClose={handleSkipEntryOption}
         />
       )}
-      
+
       {/* Robot builder modal */}
       {showRobotBuilder && (
-        <RobotBuilderModal 
-          onClose={handleSkipEntryOption} 
-          onComplete={handleRobotComplete} 
+        <RobotBuilderModal
+          onClose={handleSkipEntryOption}
+          onComplete={handleRobotComplete}
         />
       )}
-      
+
       {/* Coding challenge modal */}
       {showCodingChallenge && (
         <CodingChallengeModal
@@ -149,12 +153,12 @@ const Index = () => {
           onComplete={handleCodingComplete}
         />
       )}
-      
+
       {/* Robot welcome message */}
       <RobotWelcome />
-      
+
       {/* Language and theme switchers */}
-      <div className="fixed top-4 right-4 z-50 flex gap-2">
+      <div className="fixed top-4 right-4 z-40 flex gap-2">
         <button
           onClick={() => setLanguage(language === "en" ? "fr" : "en")}
           className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all ${
@@ -167,7 +171,7 @@ const Index = () => {
           <span>{language === "en" ? "Français" : "English"}</span>
         </button>
 
-        <button
+        {/* <button
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all ${
             theme === "dark"
@@ -177,11 +181,15 @@ const Index = () => {
           aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
         >
           {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
+        </button> */}
       </div>
-      
+
       {/* Main content - only shown after interaction or skip */}
-      <div className={`transition-opacity duration-700 ${contentVisible ? 'opacity-100' : 'opacity-0'}`}>
+      <div
+        className={`transition-opacity duration-700 ${
+          contentVisible ? "opacity-100" : "opacity-0"
+        }`}
+      >
         <SocialLinks />
         <HeroSection />
         <AboutSection />
@@ -189,7 +197,7 @@ const Index = () => {
         <ProjectsSection />
         <ContactSection />
       </div>
-      
+
       {/* Toaster for notifications */}
       <Toaster />
     </main>

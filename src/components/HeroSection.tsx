@@ -1,4 +1,3 @@
-
 import { GraduationCap, Rocket } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/utils/translations";
@@ -25,11 +24,11 @@ const HeroSection = () => {
           />
         ))}
       </div>
-      
+
       {/* Content */}
       <div className="max-w-6xl w-full mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12 relative z-10">
         <div className="text-center md:text-left animate-fade-in-slow md:flex-1">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 text-purple-400 mb-6 animate-rev-up">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 text-purple-400 mb-6 ">
             <Rocket size={18} className="animate-bounce" />
             <span className="text-sm font-medium">{t.role}</span>
             <GraduationCap size={18} />
@@ -42,7 +41,7 @@ const HeroSection = () => {
           </p>
           <div className="flex items-center justify-center md:justify-start gap-4">
             <a
-              href="#contact"
+              href="#about"
               className="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-full font-medium hover:bg-purple-500 transition-all hover:scale-105 duration-300 hover:shadow-lg hover:shadow-purple-500/20"
             >
               {t.explore}
@@ -63,7 +62,10 @@ const HeroSection = () => {
               alt="Iyed Marzouki"
               className="absolute inset-0 w-full h-full rounded-full object-cover border-4 border-purple-400/20 hover:scale-105 transition-transform duration-300"
             />
-            <div className="absolute inset-[-10px] rounded-full border-2 border-purple-400/20 animate-spin-slow" style={{ animationDuration: '20s' }} />
+            <div
+              className="absolute inset-[-10px] rounded-full border-2 border-purple-400/20 animate-spin-slow"
+              style={{ animationDuration: "20s" }}
+            />
           </div>
         </div>
       </div>
