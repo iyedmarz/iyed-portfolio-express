@@ -27,7 +27,8 @@ const Index = () => {
     codingCompleted,
     setCodingCompleted,
     entryOption,
-    setEntryOption
+    setEntryOption,
+    resetEntryState
   } = useGame();
   
   const [showEntryOptions, setShowEntryOptions] = useState(false);
@@ -38,19 +39,26 @@ const Index = () => {
   useEffect(() => {
     document.body.className = theme;
     
-    // Check if this is the first visit and we haven't shown any entry options yet
-    if (!showedRobotBuilder && !entryOption) {
-      // Short delay before showing entry options for better UX
-      const timer = setTimeout(() => {
-        setShowEntryOptions(true);
-      }, 1000);
-      
-      return () => clearTimeout(timer);
-    } else {
-      // If we've already shown an entry option before, show content immediately
+    // Reset entry state on each page load to show options modal
+    resetEntryState();
+    
+    // Short delay before showing entry options for better UX
+    const timer = setTimeout(() => {
+      setShowEntryOptions(true);
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, [theme, resetEntryState]);
+
+  // Effect to handle content visibility after entry options interaction
+  useEffect(() => {
+    // If entry option is selected or robot builder was shown
+    if (entryOption || showedRobotBuilder) {
       setContentVisible(true);
+    } else {
+      setContentVisible(false);
     }
-  }, [theme, showedRobotBuilder, entryOption]);
+  }, [entryOption, showedRobotBuilder]);
 
   const handleSelectRobotBuilder = () => {
     setEntryOption("robot");

@@ -10,6 +10,7 @@ interface GameContextType {
   setCodingCompleted: (completed: boolean) => void;
   entryOption: "robot" | "coding" | "direct" | null;
   setEntryOption: (option: "robot" | "coding" | "direct" | null) => void;
+  resetEntryState: () => void; // Added new function to reset state
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -32,6 +33,12 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     const saved = localStorage.getItem("entryOption");
     return (saved as "robot" | "coding" | "direct" | null) || null;
   });
+
+  // Function to reset entry state
+  const resetEntryState = () => {
+    setShowedRobotBuilder(false);
+    localStorage.removeItem("showedRobotBuilder");
+  };
 
   // Save state to localStorage when changed
   useEffect(() => {
@@ -61,7 +68,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       codingCompleted,
       setCodingCompleted,
       entryOption,
-      setEntryOption
+      setEntryOption,
+      resetEntryState
     }}>
       {children}
     </GameContext.Provider>
