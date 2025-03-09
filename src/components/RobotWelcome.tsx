@@ -7,14 +7,15 @@ import { Sparkles } from "lucide-react";
 import { translations } from "@/utils/translations";
 
 const RobotWelcome = () => {
-  const { robotCompleted } = useGame();
+  const { robotCompleted, entryOption } = useGame();
   const { theme } = useTheme();
   const { language } = useLanguage();
   const t = translations[language];
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (robotCompleted) {
+    // Only show welcome message if an entry option was selected
+    if (entryOption && (robotCompleted || entryOption === "direct" || entryOption === "coding")) {
       setVisible(true);
       const timer = setTimeout(() => {
         setVisible(false);
@@ -22,7 +23,7 @@ const RobotWelcome = () => {
       
       return () => clearTimeout(timer);
     }
-  }, [robotCompleted]);
+  }, [robotCompleted, entryOption]);
 
   if (!visible) return null;
 
