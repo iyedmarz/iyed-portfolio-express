@@ -57,8 +57,8 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Gallery Grid with 4 smaller images */}
-          <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto md:max-w-full">
+          {/* Gallery Grid with smaller images */}
+          <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto md:max-w-sm">
             {/* Main Photo 1 - Top left */}
             <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
               <img 
