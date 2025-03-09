@@ -12,8 +12,10 @@ import CodingChallengeModal from "@/components/CodingChallengeModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { useGame } from "@/context/GameContext";
-import { Languages, Sun, Moon } from "lucide-react";
+import { Languages, Sun, Moon, ArrowLeft } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
 
 const Index = () => {
   const { language, setLanguage } = useLanguage();
@@ -40,20 +42,14 @@ const Index = () => {
   useEffect(() => {
     document.body.className = theme;
 
-    // Only show entry options if they haven't been shown in this session
     if (!entryOptionsShownInSession) {
-      // Reset entry state on initial page load only
       resetEntryState();
-
-      // Short delay before showing entry options for better UX
       const timer = setTimeout(() => {
         setShowEntryOptions(true);
-        setEntryOptionsShownInSession(true); // Mark as shown for this session
+        setEntryOptionsShownInSession(true);
       }, 1000);
-
       return () => clearTimeout(timer);
     } else {
-      // If already shown in this session, make content visible
       setContentVisible(true);
     }
   }, [
@@ -63,9 +59,7 @@ const Index = () => {
     setEntryOptionsShownInSession,
   ]);
 
-  // Effect to handle content visibility after entry options interaction
   useEffect(() => {
-    // If entry option is selected or robot builder was shown
     if (entryOption || showedRobotBuilder) {
       setContentVisible(true);
     } else {
@@ -114,7 +108,21 @@ const Index = () => {
     setContentVisible(true);
   };
 
-  // Apply dynamic CSS based on robot completion
+  const handleResetToEntryOptions = () => {
+    setShowEntryOptions(true);
+    setShowRobotBuilder(false);
+    setShowCodingChallenge(false);
+    setContentVisible(false);
+    
+    toast({
+      title: language === "en" ? "Welcome back!" : "Bienvenue à nouveau!",
+      description: language === "en" 
+        ? "You can choose a different entry option now." 
+        : "Vous pouvez choisir une autre option d'entrée maintenant.",
+      duration: 3000,
+    });
+  };
+
   const getRobotStyles = () => {
     if (!robotCompleted) return {};
 
@@ -128,7 +136,6 @@ const Index = () => {
       className={theme === "dark" ? "bg-[#0B0B1E]" : "bg-white"}
       style={getRobotStyles()}
     >
-      {/* Entry options modal */}
       {showEntryOptions && (
         <EntryOptionsModal
           onSelectRobotBuilder={handleSelectRobotBuilder}
@@ -138,7 +145,6 @@ const Index = () => {
         />
       )}
 
-      {/* Robot builder modal */}
       {showRobotBuilder && (
         <RobotBuilderModal
           onClose={handleSkipEntryOption}
@@ -146,7 +152,6 @@ const Index = () => {
         />
       )}
 
-      {/* Coding challenge modal */}
       {showCodingChallenge && (
         <CodingChallengeModal
           onClose={handleSkipEntryOption}
@@ -154,10 +159,24 @@ const Index = () => {
         />
       )}
 
-      {/* Robot welcome message */}
       <RobotWelcome />
 
-      {/* Language and theme switchers */}
+      {contentVisible && !showEntryOptions && (
+        <Button
+          onClick={handleResetToEntryOptions}
+          variant="outline"
+          size="icon"
+          className={`fixed top-4 left-4 z-40 rounded-full transition-all ${
+            theme === "dark"
+              ? "bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 border-purple-500/30"
+              : "bg-purple-100 text-purple-600 hover:bg-purple-200 border-purple-300"
+          }`}
+          aria-label={language === "en" ? "Return to options" : "Retour aux options"}
+        >
+          <ArrowLeft size={20} />
+        </Button>
+      )}
+
       <div className="fixed top-4 right-4 z-40 flex gap-2">
         <button
           onClick={() => setLanguage(language === "en" ? "fr" : "en")}
@@ -170,21 +189,8 @@ const Index = () => {
           <Languages size={20} />
           <span>{language === "en" ? "Français" : "English"}</span>
         </button>
-
-        {/* <button
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all ${
-            theme === "dark"
-              ? "bg-purple-500/10 text-purple-400 hover:bg-purple-500/20"
-              : "bg-purple-100 text-purple-600 hover:bg-purple-200"
-          }`}
-          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-        >
-          {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-        </button> */}
       </div>
 
-      {/* Main content - only shown after interaction or skip */}
       <div
         className={`transition-opacity duration-700 ${
           contentVisible ? "opacity-100" : "opacity-0"
@@ -198,7 +204,6 @@ const Index = () => {
         <ContactSection />
       </div>
 
-      {/* Toaster for notifications */}
       <Toaster />
     </main>
   );
