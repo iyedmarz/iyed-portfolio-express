@@ -16,8 +16,8 @@ export const translations = {
       currentBase: "Current Base",
       currentBaseValue: "Tunisia, Tunis"
     },
-    robotWelcomeTitle: "Robot Assistant Activated!",
-    robotWelcomeMessage: "Welcome to my portfolio. Your robot assistant is ready to help you navigate through my work and projects.",
+    portfolioWelcomeTitle: "Welcome to My Portfolio!",
+    portfolioWelcomeMessage: "Thanks for visiting my digital space. Feel free to explore my projects and learn more about my work.",
     buildRobotTitle: "Build Your Robot",
     buildRobotInstructions: "Drag and drop robot parts to assemble your robot assistant",
     allPartsPlaced: "All parts placed! Your robot is ready.",
@@ -59,8 +59,8 @@ export const translations = {
       currentBase: "Base Actuelle",
       currentBaseValue: "Tunisie, Tunis"
     },
-    robotWelcomeTitle: "Assistant Robot Activé!",
-    robotWelcomeMessage: "Bienvenue sur mon portfolio. Votre assistant robot est prêt à vous aider à naviguer à travers mes travaux et projets.",
+    portfolioWelcomeTitle: "Bienvenue sur Mon Portfolio!",
+    portfolioWelcomeMessage: "Merci de visiter mon espace numérique. N'hésitez pas à explorer mes projets et à en savoir plus sur mon travail.",
     buildRobotTitle: "Construisez Votre Robot",
     buildRobotInstructions: "Glissez et déposez les pièces du robot pour assembler votre assistant robot",
     allPartsPlaced: "Toutes les pièces sont placées! Votre robot est prêt.",

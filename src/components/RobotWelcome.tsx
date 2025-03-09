@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useGame } from "@/context/GameContext";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
-import { Bot } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { translations } from "@/utils/translations";
 
 const RobotWelcome = () => {
@@ -34,12 +34,12 @@ const RobotWelcome = () => {
           : "bg-white/90 text-gray-800"
       } flex flex-col items-center max-w-md backdrop-blur-sm`}
       >
-        <Bot className="w-16 h-16 text-primary mb-4 animate-rev-light" />
+        <Sparkles className="w-16 h-16 text-primary mb-4 animate-rev-light" />
         <h2 className="text-2xl font-bold mb-2">
-          {t.robotWelcomeTitle || "Robot Assistant Activated!"}
+          {t.portfolioWelcomeTitle || "Welcome to My Portfolio!"}
         </h2>
         <p className="text-center">
-          {t.robotWelcomeMessage || "Welcome to my portfolio. Your robot assistant is ready to help you navigate through my work and projects."}
+          {t.portfolioWelcomeMessage || "Thanks for visiting my digital space. Feel free to explore my projects and learn more about my work."}
         </p>
       </div>
     </div>
