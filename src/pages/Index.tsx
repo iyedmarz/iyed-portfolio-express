@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -13,7 +12,7 @@ import CodingChallengeModal from "@/components/CodingChallengeModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { useGame } from "@/context/GameContext";
-import { Languages, ArrowLeft } from "lucide-react";
+import { Languages, Sun, Moon, ArrowLeft } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
@@ -35,7 +34,7 @@ const Index = () => {
     setEntryOptionsShownInSession,
   } = useGame();
 
-  const [showEntryOptions, setShowEntryOptions] = useState(true); // Always show by default
+  const [showEntryOptions, setShowEntryOptions] = useState(false);
   const [showRobotBuilder, setShowRobotBuilder] = useState(false);
   const [showCodingChallenge, setShowCodingChallenge] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
@@ -43,22 +42,21 @@ const Index = () => {
   useEffect(() => {
     document.body.className = theme;
 
-    // Reset entry state when the page loads for the first time
     if (!entryOptionsShownInSession) {
       resetEntryState();
-      setEntryOptionsShownInSession(true);
-    } else if (entryOption || showedRobotBuilder) {
-      // If we already have an entry option or showed the robot builder, show content and hide entry options
+      const timer = setTimeout(() => {
+        setShowEntryOptions(true);
+        setEntryOptionsShownInSession(true);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else {
       setContentVisible(true);
-      setShowEntryOptions(false);
     }
   }, [
     theme,
     resetEntryState,
     entryOptionsShownInSession,
     setEntryOptionsShownInSession,
-    entryOption,
-    showedRobotBuilder,
   ]);
 
   useEffect(() => {
