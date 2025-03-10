@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -14,14 +13,14 @@ import UnderConstructionModal from "@/components/UnderConstructionModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { useGame } from "@/context/GameContext";
-import { Languages, Sun, Moon, ArrowLeft } from "lucide-react";
+import { Languages, ArrowLeft } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 
 const Index = () => {
   const { language, setLanguage } = useLanguage();
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const {
     robotCompleted,
     setRobotCompleted,
@@ -74,6 +73,28 @@ const Index = () => {
       setContentVisible(false);
     }
   }, [entryOption, showedRobotBuilder]);
+
+  const handleDeveloperAccess = () => {
+    setShowUnderConstruction(false);
+    toast({
+      title: language === "en" ? "Developer Access Granted" : "Accès Développeur Accordé",
+      description: language === "en" 
+        ? "You now have access to the portfolio content." 
+        : "Vous avez maintenant accès au contenu du portfolio.",
+      duration: 3000,
+    });
+    
+    // Initialize the portfolio with entry options
+    if (!entryOptionsShownInSession) {
+      resetEntryState();
+      setTimeout(() => {
+        setShowEntryOptions(true);
+        setEntryOptionsShownInSession(true);
+      }, 1000);
+    } else {
+      setContentVisible(true);
+    }
+  };
 
   const handleSelectRobotBuilder = () => {
     setEntryOption("robot");
@@ -145,7 +166,7 @@ const Index = () => {
       style={getRobotStyles()}
     >
       {/* Show Under Construction Modal if enabled */}
-      {showUnderConstruction && <UnderConstructionModal />}
+      {showUnderConstruction && <UnderConstructionModal onDeveloperAccess={handleDeveloperAccess} />}
 
       {/* Only show these components if not under construction */}
       {!showUnderConstruction && (

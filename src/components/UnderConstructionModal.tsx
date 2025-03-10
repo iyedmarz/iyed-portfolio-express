@@ -1,12 +1,21 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
-import { Construction } from "lucide-react";
+import { Construction, Key } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const UnderConstructionModal = () => {
+const UnderConstructionModal = ({ onDeveloperAccess }) => {
   const { language } = useLanguage();
   const { theme } = useTheme();
+  const [showDevAccess, setShowDevAccess] = useState(false);
+  const [accessCode, setAccessCode] = useState("");
+  
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && accessCode === "dev1234") {
+      onDeveloperAccess();
+    }
+  };
   
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
@@ -41,13 +50,54 @@ const UnderConstructionModal = () => {
           }`} style={{ width: "75%" }}></div>
         </div>
         
-        <div className={`text-sm ${
+        <div className={`text-sm mb-6 ${
           theme === "dark" ? "text-gray-400" : "text-gray-500"
         }`}>
           {language === "en" 
             ? "Expected completion: Coming soon"
             : "Achèvement prévu : Bientôt disponible"}
         </div>
+        
+        {!showDevAccess ? (
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={() => setShowDevAccess(true)}
+            className={`mt-4 ${
+              theme === "dark" ? "text-gray-400 hover:text-gray-300" : "text-gray-500 hover:text-gray-600"
+            }`}
+          >
+            <Key size={16} className="mr-2" />
+            {language === "en" ? "Developer Access" : "Accès Développeur"}
+          </Button>
+        ) : (
+          <div className="mt-4">
+            <input
+              type="password"
+              placeholder={language === "en" ? "Enter access code" : "Entrez le code d'accès"}
+              value={accessCode}
+              onChange={(e) => setAccessCode(e.target.value)}
+              onKeyDown={handleKeyPress}
+              className={`px-3 py-2 rounded border w-full mb-2 ${
+                theme === "dark" ? "bg-gray-700 border-gray-600 text-white" : "bg-white border-gray-300 text-gray-900"
+              }`}
+            />
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => {
+                if (accessCode === "dev1234") {
+                  onDeveloperAccess();
+                }
+              }}
+              className={`mt-2 ${
+                theme === "dark" ? "border-purple-500/30 hover:bg-purple-500/10" : "border-purple-300 hover:bg-purple-100"
+              }`}
+            >
+              {language === "en" ? "Access" : "Accéder"}
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
