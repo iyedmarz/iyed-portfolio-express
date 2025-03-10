@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -9,6 +10,7 @@ import RobotBuilderModal from "@/components/RobotBuilderModal";
 import RobotWelcome from "@/components/RobotWelcome";
 import EntryOptionsModal from "@/components/EntryOptionsModal";
 import CodingChallengeModal from "@/components/CodingChallengeModal";
+import UnderConstructionModal from "@/components/UnderConstructionModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { useGame } from "@/context/GameContext";
@@ -34,6 +36,8 @@ const Index = () => {
     setEntryOptionsShownInSession,
   } = useGame();
 
+  // Set this to true to show the under construction modal
+  const [showUnderConstruction, setShowUnderConstruction] = useState(true);
   const [showEntryOptions, setShowEntryOptions] = useState(false);
   const [showRobotBuilder, setShowRobotBuilder] = useState(false);
   const [showCodingChallenge, setShowCodingChallenge] = useState(false);
@@ -42,21 +46,25 @@ const Index = () => {
   useEffect(() => {
     document.body.className = theme;
 
-    if (!entryOptionsShownInSession) {
-      resetEntryState();
-      const timer = setTimeout(() => {
-        setShowEntryOptions(true);
-        setEntryOptionsShownInSession(true);
-      }, 1000);
-      return () => clearTimeout(timer);
-    } else {
-      setContentVisible(true);
+    // Only proceed with normal app initialization if not under construction
+    if (!showUnderConstruction) {
+      if (!entryOptionsShownInSession) {
+        resetEntryState();
+        const timer = setTimeout(() => {
+          setShowEntryOptions(true);
+          setEntryOptionsShownInSession(true);
+        }, 1000);
+        return () => clearTimeout(timer);
+      } else {
+        setContentVisible(true);
+      }
     }
   }, [
     theme,
     resetEntryState,
     entryOptionsShownInSession,
     setEntryOptionsShownInSession,
+    showUnderConstruction,
   ]);
 
   useEffect(() => {
@@ -136,73 +144,81 @@ const Index = () => {
       className={theme === "dark" ? "bg-[#0B0B1E]" : "bg-white"}
       style={getRobotStyles()}
     >
-      {showEntryOptions && (
-        <EntryOptionsModal
-          onSelectRobotBuilder={handleSelectRobotBuilder}
-          onSelectCodingChallenge={handleSelectCodingChallenge}
-          onDirectEntry={handleDirectEntry}
-          onClose={handleSkipEntryOption}
-        />
+      {/* Show Under Construction Modal if enabled */}
+      {showUnderConstruction && <UnderConstructionModal />}
+
+      {/* Only show these components if not under construction */}
+      {!showUnderConstruction && (
+        <>
+          {showEntryOptions && (
+            <EntryOptionsModal
+              onSelectRobotBuilder={handleSelectRobotBuilder}
+              onSelectCodingChallenge={handleSelectCodingChallenge}
+              onDirectEntry={handleDirectEntry}
+              onClose={handleSkipEntryOption}
+            />
+          )}
+
+          {showRobotBuilder && (
+            <RobotBuilderModal
+              onClose={handleSkipEntryOption}
+              onComplete={handleRobotComplete}
+            />
+          )}
+
+          {showCodingChallenge && (
+            <CodingChallengeModal
+              onClose={handleSkipEntryOption}
+              onComplete={handleCodingComplete}
+            />
+          )}
+
+          <RobotWelcome />
+
+          {contentVisible && !showEntryOptions && (
+            <Button
+              onClick={handleResetToEntryOptions}
+              variant="outline"
+              size="icon"
+              className={`fixed top-4 left-4 z-40 rounded-full transition-all ${
+                theme === "dark"
+                  ? "bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 border-purple-500/30"
+                  : "bg-purple-100 text-purple-600 hover:bg-purple-200 border-purple-300"
+              }`}
+              aria-label={language === "en" ? "Return to options" : "Retour aux options"}
+            >
+              <ArrowLeft size={20} />
+            </Button>
+          )}
+
+          <div className="fixed top-4 right-4 z-40 flex gap-2">
+            <button
+              onClick={() => setLanguage(language === "en" ? "fr" : "en")}
+              className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all ${
+                theme === "dark"
+                  ? "bg-purple-500/10 text-purple-400 hover:bg-purple-500/20"
+                  : "bg-purple-100 text-purple-600 hover:bg-purple-200"
+              }`}
+            >
+              <Languages size={20} />
+              <span>{language === "en" ? "Français" : "English"}</span>
+            </button>
+          </div>
+
+          <div
+            className={`transition-opacity duration-700 ${
+              contentVisible ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <SocialLinks />
+            <HeroSection />
+            <AboutSection />
+            <SkillsSection />
+            <ProjectsSection />
+            <ContactSection />
+          </div>
+        </>
       )}
-
-      {showRobotBuilder && (
-        <RobotBuilderModal
-          onClose={handleSkipEntryOption}
-          onComplete={handleRobotComplete}
-        />
-      )}
-
-      {showCodingChallenge && (
-        <CodingChallengeModal
-          onClose={handleSkipEntryOption}
-          onComplete={handleCodingComplete}
-        />
-      )}
-
-      <RobotWelcome />
-
-      {contentVisible && !showEntryOptions && (
-        <Button
-          onClick={handleResetToEntryOptions}
-          variant="outline"
-          size="icon"
-          className={`fixed top-4 left-4 z-40 rounded-full transition-all ${
-            theme === "dark"
-              ? "bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 border-purple-500/30"
-              : "bg-purple-100 text-purple-600 hover:bg-purple-200 border-purple-300"
-          }`}
-          aria-label={language === "en" ? "Return to options" : "Retour aux options"}
-        >
-          <ArrowLeft size={20} />
-        </Button>
-      )}
-
-      <div className="fixed top-4 right-4 z-40 flex gap-2">
-        <button
-          onClick={() => setLanguage(language === "en" ? "fr" : "en")}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all ${
-            theme === "dark"
-              ? "bg-purple-500/10 text-purple-400 hover:bg-purple-500/20"
-              : "bg-purple-100 text-purple-600 hover:bg-purple-200"
-          }`}
-        >
-          <Languages size={20} />
-          <span>{language === "en" ? "Français" : "English"}</span>
-        </button>
-      </div>
-
-      <div
-        className={`transition-opacity duration-700 ${
-          contentVisible ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <SocialLinks />
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <ContactSection />
-      </div>
 
       <Toaster />
     </main>
