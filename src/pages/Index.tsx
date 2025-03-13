@@ -1,8 +1,10 @@
+
 import { useEffect, useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import ReviewsSection from "@/components/ReviewsSection";
 import ContactSection from "@/components/ContactSection";
 import SocialLinks from "@/components/SocialLinks";
 import RobotBuilderModal from "@/components/RobotBuilderModal";
@@ -236,6 +238,7 @@ const Index = () => {
             <AboutSection />
             <SkillsSection />
             <ProjectsSection />
+            <ReviewsSection />
             <ContactSection />
           </div>
         </>
