@@ -4,6 +4,13 @@ import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 
 // Sample reviews data
 const reviews = [
@@ -43,29 +50,15 @@ const ReviewsSection = () => {
   const { theme } = useTheme();
   const { language } = useLanguage();
   const [currentReview, setCurrentReview] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  // Auto-rotate reviews
+  
+  // Auto-rotate reviews every 8 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      handleNextReview();
+      setCurrentReview((prev) => (prev === reviews.length - 1 ? 0 : prev + 1));
     }, 8000);
+    
     return () => clearInterval(interval);
-  }, [currentReview]);
-
-  const handlePrevReview = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentReview((prev) => (prev === 0 ? reviews.length - 1 : prev - 1));
-    setTimeout(() => setIsAnimating(false), 500);
-  };
-
-  const handleNextReview = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentReview((prev) => (prev === reviews.length - 1 ? 0 : prev + 1));
-    setTimeout(() => setIsAnimating(false), 500);
-  };
+  }, []);
 
   return (
     <section
@@ -81,64 +74,22 @@ const ReviewsSection = () => {
           {language === "en" ? "Client Testimonials" : "Témoignages de Clients"}
         </h2>
 
-        <div className="relative px-12">
-          {/* Navigation buttons */}
-          <Button
-            onClick={handlePrevReview}
-            variant="outline"
-            size="icon"
-            className={`absolute left-0 top-1/2 -translate-y-1/2 rounded-full z-10 ${
-              theme === "dark" 
-                ? "bg-purple-500/10 text-purple-300 hover:bg-purple-500/20 border-purple-500/30" 
-                : "bg-purple-100 text-purple-700 hover:bg-purple-200 border-purple-300"
-            }`}
-            aria-label={language === "en" ? "Previous review" : "Témoignage précédent"}
-          >
-            <ChevronLeft size={24} />
-          </Button>
-
-          <Button
-            onClick={handleNextReview}
-            variant="outline"
-            size="icon"
-            className={`absolute right-0 top-1/2 -translate-y-1/2 rounded-full z-10 ${
-              theme === "dark" 
-                ? "bg-purple-500/10 text-purple-300 hover:bg-purple-500/20 border-purple-500/30" 
-                : "bg-purple-100 text-purple-700 hover:bg-purple-200 border-purple-300"
-            }`}
-            aria-label={language === "en" ? "Next review" : "Témoignage suivant"}
-          >
-            <ChevronRight size={24} />
-          </Button>
-
-          {/* Reviews carousel */}
-          <div className="relative overflow-hidden rounded-2xl px-4 py-10 md:p-10">
-            <div className={`absolute inset-0 ${
-              theme === "dark" 
-                ? "bg-purple-500/5 backdrop-blur-sm border border-purple-500/10" 
-                : "bg-white backdrop-blur-sm shadow-lg border border-purple-100"
-            } rounded-2xl`}></div>
-            
-            <Quote 
-              className={`absolute top-6 left-6 opacity-20 ${
-                theme === "dark" ? "text-purple-300" : "text-purple-400"
-              }`} 
-              size={40} 
-            />
-
-            <div className="relative mt-4">
-              {reviews.map((review, index) => (
-                <div
-                  key={review.id}
-                  className={`transition-all duration-500 absolute top-0 left-0 w-full ${
-                    index === currentReview 
-                      ? "opacity-100 translate-x-0" 
-                      : index < currentReview || (currentReview === 0 && index === reviews.length - 1)
-                        ? "opacity-0 -translate-x-full" 
-                        : "opacity-0 translate-x-full"
-                  }`}
-                  style={{ display: index === currentReview ? "block" : "none" }}
-                >
+        <Carousel className="w-full max-w-3xl mx-auto">
+          <CarouselContent>
+            {reviews.map((review, index) => (
+              <CarouselItem key={review.id}>
+                <div className={`px-4 py-10 md:p-10 rounded-2xl relative ${
+                  theme === "dark" 
+                    ? "bg-purple-500/5 backdrop-blur-sm border border-purple-500/10" 
+                    : "bg-white backdrop-blur-sm shadow-lg border border-purple-100"
+                }`}>
+                  <Quote 
+                    className={`absolute top-6 left-6 opacity-20 ${
+                      theme === "dark" ? "text-purple-300" : "text-purple-400"
+                    }`} 
+                    size={40} 
+                  />
+                  
                   <div className="flex flex-col items-center text-center">
                     <div className="mb-6 w-20 h-20 rounded-full overflow-hidden border-4 border-purple-500/30">
                       <img
@@ -175,35 +126,47 @@ const ReviewsSection = () => {
                     </p>
                   </div>
                 </div>
-              ))}
-            </div>
-            
-            {/* Indicators */}
-            <div className="flex justify-center gap-2 mt-8">
-              {reviews.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    if (isAnimating) return;
-                    setIsAnimating(true);
-                    setCurrentReview(index);
-                    setTimeout(() => setIsAnimating(false), 500);
-                  }}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    index === currentReview
-                      ? theme === "dark" 
-                        ? "bg-purple-500 w-6" 
-                        : "bg-purple-600 w-6"
-                      : theme === "dark"
-                        ? "bg-purple-500/30"
-                        : "bg-purple-300"
-                  }`}
-                  aria-label={`Go to review ${index + 1}`}
-                />
-              ))}
-            </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          
+          <div className="flex justify-center gap-2 mt-8">
+            {reviews.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentReview(index)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  index === currentReview
+                    ? theme === "dark" 
+                      ? "bg-purple-500 w-6" 
+                      : "bg-purple-600 w-6"
+                    : theme === "dark"
+                      ? "bg-purple-500/30"
+                      : "bg-purple-300"
+                }`}
+                aria-label={`Go to review ${index + 1}`}
+              />
+            ))}
           </div>
-        </div>
+          
+          <CarouselPrevious 
+            className={`absolute left-0 top-1/2 -translate-y-1/2 ${
+              theme === "dark" 
+                ? "bg-purple-500/10 text-purple-300 hover:bg-purple-500/20 border-purple-500/30" 
+                : "bg-purple-100 text-purple-700 hover:bg-purple-200 border-purple-300"
+            }`}
+            aria-label={language === "en" ? "Previous review" : "Témoignage précédent"}
+          />
+          
+          <CarouselNext 
+            className={`absolute right-0 top-1/2 -translate-y-1/2 ${
+              theme === "dark" 
+                ? "bg-purple-500/10 text-purple-300 hover:bg-purple-500/20 border-purple-500/30" 
+                : "bg-purple-100 text-purple-700 hover:bg-purple-200 border-purple-300"
+            }`}
+            aria-label={language === "en" ? "Next review" : "Témoignage suivant"}
+          />
+        </Carousel>
       </div>
     </section>
   );
