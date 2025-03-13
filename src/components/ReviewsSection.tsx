@@ -67,7 +67,7 @@ const ReviewsSection = () => {
         </h2>
 
         <div className="relative">
-          <Carousel className="w-full max-w-3xl mx-auto">
+          <Carousel className="w-full max-w-3xl mx-auto" opts={{ loop: true }}>
             <CarouselContent>
               {reviews.map((review, index) => (
                 <CarouselItem key={review.id}>
