@@ -1,9 +1,8 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
-import { ChevronLeft, ChevronRight, Quote, Linkedin } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Quote, Linkedin } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -51,14 +50,7 @@ const ReviewsSection = () => {
   const { language } = useLanguage();
   const [currentReview, setCurrentReview] = useState(0);
   
-  // Auto-rotate reviews every 8 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentReview((prev) => (prev === reviews.length - 1 ? 0 : prev + 1));
-    }, 8000);
-    
-    return () => clearInterval(interval);
-  }, []);
+  // Removed the useEffect for auto-rotation
 
   return (
     <section
