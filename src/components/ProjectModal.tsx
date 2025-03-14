@@ -1,4 +1,3 @@
-
 import React from "react";
 import { X, Github, ExternalLink } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
@@ -114,7 +113,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
           </div>
 
           {/* Links */}
-          <div className="flex gap-4">
+          {/* <div className="flex gap-4">
             <a
               href={project.github}
               target="_blank"
@@ -141,7 +140,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
               <ExternalLink size={20} />
               <span>{language === "en" ? "Live Demo" : "Démo en Direct"}</span>
             </a>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

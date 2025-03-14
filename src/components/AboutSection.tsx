@@ -1,4 +1,3 @@
-
 import { User, Award } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/utils/translations";
@@ -8,7 +7,10 @@ const AboutSection = () => {
   const t = translations[language].about;
 
   return (
-    <section id="about" className="min-h-screen bg-[#0B0B1E] py-20 px-4 relative overflow-hidden">
+    <section
+      id="about"
+      className="min-h-screen bg-[#0B0B1E] py-20 px-4 relative overflow-hidden"
+    >
       {/* Stars background */}
       <div className="absolute inset-0">
         {[...Array(50)].map((_, i) => (
@@ -32,7 +34,7 @@ const AboutSection = () => {
           <h2 className="text-3xl font-bold">{t.title}</h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* About Content */}
           <div className="space-y-6 text-white z-10">
             <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20">
@@ -40,9 +42,7 @@ const AboutSection = () => {
                 <Award className="text-purple-400" />
                 {t.mission}
               </h3>
-              <p className="text-gray-300 leading-relaxed">
-                {t.description}
-              </p>
+              <p className="text-gray-300 leading-relaxed">{t.description}</p>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
@@ -58,41 +58,59 @@ const AboutSection = () => {
           </div>
 
           {/* Gallery Grid with smaller images */}
-          <div className="grid grid-cols-2 gap-4 max-w-xs mx-auto md:max-w-sm">
+          <div className="grid grid-cols-3 gap-4  mx-auto ">
             {/* Main Photo 1 - Top left */}
             <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
-              <img 
-                src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb"
+              <img
+                src="/lovable-uploads/1-2.jpg"
                 alt="Starry Night Sky"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
             </div>
-            
+
             {/* Photo 2 - Top right */}
             <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
-              <img 
-                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
+              <img
+                src="/lovable-uploads/3.jpg"
                 alt="Technology"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
             </div>
-            
+
             {/* Photo 3 - Bottom left */}
             <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
-              <img 
-                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6"
+              <img
+                src="/lovable-uploads/7.jpg"
                 alt="Programming"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
             </div>
-            
+
             {/* Photo 4 - Bottom right */}
             <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
-              <img 
-                src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+              <img
+                src="/lovable-uploads/4.jpg"
+                alt="Person using laptop"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
+            </div>
+            {/* Photo 5 - Bottom right */}
+            <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
+              <img
+                src="/lovable-uploads/5.jpg"
+                alt="Person using laptop"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
+            </div>
+            {/* Photo 6 - Bottom right */}
+            <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
+              <img
+                src="/lovable-uploads/2.jpg"
                 alt="Person using laptop"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
