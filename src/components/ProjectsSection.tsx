@@ -1,8 +1,10 @@
+
 import { useState } from "react";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, ChevronDown } from "lucide-react";
 import ProjectModal from "./ProjectModal";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
+import { Button } from "@/components/ui/button";
 
 const projects = [
   {
@@ -54,6 +56,7 @@ const ProjectsSection = () => {
     null | (typeof projects)[0]
   >(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   const openProjectModal = (project: (typeof projects)[0]) => {
     setSelectedProject(project);
@@ -63,6 +66,9 @@ const ProjectsSection = () => {
   const closeProjectModal = () => {
     setIsModalOpen(false);
   };
+
+  // Calculate which projects to display
+  const displayedProjects = showAll ? projects : projects.slice(0, 3);
 
   return (
     <section
@@ -91,9 +97,9 @@ const ProjectsSection = () => {
           {language === "en" ? "Featured Projects" : "Projets en Vedette"}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <div
-              key={project.title}
+              key={project.title + index}
               className="group bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-purple-500/20 animate-fade-in cursor-pointer"
               style={{ animationDelay: `${index * 100}ms` }}
               onClick={() => openProjectModal(project)}
@@ -155,6 +161,35 @@ const ProjectsSection = () => {
             </div>
           ))}
         </div>
+
+        {/* Show More Button - Only display if there are more projects to show */}
+        {projects.length > 3 && (
+          <div className="flex justify-center mt-10">
+            <Button
+              onClick={() => setShowAll(!showAll)}
+              className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg transition-all ${
+                theme === "dark"
+                  ? "bg-purple-500/20 text-purple-300 hover:bg-purple-500/30 border border-purple-500/30"
+                  : "bg-purple-200 text-purple-600 hover:bg-purple-300 border border-purple-300"
+              }`}
+            >
+              {showAll ? (
+                <>
+                  <span>
+                    {language === "en" ? "Show Less" : "Afficher Moins"}
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span>
+                    {language === "en" ? "Show More" : "Afficher Plus"}
+                  </span>
+                  <ChevronDown size={20} />
+                </>
+              )}
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Project Modal */}
