@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -15,7 +14,7 @@ import UnderConstructionModal from "@/components/UnderConstructionModal";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { useGame } from "@/context/GameContext";
-import { Languages, ArrowLeft } from "lucide-react";
+import { Languages, ArrowLeft, Gamepad } from "lucide-react";
 import { Toaster } from "@/components/ui/toaster";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
@@ -79,13 +78,17 @@ const Index = () => {
   const handleDeveloperAccess = () => {
     setShowUnderConstruction(false);
     toast({
-      title: language === "en" ? "Developer Access Granted" : "Accès Développeur Accordé",
-      description: language === "en" 
-        ? "You now have access to the portfolio content." 
-        : "Vous avez maintenant accès au contenu du portfolio.",
+      title:
+        language === "en"
+          ? "Developer Access Granted"
+          : "Accès Développeur Accordé",
+      description:
+        language === "en"
+          ? "You now have access to the portfolio content."
+          : "Vous avez maintenant accès au contenu du portfolio.",
       duration: 3000,
     });
-    
+
     // Initialize the portfolio with entry options
     if (!entryOptionsShownInSession) {
       resetEntryState();
@@ -144,12 +147,13 @@ const Index = () => {
     setShowRobotBuilder(false);
     setShowCodingChallenge(false);
     setContentVisible(false);
-    
+
     toast({
       title: language === "en" ? "Welcome back!" : "Bienvenue à nouveau!",
-      description: language === "en" 
-        ? "You can choose a different entry option now." 
-        : "Vous pouvez choisir une autre option d'entrée maintenant.",
+      description:
+        language === "en"
+          ? "You can choose a different entry option now."
+          : "Vous pouvez choisir une autre option d'entrée maintenant.",
       duration: 3000,
     });
   };
@@ -168,7 +172,9 @@ const Index = () => {
       style={getRobotStyles()}
     >
       {/* Show Under Construction Modal if enabled */}
-      {showUnderConstruction && <UnderConstructionModal onDeveloperAccess={handleDeveloperAccess} />}
+      {showUnderConstruction && (
+        <UnderConstructionModal onDeveloperAccess={handleDeveloperAccess} />
+      )}
 
       {/* Only show these components if not under construction */}
       {!showUnderConstruction && (
@@ -208,9 +214,11 @@ const Index = () => {
                   ? "bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 border-purple-500/30"
                   : "bg-purple-100 text-purple-600 hover:bg-purple-200 border-purple-300"
               }`}
-              aria-label={language === "en" ? "Return to options" : "Retour aux options"}
+              aria-label={
+                language === "en" ? "Return to options" : "Retour aux options"
+              }
             >
-              <ArrowLeft size={20} />
+              <Gamepad size={20} />
             </Button>
           )}
 
