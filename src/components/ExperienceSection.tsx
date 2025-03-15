@@ -1,4 +1,3 @@
-
 import { Briefcase } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
@@ -37,13 +36,15 @@ const ExperienceSection = () => {
 
         <div className="space-y-10">
           {t.jobs.map((job, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20 transition-all duration-300 hover:border-purple-500/40 hover:shadow-lg"
             >
               <div className="md:flex items-start justify-between">
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-1">{job.title}</h3>
+                  <h3 className="text-xl font-semibold text-white mb-1">
+                    {job.title}
+                  </h3>
                   <div className="flex items-center text-purple-300 mb-2">
                     <span className="font-medium">{job.company}</span>
                     <span className="mx-2">•</span>
@@ -61,24 +62,11 @@ const ExperienceSection = () => {
 
               <div className="text-gray-300 space-y-3">
                 {job.description.map((desc, idx) => (
-                  <p key={idx} className="leading-relaxed">• {desc}</p>
+                  <p key={idx} className="leading-relaxed">
+                    • {desc}
+                  </p>
                 ))}
               </div>
-
-              {job.technologies && (
-                <div className="mt-4 pt-4 border-t border-purple-500/10">
-                  <div className="flex flex-wrap gap-2">
-                    {job.technologies.map((tech, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 rounded-full text-xs bg-purple-500/10 text-purple-300 border border-purple-500/20"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           ))}
         </div>

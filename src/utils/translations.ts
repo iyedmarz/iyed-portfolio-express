@@ -20,43 +20,37 @@ export const translations = {
       title: "Professional Experience",
       jobs: [
         {
-          title: "Frontend Developer",
-          company: "TechSolutions Inc.",
-          location: "Remote",
-          period: "Jan 2022 - Present",
+          title: "Web Developer",
+          company: "Freelance",
+          location: "Tunis, Tunisia",
+          period: "Oct 2024 - Present",
           description: [
-            "Developed and maintained responsive web applications using React and TypeScript",
-            "Collaborated with UX/UI designers to implement pixel-perfect interfaces",
-            "Reduced page load time by 40% through code optimization and lazy loading",
-            "Implemented CI/CD pipelines for automated testing and deployment"
+            "Design and development of customized solutions for clients, including e-commerce platforms and interactive web applications.",
+            "Improved ability to convey ideas clearly and actively listen to client needs.",
+            "Independent project management, from planning to delivery, while adhering to agreed deadlines and budgets.",
           ],
-          technologies: ["React", "TypeScript", "Redux", "Tailwind CSS", "Jest", "GitLab CI"]
         },
         {
-          title: "Web Development Intern",
-          company: "Digital Innovations",
+          title: "FullStack Js Developer, Graduation Internship",
+          company: "Leader Solution Tactile",
           location: "Tunis, Tunisia",
-          period: "Jun 2021 - Dec 2021",
+          period: "Feb 2024 - Jun 2024",
           description: [
-            "Assisted in building interactive user interfaces using JavaScript and CSS",
-            "Participated in daily stand-ups and biweekly sprint planning",
-            "Created reusable UI components to improve development efficiency",
-            "Fixed bugs and implemented new features for existing web applications"
+            "Contributed to the redesign of the user interface, enhancing usability and integrating innovative features to meet end-user expectations.",
+            "Collaborated with a team to develop and deploy key features, meeting deadlines and quality standards.",
+            "Fixed 20+ bugs and optimized performance, reducing response time by 30% and enhancing user experience.",
           ],
-          technologies: ["JavaScript", "HTML", "CSS", "Bootstrap", "jQuery", "Git"]
         },
         {
-          title: "Freelance Web Developer",
-          company: "Self-employed",
+          title: "Frontend Developer, Summer Internship",
+          company: "Leader Solution Tactile",
           location: "Tunis, Tunisia",
-          period: "Jan 2020 - May 2021",
+          period: "Jul 2023",
           description: [
-            "Designed and developed websites for small businesses and individuals",
-            "Managed client relationships and project timelines independently",
-            "Integrated payment gateways and content management systems",
-            "Provided ongoing maintenance and support for client websites"
+            "Designed and developed modern, responsive user interfaces using React.js and Tailwind CSS, following best practices.",
+            "Collaborated with the UX/UI team to turn wireframes into interactive interfaces, ensuring a seamless user experience.",
+            "Optimized frontend performance by reducing loading times by 20% and improving component responsiveness.",
           ],
-          technologies: ["WordPress", "PHP", "JavaScript", "MySQL", "Figma"]
         }
       ]
     },
@@ -107,43 +101,37 @@ export const translations = {
       title: "Expérience Professionnelle",
       jobs: [
         {
-          title: "Développeur Frontend",
-          company: "TechSolutions Inc.",
-          location: "Télétravail",
-          period: "Jan 2022 - Présent",
+          title: "Développeur Web",
+          company: "Freelance",
+          location: "Tunis, Tunisie",
+          period: "Oct 2024 - Présent",
           description: [
-            "Développement et maintenance d'applications web réactives avec React et TypeScript",
-            "Collaboration avec les designers UX/UI pour implémenter des interfaces parfaites au pixel près",
-            "Réduction du temps de chargement des pages de 40% grâce à l'optimisation du code et au chargement paresseux",
-            "Mise en place de pipelines CI/CD pour les tests et le déploiement automatisés"
+            "Travail sur des solutions personnalisées pour les clients, y compris des plateformes e-commerce et des tableaux de bord professionnels.",
+            "Amélioration de la capacité à transmettre clairement les idées et à écouter activement les besoins des clients.",
+            "Gestion autonome de projets, de la planification à la livraison, en respectant les délais et les budgets définis.",
           ],
-          technologies: ["React", "TypeScript", "Redux", "Tailwind CSS", "Jest", "GitLab CI"]
         },
         {
-          title: "Stagiaire en Développement Web",
-          company: "Digital Innovations",
+          title: "Développeur FullStack Js, Stage PFE",
+          company: "Leader Solution Tactile",
           location: "Tunis, Tunisie",
-          period: "Juin 2021 - Déc 2021",
+          period: "Fev 2024 - Juin 2024",
           description: [
-            "Assistance à la création d'interfaces utilisateur interactives avec JavaScript et CSS",
-            "Participation aux daily stand-ups et à la planification des sprints bihebdomadaires",
-            "Création de composants UI réutilisables pour améliorer l'efficacité du développement",
-            "Correction de bugs et implémentation de nouvelles fonctionnalités pour les applications web existantes"
+            "Contribué à la conception et au développement d'une solution web, en alignant les fonctionnalités sur les besoins métier.",
+            "Collaboré avec une équipe pour développer et déployer des fonctionnalités clés, en respectant délais et qualité.",
+            "Résolu 20+ bugs et optimisé les performances, réduisant le temps de réponse de 30% et améliorant l'expérience utilisateur."
           ],
-          technologies: ["JavaScript", "HTML", "CSS", "Bootstrap", "jQuery", "Git"]
         },
         {
-          title: "Développeur Web Freelance",
-          company: "Auto-entrepreneur",
+          title: "Développeur Frontend, Stage d’été",
+          company: "Leader Solution Tactile",
           location: "Tunis, Tunisie",
-          period: "Jan 2020 - Mai 2021",
+          period: "Juil 2023",
           description: [
-            "Conception et développement de sites web pour petites entreprises et particuliers",
-            "Gestion indépendante des relations clients et des calendriers de projets",
-            "Intégration de passerelles de paiement et de systèmes de gestion de contenu",
-            "Fourniture de maintenance et de support continus pour les sites web des clients"
+            "Conçu et développé des interfaces utilisateur réactives et modernes avec React.js et Tailwind CSS, en respectant les meilleures pratiques.",
+            "Collaboré avec l'équipe UX/UI pour convertir des maquettes en interfaces interactives, en assurant une expérience utilisateur fluide.",
+            "Optimisé les performances frontend en réduisant les temps de chargement de 20% et en améliorant la réactivité des composants.",
           ],
-          technologies: ["WordPress", "PHP", "JavaScript", "MySQL", "Figma"]
         }
       ]
     },
