@@ -1,14 +1,17 @@
 import React from "react";
+import { useState } from "react";
 import { X, Github, ExternalLink } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
+import Carousel from "react-bootstrap/Carousel";
+import ExampleCarouselImage from "components/ExampleCarouselImage";
 
 interface ProjectModalProps {
   project: {
     title: string;
     description: string;
     longDescription?: string;
-    image: string;
+    image: string[];
     tech: string[];
     github: string;
     live: string;
@@ -20,8 +23,13 @@ interface ProjectModalProps {
 const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
   const { theme } = useTheme();
   const { language } = useLanguage();
+  const [index, setIndex] = useState(0);
 
   if (!isOpen) return null;
+
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -53,7 +61,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
         </button>
 
         {/* Project Image */}
-        <div className="relative aspect-video w-full overflow-hidden">
+        {/* <div className="relative aspect-video w-full overflow-hidden">
           <div
             className={`absolute inset-0 ${
               theme === "dark"
@@ -66,6 +74,29 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
             alt={project.title}
             className="w-full h-full object-cover"
           />
+        </div> */}
+        <div className="relative aspect-video w-full overflow-hidden">
+          <Carousel activeIndex={index} onSelect={handleSelect}>
+            {project.image.map((im, idx) => (
+            // <ExampleCarouselImage text={idx} />
+              <Carousel.Item key={idx}>
+                <div className="relative aspect-video w-full overflow-hidden">
+                  <div
+                    className={`absolute inset-0 ${
+                      theme === "dark"
+                        ? "bg-gradient-to-t from-gray-900/80 to-transparent"
+                        : "bg-gradient-to-t from-white/80 to-transparent"
+                    }`}
+                  ></div>
+                  <img
+                    src={im}
+                    alt={`${project.title} - Slide ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </Carousel.Item>
+            ))}
+          </Carousel>
         </div>
 
         {/* Project Content */}

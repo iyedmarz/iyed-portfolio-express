@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Github, ExternalLink, ChevronDown } from "lucide-react";
 import ProjectModal from "./ProjectModal";
@@ -12,7 +11,14 @@ const projects = [
     description: "An AI-powered self-checkout system for retail stores.",
     longDescription:
       "An innovative self-checkout solution that allows customers to scan and recognize products automatically using machine learning. The system integrates computer vision for product detection, a seamless checkout process, and a user-friendly interface. Built with Next.js for the frontend, Nest.js for the backend, and MongoDB for data management, it ensures a fast and efficient shopping experience.",
-    image: "/lovable-uploads/117d6f0d-db13-4e50-ab27-18cf4524808f.png",
+    image: [
+      "/SCO1.png",
+      "/SCO2.png",
+      "/SCO3.png",
+      "/SCO4.png",
+      "/SCO5.png",
+      "/SCO6.png",
+    ],
     tech: ["React", "Node.js", "MongoDB", "Express", "Redux", "Stripe"],
     github: "#",
     live: "#",
@@ -22,7 +28,14 @@ const projects = [
     description: "Mobile application for tracking workouts and health metrics.",
     longDescription:
       "A comprehensive fitness tracking application that helps users monitor their workout routines, track calories, set goals, and visualize progress over time. Built with Flutter for cross-platform functionality and Firebase for backend services, this app includes features like custom workout plans, nutrition tracking, and social sharing capabilities.",
-    image: "/lovable-uploads/117d6f0d-db13-4e50-ab27-18cf4524808f.png",
+    image: [
+      "/SCO1.png",
+      "/SCO2.png",
+      "/SCO3.png",
+      "/SCO4.png",
+      "/SCO5.png",
+      "/SCO6.png",
+    ],
     tech: ["Flutter", "Firebase", "Dart", "Google Fit API", "Cloud Firestore"],
     github: "#",
     live: "#",
@@ -32,21 +45,28 @@ const projects = [
     description: "Real-time data visualization and analytics platform.",
     longDescription:
       "A powerful analytics dashboard that transforms complex data into insightful visualizations. This platform offers real-time monitoring, customizable widgets, and interactive charts that help businesses make data-driven decisions. Built with Vue.js for the frontend and D3.js for data visualization, it integrates with various data sources and provides exportable reports and alerts.",
-    image: "/lovable-uploads/117d6f0d-db13-4e50-ab27-18cf4524808f.png",
+    image: [
+      "/SCO1.png",
+      "/SCO2.png",
+      "/SCO3.png",
+      "/SCO4.png",
+      "/SCO5.png",
+      "/SCO6.png",
+    ],
     tech: ["Vue.js", "D3.js", "GraphQL", "Node.js", "PostgreSQL", "WebSockets"],
     github: "#",
     live: "#",
   },
-  {
-    title: "Analytics Dashboard",
-    description: "Real-time data visualization and analytics platform.",
-    longDescription:
-      "A powerful analytics dashboard that transforms complex data into insightful visualizations. This platform offers real-time monitoring, customizable widgets, and interactive charts that help businesses make data-driven decisions. Built with Vue.js for the frontend and D3.js for data visualization, it integrates with various data sources and provides exportable reports and alerts.",
-    image: "/lovable-uploads/117d6f0d-db13-4e50-ab27-18cf4524808f.png",
-    tech: ["Vue.js", "D3.js", "GraphQL", "Node.js", "PostgreSQL", "WebSockets"],
-    github: "#",
-    live: "#",
-  },
+  // {
+  //   title: "Analytics Dashboard",
+  //   description: "Real-time data visualization and analytics platform.",
+  //   longDescription:
+  //     "A powerful analytics dashboard that transforms complex data into insightful visualizations. This platform offers real-time monitoring, customizable widgets, and interactive charts that help businesses make data-driven decisions. Built with Vue.js for the frontend and D3.js for data visualization, it integrates with various data sources and provides exportable reports and alerts.",
+  //   image: "/lovable-uploads/117d6f0d-db13-4e50-ab27-18cf4524808f.png",
+  //   tech: ["Vue.js", "D3.js", "GraphQL", "Node.js", "PostgreSQL", "WebSockets"],
+  //   github: "#",
+  //   live: "#",
+  // },
 ];
 
 const ProjectsSection = () => {
@@ -108,7 +128,7 @@ const ProjectsSection = () => {
               <div className="relative aspect-[16/10] overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-transparent group-hover:scale-110 transition-transform duration-500" />
                 <img
-                  src={project.image}
+                  src={project.image[0]}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />

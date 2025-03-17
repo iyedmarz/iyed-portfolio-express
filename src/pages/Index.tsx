@@ -38,7 +38,7 @@ const Index = () => {
   } = useGame();
 
   // Set this to true to show the under construction modal
-  const [showUnderConstruction, setShowUnderConstruction] = useState(false);
+  const [showUnderConstruction, setShowUnderConstruction] = useState(true);
   const [showEntryOptions, setShowEntryOptions] = useState(false);
   const [showRobotBuilder, setShowRobotBuilder] = useState(false);
   const [showCodingChallenge, setShowCodingChallenge] = useState(false);
