@@ -7,10 +7,23 @@ import { Button } from "@/components/ui/button";
 
 const projects = [
   {
-    title: "Self Checkout System",
+    title: "EasyCarScan",
+    description:
+      "helps car owners identify issues with real-time image recognition and OBD scanning. Just scan and understand your car’s problems easily!",
+    longDescription:
+      "EasyCarScan is designed for everyday drivers with basic car knowledge who want a quick and easy way to diagnose their vehicle’s issues. The app features a real-time camera scanner that recognizes car components and warning lights, providing possible causes and solutions. Additionally, it supports OBD scanning, allowing users to read and understand fault codes without needing advanced mechanical skills. With a user-friendly interface and clear explanations, ECS makes car troubleshooting accessible to everyone.",
+    contribution: "",
+    image: [""],
+    tech: ["Still under Construction"],
+    github: "#",
+    live: "#",
+  },
+  {
+    title: "ETK-SCO",
     description: "An AI-powered self-checkout system for retail stores.",
     longDescription:
       "An innovative self-checkout solution that allows customers to scan and recognize products automatically using machine learning. The system integrates computer vision for product detection, a seamless checkout process, and a user-friendly interface. Built with Next.js for the frontend, Nest.js for the backend, and MongoDB for data management, it ensures a fast and efficient shopping experience.",
+    contribution: "",
     image: [
       "/SCO1.png",
       "/SCO2.png",
@@ -37,38 +50,24 @@ const projects = [
     description: "Mobile application for tracking workouts and health metrics.",
     longDescription:
       "A comprehensive fitness tracking application that helps users monitor their workout routines, track calories, set goals, and visualize progress over time. Built with Flutter for cross-platform functionality and Firebase for backend services, this app includes features like custom workout plans, nutrition tracking, and social sharing capabilities.",
+    contribution: "",
     image: [],
     tech: ["React", "node.js", "Express", "", ""],
     github: "#",
     live: "#",
   },
   {
-    title: "Analytics Dashboard",
-    description: "Real-time data visualization and analytics platform.",
+    title: "FoodTuck",
+    description:
+      "FoodTuck lets customers explore the menu, learn about the restaurant, and order food online with ease. ",
     longDescription:
-      "A powerful analytics dashboard that transforms complex data into insightful visualizations. This platform offers real-time monitoring, customizable widgets, and interactive charts that help businesses make data-driven decisions. Built with Vue.js for the frontend and D3.js for data visualization, it integrates with various data sources and provides exportable reports and alerts.",
-    image: [],
-    tech: [
-      "Next.js",
-      "D3.js",
-      "GraphQL",
-      "Node.js",
-      "PostgreSQL",
-      "WebSockets",
-    ],
+      "FoodTuck is a modern, user-friendly restaurant website where customers can explore an interactive menu with detailed dish descriptions and images. They can learn about the restaurant’s story, check operating hours and location, and easily place orders for delivery or pickup. The site offers a seamless ordering experience with customizable meal options and secure payment methods.",
+    contribution: "",
+    image: ["/foodtuck.png"],
+    tech: ["React", "Node.js", "Express", "PostgreSQL", "Redux", "tailwindCSS"],
     github: "#",
     live: "#",
   },
-  // {
-  //   title: "Analytics Dashboard",
-  //   description: "Real-time data visualization and analytics platform.",
-  //   longDescription:
-  //     "A powerful analytics dashboard that transforms complex data into insightful visualizations. This platform offers real-time monitoring, customizable widgets, and interactive charts that help businesses make data-driven decisions. Built with Vue.js for the frontend and D3.js for data visualization, it integrates with various data sources and provides exportable reports and alerts.",
-  //   image: "/lovable-uploads/117d6f0d-db13-4e50-ab27-18cf4524808f.png",
-  //   tech: ["Vue.js", "D3.js", "GraphQL", "Node.js", "PostgreSQL", "WebSockets"],
-  //   github: "#",
-  //   live: "#",
-  // },
 ];
 
 const ProjectsSection = () => {

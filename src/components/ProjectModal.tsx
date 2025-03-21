@@ -170,6 +170,7 @@ interface ProjectModalProps {
     title: string;
     description: string;
     longDescription?: string;
+    contribution?: string;
     image: string[];
     tech: string[];
     github: string;
@@ -251,6 +252,14 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
           >
             {project.longDescription || project.description}
           </p>
+          {project.contribution ? (
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold mb-3">My Contributions </h3>
+              <div> {project.contribution}</div>
+            </div>
+          ) : (
+            ""
+          )}
 
           <div className="mb-6">
             <h3
