@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Code, Languages, Tool } from "lucide-react";
+import { Code, Languages, Wrench } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
@@ -100,7 +100,7 @@ const SkillsSection = () => {
               value="tools"
               className={`flex items-center gap-2 ${activeTab === "tools" ? "text-purple-300" : "text-gray-400"}`}
             >
-              <Tool size={18} />
+              <Wrench size={18} />
               <span className="hidden sm:inline">{t.tools}</span>
             </TabsTrigger>
           </TabsList>
