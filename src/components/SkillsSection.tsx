@@ -97,7 +97,7 @@ const SkillsSection = () => {
           
           {Object.entries(skillsData).map(([category, skills]) => (
             <TabsContent key={category} value={category} className="mt-0">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 {skills.map((skill, index) => (
                   <div
                     key={skill.name}
