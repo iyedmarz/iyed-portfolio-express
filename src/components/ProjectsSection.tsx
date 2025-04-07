@@ -14,7 +14,19 @@ const projects = [
       "EasyCarScan is designed for everyday drivers with basic car knowledge who want a quick and easy way to diagnose their vehicle’s issues. The app features a real-time camera scanner that recognizes car components and warning lights, providing possible causes and solutions. Additionally, it supports OBD scanning, allowing users to read and understand fault codes without needing advanced mechanical skills. With a user-friendly interface and clear explanations, ECS makes car troubleshooting accessible to everyone.",
     contribution: "",
     image: [""],
-    tech: ["Still under Construction"],
+    tech: ["work under progress"],
+    github: "#",
+    live: "#",
+  },
+
+  {
+    title: "TripHive",
+    description: "Mobile application for tracking workouts and health metrics.",
+    longDescription:
+      "A comprehensive fitness tracking application that helps users monitor their workout routines, track calories, set goals, and visualize progress over time. Built with Flutter for cross-platform functionality and Firebase for backend services, this app includes features like custom workout plans, nutrition tracking, and social sharing capabilities.",
+    contribution: "",
+    image: [],
+    tech: ["React", "node.js", "Express", "", ""],
     github: "#",
     live: "#",
   },
@@ -42,17 +54,6 @@ const projects = [
       "TypeScript",
       "Tauri",
     ],
-    github: "#",
-    live: "#",
-  },
-  {
-    title: "GymRat",
-    description: "Mobile application for tracking workouts and health metrics.",
-    longDescription:
-      "A comprehensive fitness tracking application that helps users monitor their workout routines, track calories, set goals, and visualize progress over time. Built with Flutter for cross-platform functionality and Firebase for backend services, this app includes features like custom workout plans, nutrition tracking, and social sharing capabilities.",
-    contribution: "",
-    image: [],
-    tech: ["React", "node.js", "Express", "", ""],
     github: "#",
     live: "#",
   },
