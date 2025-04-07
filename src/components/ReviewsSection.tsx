@@ -30,9 +30,9 @@ const reviews = [
     company: "Faculty Of Science Monastir",
     avatar: "/profile.jpg",
     linkedinUrl: "https://linkedin.com/in/michael-chen",
-    text: "One of the best developers I've worked with. Their technical skills and problem-solving abilities are top-notch. Would definitely hire again.",
+    text: "Iyed demonstrated a high level of scientific rigor, autonomy, and technical skills, making him an ideal candidate for demanding environments.",
     textFr:
-      "L'un des meilleurs développeurs avec qui j'ai travaillé. Ses compétences techniques et ses capacités de résolution de problèmes sont excellentes. Je l'embaucherais certainement à nouveau.",
+      "Iyed a démontré un haut niveau de rigueur scientifique, d'autonomie et de compétences techniques, faisant de lui un candidat idéal pour des environnements exigeants.",
   },
   // {
   //   id: 3,
