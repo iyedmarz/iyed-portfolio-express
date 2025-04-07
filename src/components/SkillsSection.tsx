@@ -7,22 +7,22 @@ import { useTheme } from "@/context/ThemeContext";
 
 const skillsData = {
   languages: [
-    { name: "JavaScript", level: "Advanced", icon: "⚡" },
-    { name: "TypeScript", level: "Intermediate", icon: "🔷" },
-    { name: "HTML/CSS", level: "Advanced", icon: "🎨" },
-    { name: "Python", level: "Basic", icon: "🐍" },
+    { name: "JavaScript", icon: "⚡" },
+    { name: "TypeScript", icon: "🔷" },
+    { name: "HTML/CSS", icon: "🎨" },
+    { name: "Python", icon: "🐍" },
   ],
   frameworks: [
-    { name: "React", level: "Advanced", icon: "⚛️" },
-    { name: "Next.js", level: "Intermediate", icon: "🚀" },
-    { name: "Vue.js", level: "Basic", icon: "🟢" },
-    { name: "Express.js", level: "Intermediate", icon: "🛠️" },
+    { name: "React", icon: "⚛️" },
+    { name: "Next.js", icon: "🚀" },
+    { name: "Vue.js", icon: "🟢" },
+    { name: "Express.js", icon: "🛠️" },
   ],
   tools: [
-    { name: "Git", level: "Advanced", icon: "🏁" },
-    { name: "Docker", level: "Basic", icon: "🐳" },
-    { name: "Figma", level: "Intermediate", icon: "🎭" },
-    { name: "VS Code", level: "Advanced", icon: "📝" },
+    { name: "Git", icon: "🏁" },
+    { name: "Docker", icon: "🐳" },
+    { name: "Figma", icon: "🎭" },
+    { name: "VS Code", icon: "📝" },
   ]
 };
 
@@ -36,23 +36,13 @@ const SkillsSection = () => {
       title: "Skills",
       languages: "Languages",
       frameworks: "Frameworks",
-      tools: "Tools",
-      level: {
-        Advanced: "Advanced",
-        Intermediate: "Intermediate",
-        Basic: "Basic"
-      }
+      tools: "Tools"
     },
     fr: {
       title: "Compétences",
       languages: "Langages",
       frameworks: "Frameworks",
-      tools: "Outils",
-      level: {
-        Advanced: "Avancé",
-        Intermediate: "Intermédiaire",
-        Basic: "Débutant"
-      }
+      tools: "Outils"
     }
   };
 
@@ -107,33 +97,15 @@ const SkillsSection = () => {
           
           {Object.entries(skillsData).map(([category, skills]) => (
             <TabsContent key={category} value={category} className="mt-0">
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                 {skills.map((skill, index) => (
                   <div
                     key={skill.name}
-                    className="bg-white/5 backdrop-blur-sm p-6 rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white/10 group border border-purple-500/20"
+                    className="bg-white/5 backdrop-blur-sm p-3 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white/10 group border border-purple-500/20 flex items-center gap-2"
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="text-2xl group-hover:animate-bounce">{skill.icon}</span>
-                      <h3 className="font-semibold text-white group-hover:animate-rev-up">{skill.name}</h3>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="flex-1 h-2 bg-purple-900/50 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-purple-500 rounded-full transition-all duration-1000"
-                          style={{
-                            width:
-                              skill.level === "Advanced"
-                                ? "90%"
-                                : skill.level === "Intermediate"
-                                ? "60%"
-                                : "30%",
-                          }}
-                        />
-                      </div>
-                      <span className="text-sm text-purple-300">{t.level[skill.level]}</span>
-                    </div>
+                    <span className="text-xl group-hover:animate-bounce">{skill.icon}</span>
+                    <h3 className="font-medium text-white text-sm">{skill.name}</h3>
                   </div>
                 ))}
               </div>
