@@ -4,13 +4,6 @@ import { Code, Languages, Wrench, Database, Globe, Server, Library } from "lucid
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
-} from "@/components/ui/select";
 
 const skillsData = {
   languages: [
@@ -69,7 +62,6 @@ const SkillsSection = () => {
       backend: "Backend",
       database: "Database",
       libraries: "Libraries/Platforms",
-      select: "Select category"
     },
     fr: {
       title: "Compétences",
@@ -80,21 +72,10 @@ const SkillsSection = () => {
       backend: "Backend",
       database: "Base de données",
       libraries: "Bibliothèques/Plateformes",
-      select: "Sélectionner catégorie"
     }
   };
 
   const t = translations[language];
-
-  const getCategoryIcon = (category) => {
-    switch(category) {
-      case 'frontend': return <Globe size={16} />;
-      case 'backend': return <Server size={16} />;
-      case 'database': return <Database size={16} />;
-      case 'libraries': return <Library size={16} />;
-      default: return <Globe size={16} />;
-    }
-  };
 
   return (
     <section id="skills" className="py-20 px-4 bg-[#0B0B1E] relative overflow-hidden">
@@ -159,54 +140,98 @@ const SkillsSection = () => {
           </TabsContent>
           
           <TabsContent value="frameworks" className="mt-0">
-            <div className="mb-4">
-              <Select
-                value={frameworkCategory}
-                onValueChange={setFrameworkCategory}
-              >
-                <SelectTrigger className="w-full sm:w-[200px] bg-white/5 border-purple-500/20 text-white">
-                  <div className="flex items-center gap-2">
-                    {getCategoryIcon(frameworkCategory)} 
-                    <SelectValue placeholder={t.select} />
-                  </div>
-                </SelectTrigger>
-                <SelectContent className="bg-[#1A1A3A] border-purple-500/20">
-                  <SelectItem value="frontend" className="text-white flex items-center gap-2">
-                    <div className="flex items-center gap-2">
-                      <Globe size={16} /> {t.frontend}
-                    </div>
-                  </SelectItem>
-                  <SelectItem value="backend" className="text-white">
-                    <div className="flex items-center gap-2">
-                      <Server size={16} /> {t.backend}
-                    </div>
-                  </SelectItem>
-                  <SelectItem value="database" className="text-white">
-                    <div className="flex items-center gap-2">
-                      <Database size={16} /> {t.database}
-                    </div>
-                  </SelectItem>
-                  <SelectItem value="libraries" className="text-white">
-                    <div className="flex items-center gap-2">
-                      <Library size={16} /> {t.libraries}
-                    </div>
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            
-            <div className="grid grid-cols-3 gap-4">
-              {skillsData.frameworks[frameworkCategory].map((skill, index) => (
-                <div
-                  key={skill.name}
-                  className="bg-white/5 backdrop-blur-sm p-3 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white/10 group border border-purple-500/20 flex items-center gap-2"
-                  style={{ animationDelay: `${index * 100}ms` }}
+            <Tabs defaultValue="frontend" value={frameworkCategory} onValueChange={setFrameworkCategory} className="w-full">
+              <TabsList className="grid grid-cols-4 mb-6 w-full bg-white/5 backdrop-blur-sm">
+                <TabsTrigger 
+                  value="frontend"
+                  className={`flex items-center gap-2 ${frameworkCategory === "frontend" ? "text-purple-300" : "text-gray-400"}`}
                 >
-                  <span className="text-xl group-hover:animate-bounce">{skill.icon}</span>
-                  <h3 className="font-medium text-white text-sm">{skill.name}</h3>
+                  <Globe size={16} />
+                  <span className="hidden sm:inline">{t.frontend}</span>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="backend"
+                  className={`flex items-center gap-2 ${frameworkCategory === "backend" ? "text-purple-300" : "text-gray-400"}`}
+                >
+                  <Server size={16} />
+                  <span className="hidden sm:inline">{t.backend}</span>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="database"
+                  className={`flex items-center gap-2 ${frameworkCategory === "database" ? "text-purple-300" : "text-gray-400"}`}
+                >
+                  <Database size={16} />
+                  <span className="hidden sm:inline">{t.database}</span>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="libraries"
+                  className={`flex items-center gap-2 ${frameworkCategory === "libraries" ? "text-purple-300" : "text-gray-400"}`}
+                >
+                  <Library size={16} />
+                  <span className="hidden sm:inline">{t.libraries}</span>
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="frontend" className="mt-0">
+                <div className="grid grid-cols-3 gap-4">
+                  {skillsData.frameworks.frontend.map((skill, index) => (
+                    <div
+                      key={skill.name}
+                      className="bg-white/5 backdrop-blur-sm p-3 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white/10 group border border-purple-500/20 flex items-center gap-2"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <span className="text-xl group-hover:animate-bounce">{skill.icon}</span>
+                      <h3 className="font-medium text-white text-sm">{skill.name}</h3>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </TabsContent>
+              
+              <TabsContent value="backend" className="mt-0">
+                <div className="grid grid-cols-3 gap-4">
+                  {skillsData.frameworks.backend.map((skill, index) => (
+                    <div
+                      key={skill.name}
+                      className="bg-white/5 backdrop-blur-sm p-3 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white/10 group border border-purple-500/20 flex items-center gap-2"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <span className="text-xl group-hover:animate-bounce">{skill.icon}</span>
+                      <h3 className="font-medium text-white text-sm">{skill.name}</h3>
+                    </div>
+                  ))}
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="database" className="mt-0">
+                <div className="grid grid-cols-3 gap-4">
+                  {skillsData.frameworks.database.map((skill, index) => (
+                    <div
+                      key={skill.name}
+                      className="bg-white/5 backdrop-blur-sm p-3 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white/10 group border border-purple-500/20 flex items-center gap-2"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <span className="text-xl group-hover:animate-bounce">{skill.icon}</span>
+                      <h3 className="font-medium text-white text-sm">{skill.name}</h3>
+                    </div>
+                  ))}
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="libraries" className="mt-0">
+                <div className="grid grid-cols-3 gap-4">
+                  {skillsData.frameworks.libraries.map((skill, index) => (
+                    <div
+                      key={skill.name}
+                      className="bg-white/5 backdrop-blur-sm p-3 rounded-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:bg-white/10 group border border-purple-500/20 flex items-center gap-2"
+                      style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                      <span className="text-xl group-hover:animate-bounce">{skill.icon}</span>
+                      <h3 className="font-medium text-white text-sm">{skill.name}</h3>
+                    </div>
+                  ))}
+                </div>
+              </TabsContent>
+            </Tabs>
           </TabsContent>
           
           <TabsContent value="tools" className="mt-0">
