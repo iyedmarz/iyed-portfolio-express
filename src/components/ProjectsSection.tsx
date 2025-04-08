@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Github, ExternalLink, ChevronDown } from "lucide-react";
 import ProjectModal from "./ProjectModal";
@@ -8,10 +9,14 @@ import { Button } from "@/components/ui/button";
 const projects = [
   {
     title: "EasyCarScan",
-    description:
-      "helps car owners identify issues with real-time image recognition and OBD scanning. Just scan and understand your car’s problems easily!",
-    longDescription:
-      "EasyCarScan is designed for everyday drivers with basic car knowledge who want a quick and easy way to diagnose their vehicle’s issues. The app features a real-time camera scanner that recognizes car components and warning lights, providing possible causes and solutions. Additionally, it supports OBD scanning, allowing users to read and understand fault codes without needing advanced mechanical skills. With a user-friendly interface and clear explanations, ECS makes car troubleshooting accessible to everyone.",
+    description: {
+      en: "helps car owners identify issues with real-time image recognition and OBD scanning. Just scan and understand your car's problems easily!",
+      fr: "aide les propriétaires de voitures à identifier les problèmes grâce à la reconnaissance d'image en temps réel et à la numérisation OBD. Scannez et comprenez facilement les problèmes de votre voiture!"
+    },
+    longDescription: {
+      en: "EasyCarScan is designed for everyday drivers with basic car knowledge who want a quick and easy way to diagnose their vehicle's issues. The app features a real-time camera scanner that recognizes car components and warning lights, providing possible causes and solutions. Additionally, it supports OBD scanning, allowing users to read and understand fault codes without needing advanced mechanical skills. With a user-friendly interface and clear explanations, ECS makes car troubleshooting accessible to everyone.",
+      fr: "EasyCarScan est conçu pour les conducteurs quotidiens ayant des connaissances de base en automobile qui souhaitent un moyen rapide et facile de diagnostiquer les problèmes de leur véhicule. L'application dispose d'un scanner de caméra en temps réel qui reconnaît les composants de la voiture et les voyants d'avertissement, fournissant les causes possibles et les solutions. De plus, elle prend en charge la numérisation OBD, permettant aux utilisateurs de lire et de comprendre les codes d'erreur sans avoir besoin de compétences mécaniques avancées. Avec une interface conviviale et des explications claires, ECS rend le dépannage automobile accessible à tous."
+    },
     contribution: "",
     image: ["/easycarScan1.png"],
     tech: ["work under progress"],
@@ -21,10 +26,14 @@ const projects = [
 
   {
     title: "TripHive",
-    description:
-      "Trip Hive is a responsible tourism platform inspired by the harmony of nature and bees.",
-    longDescription:
-      "Trip Hive is a responsible tourism platform inspired by nature and the harmony of bees. Founded in Ain Jeloula, it transforms each trip into a sustainable act by planting a tree for every booking—starting with Carob and Fig trees in the local region. Visit Web site https://www.trip-hive.com/ Unfortunaly it still not have any data to showcase the website properly.",
+    description: {
+      en: "Trip Hive is a responsible tourism platform inspired by the harmony of nature and bees.",
+      fr: "Trip Hive est une plateforme de tourisme responsable inspirée par l'harmonie de la nature et des abeilles."
+    },
+    longDescription: {
+      en: "Trip Hive is a responsible tourism platform inspired by nature and the harmony of bees. Founded in Ain Jeloula, it transforms each trip into a sustainable act by planting a tree for every booking—starting with Carob and Fig trees in the local region. Visit Web site https://www.trip-hive.com/ Unfortunaly it still not have any data to showcase the website properly.",
+      fr: "Trip Hive est une plateforme de tourisme responsable inspirée par la nature et l'harmonie des abeilles. Fondée à Ain Jeloula, elle transforme chaque voyage en un acte durable en plantant un arbre pour chaque réservation—en commençant par des caroubiers et des figuiers dans la région locale. Visitez le site Web https://www.trip-hive.com/ Malheureusement, il n'a toujours pas de données pour présenter correctement le site Web."
+    },
     contribution: "",
     image: ["/trip1.png", "/trip4.png", "/trip2.png", "/trip3.png"],
     tech: ["Next.Js", "Redux", "MongoDB"],
@@ -33,9 +42,14 @@ const projects = [
   },
   {
     title: "ETK-SCO",
-    description: "An AI-powered self-checkout system for retail stores.",
-    longDescription:
-      "An innovative self-checkout solution that allows customers to scan and recognize products automatically using machine learning. The system integrates computer vision for product detection, a seamless checkout process, and a user-friendly interface. Built with Next.js for the frontend, Nest.js for the backend, and MongoDB for data management, it ensures a fast and efficient shopping experience.",
+    description: {
+      en: "An AI-powered self-checkout system for retail stores.",
+      fr: "Un système de caisse libre-service alimenté par l'IA pour les magasins de détail."
+    },
+    longDescription: {
+      en: "An innovative self-checkout solution that allows customers to scan and recognize products automatically using machine learning. The system integrates computer vision for product detection, a seamless checkout process, and a user-friendly interface. Built with Next.js for the frontend, Nest.js for the backend, and MongoDB for data management, it ensures a fast and efficient shopping experience.",
+      fr: "Une solution innovante de caisse libre-service qui permet aux clients de scanner et de reconnaître automatiquement les produits à l'aide de l'apprentissage automatique. Le système intègre la vision par ordinateur pour la détection des produits, un processus de paiement fluide et une interface conviviale. Construit avec Next.js pour le frontend, Nest.js pour le backend et MongoDB pour la gestion des données, il garantit une expérience d'achat rapide et efficace."
+    },
     contribution: "",
     image: [
       "/SCO1.png",
@@ -60,10 +74,14 @@ const projects = [
   },
   {
     title: "FoodTuck",
-    description:
-      "FoodTuck lets customers explore the menu, learn about the restaurant, and order food online with ease. ",
-    longDescription:
-      "FoodTuck is a modern, user-friendly restaurant website where customers can explore an interactive menu with detailed dish descriptions and images. They can learn about the restaurant’s story, check operating hours and location, and easily place orders for delivery or pickup. The site offers a seamless ordering experience with customizable meal options and secure payment methods.",
+    description: {
+      en: "FoodTuck lets customers explore the menu, learn about the restaurant, and order food online with ease.",
+      fr: "FoodTuck permet aux clients d'explorer le menu, d'en savoir plus sur le restaurant et de commander de la nourriture en ligne facilement."
+    },
+    longDescription: {
+      en: "FoodTuck is a modern, user-friendly restaurant website where customers can explore an interactive menu with detailed dish descriptions and images. They can learn about the restaurant's story, check operating hours and location, and easily place orders for delivery or pickup. The site offers a seamless ordering experience with customizable meal options and secure payment methods.",
+      fr: "FoodTuck est un site Web de restaurant moderne et convivial où les clients peuvent explorer un menu interactif avec des descriptions détaillées des plats et des images. Ils peuvent découvrir l'histoire du restaurant, vérifier les heures d'ouverture et l'emplacement, et passer facilement des commandes pour la livraison ou le retrait. Le site offre une expérience de commande fluide avec des options de repas personnalisables et des méthodes de paiement sécurisées."
+    },
     contribution: "",
     image: ["/foodtuck.png"],
     tech: ["React", "Node.js", "Express", "PostgreSQL", "Redux", "tailwindCSS"],
@@ -143,7 +161,7 @@ const ProjectsSection = () => {
                   {project.title}
                 </h3>
                 <p className="text-purple-200 mb-4 text-sm">
-                  {project.description}
+                  {project.description[language]}
                 </p>
 
                 {/* Tech Stack */}
@@ -162,33 +180,6 @@ const ProjectsSection = () => {
                     </span>
                   )}
                 </div>
-
-                {/* Links */}
-                {/* <div
-                  className="flex gap-4"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <a
-                    href={project.github}
-                    className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-400 transition-colors group/link"
-                  >
-                    <Github
-                      size={20}
-                      className="group-hover/link:rotate-12 transition-transform"
-                    />
-                    <span>{language === "en" ? "Code" : "Code"}</span>
-                  </a>
-                  <a
-                    href={project.live}
-                    className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-400 transition-colors group/link"
-                  >
-                    <ExternalLink
-                      size={20}
-                      className="group-hover/link:rotate-12 transition-transform"
-                    />
-                    <span>{language === "en" ? "Live Demo" : "Démo"}</span>
-                  </a>
-                </div> */}
               </div>
             </div>
           ))}

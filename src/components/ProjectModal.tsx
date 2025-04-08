@@ -1,159 +1,3 @@
-// import React from "react";
-// import { useState } from "react";
-// import { X, Github, ExternalLink } from "lucide-react";
-// import { useTheme } from "@/context/ThemeContext";
-// import { useLanguage } from "@/context/LanguageContext";
-
-// interface ProjectModalProps {
-//   project: {
-//     title: string;
-//     description: string;
-//     longDescription?: string;
-//     image: string[];
-//     tech: string[];
-//     github: string;
-//     live: string;
-//   };
-//   isOpen: boolean;
-//   onClose: () => void;
-// }
-
-// const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
-//   const { theme } = useTheme();
-//   const { language } = useLanguage();
-//   const [index, setIndex] = useState(0);
-
-//   if (!isOpen) return null;
-
-//   const handleSelect = (selectedIndex) => {
-//     setIndex(selectedIndex);
-//   };
-
-//   return (
-//     <div className="fixed inset-0 flex items-center justify-center z-50">
-//       {/* Backdrop */}
-//       <div
-//         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-//         onClick={onClose}
-//       ></div>
-
-//       {/* Modal Content */}
-//       <div
-//         className={`relative max-w-3xl w-11/12 max-h-[90vh] overflow-auto rounded-2xl shadow-xl animate-fade-in ${
-//           theme === "dark"
-//             ? "bg-gradient-to-b from-gray-800/90 to-gray-900/90 border border-purple-500/30"
-//             : "bg-gradient-to-b from-white to-gray-100 border border-purple-300/50"
-//         }`}
-//       >
-//         {/* Close Button */}
-//         <button
-//           onClick={onClose}
-//           className={`absolute top-4 right-4 p-2 rounded-full z-10 ${
-//             theme === "dark"
-//               ? "bg-gray-800/80 text-purple-300 hover:bg-gray-700/80"
-//               : "bg-white/80 text-purple-600 hover:bg-gray-100/80"
-//           }`}
-//           aria-label={language === "en" ? "Close" : "Fermer"}
-//         >
-//           <X size={20} />
-//         </button>
-
-//         {/* Project Image */}
-//         <div className="relative aspect-video w-full overflow-hidden">
-//           <div
-//             className={`absolute inset-0 ${
-//               theme === "dark"
-//                 ? "bg-gradient-to-t from-gray-900/80 to-transparent"
-//                 : "bg-gradient-to-t from-white/80 to-transparent"
-//             }`}
-//           ></div>
-//           <img
-//             src={project.image}
-//             alt={project.title}
-//             className="w-full h-full object-cover"
-//           />
-//         </div>
-
-//         {/* Project Content */}
-//         <div className="p-6">
-//           <h2
-//             className={`text-2xl font-bold mb-4 ${
-//               theme === "dark" ? "text-white" : "text-gray-900"
-//             }`}
-//           >
-//             {project.title}
-//           </h2>
-
-//           {/* Full Description */}
-//           <p
-//             className={`mb-6 ${
-//               theme === "dark" ? "text-gray-300" : "text-gray-700"
-//             }`}
-//           >
-//             {project.longDescription || project.description}
-//           </p>
-
-//           {/* Tech Stack */}
-//           <div className="mb-6">
-//             <h3
-//               className={`text-lg font-semibold mb-3 ${
-//                 theme === "dark" ? "text-gray-200" : "text-gray-800"
-//               }`}
-//             >
-//               {language === "en" ? "Technologies" : "Technologies"}
-//             </h3>
-//             <div className="flex flex-wrap gap-2">
-//               {project.tech.map((tech) => (
-//                 <span
-//                   key={tech}
-//                   className={`px-3 py-1 rounded-full text-sm ${
-//                     theme === "dark"
-//                       ? "bg-purple-500/10 text-purple-300 border border-purple-500/20"
-//                       : "bg-purple-100 text-purple-600 border border-purple-300"
-//                   }`}
-//                 >
-//                   {tech}
-//                 </span>
-//               ))}
-//             </div>
-//           </div>
-
-//           {/* Links */}
-//           {/* <div className="flex gap-4">
-//             <a
-//               href={project.github}
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
-//                 theme === "dark"
-//                   ? "bg-purple-500/10 text-purple-300 hover:bg-purple-500/20 border border-purple-500/30"
-//                   : "bg-purple-100 text-purple-600 hover:bg-purple-200 border border-purple-300"
-//               }`}
-//             >
-//               <Github size={20} />
-//               <span>{language === "en" ? "Source Code" : "Code Source"}</span>
-//             </a>
-//             <a
-//               href={project.live}
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
-//                 theme === "dark"
-//                   ? "bg-purple-500/20 text-purple-300 hover:bg-purple-500/30 border border-purple-500/30"
-//                   : "bg-purple-200 text-purple-600 hover:bg-purple-300 border border-purple-300"
-//               }`}
-//             >
-//               <ExternalLink size={20} />
-//               <span>{language === "en" ? "Live Demo" : "Démo en Direct"}</span>
-//             </a>
-//           </div> */}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ProjectModal;
 
 import React from "react";
 import { X } from "lucide-react";
@@ -168,8 +12,14 @@ import { Navigation, Pagination } from "swiper/modules";
 interface ProjectModalProps {
   project: {
     title: string;
-    description: string;
-    longDescription?: string;
+    description: {
+      en: string;
+      fr: string;
+    };
+    longDescription?: {
+      en: string;
+      fr: string;
+    };
     contribution?: string;
     image: string[];
     tech: string[];
@@ -250,16 +100,20 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
               theme === "dark" ? "text-gray-300" : "text-gray-700"
             }`}
           >
-            {project.longDescription || project.description}
+            {project.longDescription 
+              ? project.longDescription[language] 
+              : project.description[language]
+            }
           </p>
+          
           {project.contribution ? (
             <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-3">My Contributions </h3>
-              <div> {project.contribution}</div>
+              <h3 className="text-lg font-semibold mb-3">
+                {language === "en" ? "My Contributions" : "Mes Contributions"}
+              </h3>
+              <div>{project.contribution}</div>
             </div>
-          ) : (
-            ""
-          )}
+          ) : null}
 
           <div className="mb-6">
             <h3

@@ -54,6 +54,39 @@ export const translations = {
         }
       ]
     },
+    contact: {
+      title: "Get in Touch",
+      name: "Your Name",
+      email: "Your Email",
+      message: "Your Message",
+      send: "Send Message",
+      sending: "Sending...",
+      phone: "Phone",
+      location: "Location",
+      successTitle: "Message sent!",
+      successMessage: "Thanks for reaching out. I'll get back to you soon.",
+      errorTitle: "Error",
+      errorMessage: "Something went wrong. Please try again."
+    },
+    projects: {
+      title: "Featured Projects",
+      viewMore: "Show More",
+      viewLess: "Show Less",
+      technologies: "Technologies",
+      contributions: "My Contributions",
+      sourceCode: "Source Code",
+      liveDemo: "Live Demo"
+    },
+    skills: {
+      title: "Skills & Technologies",
+      languages: "Languages",
+      frameworks: "Frameworks",
+      tools: "Tools",
+      frontend: "Frontend",
+      backend: "Backend",
+      database: "Database",
+      libraries: "Libraries / Platforms"
+    },
     portfolioWelcomeTitle: "Welcome to My Portfolio!",
     portfolioWelcomeMessage: "Thanks for visiting my digital space. Feel free to explore my projects and learn more about my work.",
     buildRobotTitle: "Build Your Robot",
@@ -123,7 +156,7 @@ export const translations = {
           ],
         },
         {
-          title: "Développeur Frontend, Stage d’été",
+          title: "Développeur Frontend, Stage d'été",
           company: "Leader Solution Tactile",
           location: "Tunis, Tunisie",
           period: "Juil 2023",
@@ -134,6 +167,39 @@ export const translations = {
           ],
         }
       ]
+    },
+    contact: {
+      title: "Contactez-moi",
+      name: "Votre Nom",
+      email: "Votre Email",
+      message: "Votre Message",
+      send: "Envoyer le Message",
+      sending: "Envoi en cours...",
+      phone: "Téléphone",
+      location: "Localisation",
+      successTitle: "Message envoyé !",
+      successMessage: "Merci de m'avoir contacté. Je vous répondrai bientôt.",
+      errorTitle: "Erreur",
+      errorMessage: "Un problème est survenu. Veuillez réessayer."
+    },
+    projects: {
+      title: "Projets en Vedette",
+      viewMore: "Afficher Plus",
+      viewLess: "Afficher Moins",
+      technologies: "Technologies",
+      contributions: "Mes Contributions",
+      sourceCode: "Code Source",
+      liveDemo: "Démo en Direct"
+    },
+    skills: {
+      title: "Compétences & Technologies",
+      languages: "Langages",
+      frameworks: "Frameworks",
+      tools: "Outils",
+      frontend: "Frontend",
+      backend: "Backend",
+      database: "Base de données",
+      libraries: "Bibliothèques / Plateformes"
     },
     portfolioWelcomeTitle: "Bienvenue sur Mon Portfolio!",
     portfolioWelcomeMessage: "Merci de visiter mon espace numérique. N'hésitez pas à explorer mes projets et à en savoir plus sur mon travail.",
