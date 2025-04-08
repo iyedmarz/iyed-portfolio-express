@@ -21,14 +21,15 @@ const projects = [
 
   {
     title: "TripHive",
-    description: "Mobile application for tracking workouts and health metrics.",
+    description:
+      "Trip Hive is a responsible tourism platform inspired by the harmony of nature and bees.",
     longDescription:
-      "A comprehensive fitness tracking application that helps users monitor their workout routines, track calories, set goals, and visualize progress over time. Built with Flutter for cross-platform functionality and Firebase for backend services, this app includes features like custom workout plans, nutrition tracking, and social sharing capabilities.",
+      "Trip Hive is a responsible tourism platform inspired by nature and the harmony of bees. Founded in Ain Jeloula, it transforms each trip into a sustainable act by planting a tree for every booking—starting with Carob and Fig trees in the local region. Visit Web site https://www.trip-hive.com/ Unfortunaly it still not have any data to showcase the website properly.",
     contribution: "",
-    image: [],
-    tech: ["React", "node.js", "Express", "", ""],
+    image: ["/trip1.png", "/trip4.png", "/trip2.png", "/trip3.png"],
+    tech: ["Next.Js", "Redux", "MongoDB"],
     github: "#",
-    live: "#",
+    live: "",
   },
   {
     title: "ETK-SCO",
@@ -163,19 +164,28 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Links */}
-                {/* <div className="flex gap-4" onClick={(e) => e.stopPropagation()}>
+                {/* <div
+                  className="flex gap-4"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <a
                     href={project.github}
                     className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-400 transition-colors group/link"
                   >
-                    <Github size={20} className="group-hover/link:rotate-12 transition-transform" />
+                    <Github
+                      size={20}
+                      className="group-hover/link:rotate-12 transition-transform"
+                    />
                     <span>{language === "en" ? "Code" : "Code"}</span>
                   </a>
                   <a
                     href={project.live}
                     className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-400 transition-colors group/link"
                   >
-                    <ExternalLink size={20} className="group-hover/link:rotate-12 transition-transform" />
+                    <ExternalLink
+                      size={20}
+                      className="group-hover/link:rotate-12 transition-transform"
+                    />
                     <span>{language === "en" ? "Live Demo" : "Démo"}</span>
                   </a>
                 </div> */}

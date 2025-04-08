@@ -20,7 +20,7 @@ export const translations = {
       title: "Professional Experience",
       jobs: [
         {
-          title: "Web Developer",
+          title: "Junior Web Developer",
           company: "Freelance",
           location: "Tunis, Tunisia",
           period: "Oct 2024 - Present",
@@ -101,7 +101,7 @@ export const translations = {
       title: "Expérience Professionnelle",
       jobs: [
         {
-          title: "Développeur Web",
+          title: "Développeur Web Junior",
           company: "Freelance",
           location: "Tunis, Tunisie",
           period: "Oct 2024 - Présent",

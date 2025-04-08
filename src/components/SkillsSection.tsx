@@ -30,7 +30,7 @@ const skillsData = {
       { name: "Bootstrap", icon: "" },
     ],
     backend: [
-      { name: "Node", icon: "" },
+      { name: "Node.js", icon: "" },
       { name: "Express.js", icon: "" },
       { name: "NestJS", icon: "" },
       { name: "FireBase", icon: "" },
@@ -41,6 +41,7 @@ const skillsData = {
       { name: "MySQL", icon: "" },
     ],
     libraries: [
+      { name: "WordPress", icon: "" },
       { name: "TenserFlow", icon: "" },
       { name: "Tauri", icon: "" },
     ],
@@ -65,22 +66,22 @@ const SkillsSection = () => {
     en: {
       title: "Skills",
       languages: "Languages",
-      frameworks: "Frameworks",
+      frameworks: "Web Developement",
       tools: "Tools",
       frontend: "Frontend",
       backend: "Backend",
       database: "Database",
-      libraries: "Other Frameworks",
+      libraries: "Other",
     },
     fr: {
       title: "Compétences",
       languages: "Langages",
-      frameworks: "Frameworks",
+      frameworks: "Développement Web",
       tools: "Outils",
       frontend: "Frontend",
       backend: "Backend",
       database: "Base de données",
-      libraries: "Autre Frameworks",
+      libraries: "Autre",
     },
   };
 
