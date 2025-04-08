@@ -280,7 +280,7 @@ const RobotBuilderModal = ({ onClose, onComplete }: RobotBuilderModalProps) => {
                     }}
                   >
                     <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-1 text-xs text-purple-500 whitespace-nowrap font-medium">
-                      {part.name}
+                      {/* {part.name} */}
                     </span>
                   </div>
                 )
