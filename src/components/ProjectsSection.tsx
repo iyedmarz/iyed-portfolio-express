@@ -13,7 +13,7 @@ const projects = [
     longDescription:
       "EasyCarScan is designed for everyday drivers with basic car knowledge who want a quick and easy way to diagnose their vehicle’s issues. The app features a real-time camera scanner that recognizes car components and warning lights, providing possible causes and solutions. Additionally, it supports OBD scanning, allowing users to read and understand fault codes without needing advanced mechanical skills. With a user-friendly interface and clear explanations, ECS makes car troubleshooting accessible to everyone.",
     contribution: "",
-    image: [""],
+    image: ["/easycarScan1.png"],
     tech: ["work under progress"],
     github: "#",
     live: "#",
