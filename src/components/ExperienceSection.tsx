@@ -1,8 +1,10 @@
+
 import { Briefcase } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { translations } from "@/utils/translations";
 import { Separator } from "@/components/ui/separator";
+import AnimatedSection from "./AnimatedSection";
 
 const ExperienceSection = () => {
   const { language } = useLanguage();
@@ -29,15 +31,19 @@ const ExperienceSection = () => {
       </div>
 
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center gap-2 mb-8 text-white">
-          <Briefcase className="text-purple-400" size={24} />
-          <h2 className="text-3xl font-bold">{t.title}</h2>
-        </div>
+        <AnimatedSection animation="fade-down">
+          <div className="flex items-center gap-2 mb-8 text-white">
+            <Briefcase className="text-purple-400" size={24} />
+            <h2 className="text-3xl font-bold">{t.title}</h2>
+          </div>
+        </AnimatedSection>
 
         <div className="space-y-10">
           {t.jobs.map((job, index) => (
-            <div
-              key={index}
+            <AnimatedSection 
+              key={index} 
+              animation="fade-up" 
+              delay={index * 150}
               className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20 transition-all duration-300 hover:border-purple-500/40 hover:shadow-lg"
             >
               <div className="md:flex items-start justify-between">
@@ -67,7 +73,7 @@ const ExperienceSection = () => {
                   </p>
                 ))}
               </div>
-            </div>
+            </AnimatedSection>
           ))}
         </div>
       </div>

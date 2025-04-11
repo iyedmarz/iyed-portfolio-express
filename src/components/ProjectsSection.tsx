@@ -5,6 +5,7 @@ import ProjectModal from "./ProjectModal";
 import { useTheme } from "@/context/ThemeContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/button";
+import AnimatedSection from "./AnimatedSection";
 
 const projects = [
   {
@@ -134,15 +135,19 @@ const ProjectsSection = () => {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        <h2 className="text-3xl font-bold mb-12 text-center text-white">
-          {language === "en" ? "Featured Projects" : "Projets en Vedette"}
-        </h2>
+        <AnimatedSection animation="fade-down">
+          <h2 className="text-3xl font-bold mb-12 text-center text-white">
+            {language === "en" ? "Featured Projects" : "Projets en Vedette"}
+          </h2>
+        </AnimatedSection>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedProjects.map((project, index) => (
-            <div
+            <AnimatedSection
               key={project.title + index}
-              className="group bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-purple-500/20 animate-fade-in cursor-pointer"
-              style={{ animationDelay: `${index * 100}ms` }}
+              animation="zoom-in"
+              delay={index * 150}
+              className="group bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-purple-500/20 cursor-pointer"
               onClick={() => openProjectModal(project)}
             >
               {/* Project Image */}
@@ -181,37 +186,39 @@ const ProjectsSection = () => {
                   )}
                 </div>
               </div>
-            </div>
+            </AnimatedSection>
           ))}
         </div>
 
         {/* Show More Button - Only display if there are more projects to show */}
         {projects.length > 3 && (
-          <div className="flex justify-center mt-10">
-            <Button
-              onClick={() => setShowAll(!showAll)}
-              className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg transition-all ${
-                theme === "dark"
-                  ? "bg-purple-500/20 text-purple-300 hover:bg-purple-500/30 border border-purple-500/30"
-                  : "bg-purple-200 text-purple-600 hover:bg-purple-300 border border-purple-300"
-              }`}
-            >
-              {showAll ? (
-                <>
-                  <span>
-                    {language === "en" ? "Show Less" : "Afficher Moins"}
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span>
-                    {language === "en" ? "Show More" : "Afficher Plus"}
-                  </span>
-                  <ChevronDown size={20} />
-                </>
-              )}
-            </Button>
-          </div>
+          <AnimatedSection animation="fade-up" delay={300}>
+            <div className="flex justify-center mt-10">
+              <Button
+                onClick={() => setShowAll(!showAll)}
+                className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg transition-all ${
+                  theme === "dark"
+                    ? "bg-purple-500/20 text-purple-300 hover:bg-purple-500/30 border border-purple-500/30"
+                    : "bg-purple-200 text-purple-600 hover:bg-purple-300 border border-purple-300"
+                }`}
+              >
+                {showAll ? (
+                  <>
+                    <span>
+                      {language === "en" ? "Show Less" : "Afficher Moins"}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <span>
+                      {language === "en" ? "Show More" : "Afficher Plus"}
+                    </span>
+                    <ChevronDown size={20} />
+                  </>
+                )}
+              </Button>
+            </div>
+          </AnimatedSection>
         )}
       </div>
 
