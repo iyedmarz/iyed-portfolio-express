@@ -1,6 +1,8 @@
+
 import { User, Award } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/utils/translations";
+import AnimatedSection from "./AnimatedSection";
 
 const AboutSection = () => {
   const { language } = useLanguage();
@@ -29,14 +31,16 @@ const AboutSection = () => {
       </div>
 
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center gap-2 mb-8 text-white">
-          <User className="text-purple-400" size={24} />
-          <h2 className="text-3xl font-bold">{t.title}</h2>
-        </div>
+        <AnimatedSection animation="fade-down">
+          <div className="flex items-center gap-2 mb-8 text-white">
+            <User className="text-purple-400" size={24} />
+            <h2 className="text-3xl font-bold">{t.title}</h2>
+          </div>
+        </AnimatedSection>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* About Content */}
-          <div className="space-y-6 text-white z-10">
+          <AnimatedSection animation="fade-right" delay={200} className="space-y-6 text-white z-10">
             <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20">
               <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <Award className="text-purple-400" />
@@ -55,10 +59,10 @@ const AboutSection = () => {
                 <p className="text-gray-400">{t.currentBaseValue}</p>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
 
           {/* Gallery Grid with smaller images */}
-          <div className="grid grid-cols-3 gap-4  mx-auto ">
+          <AnimatedSection animation="fade-left" delay={400} className="grid grid-cols-3 gap-4 mx-auto">
             {/* Main Photo 1 - Top left */}
             <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
               <img
@@ -116,7 +120,7 @@ const AboutSection = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-transparent" />
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>
