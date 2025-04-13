@@ -16,6 +16,7 @@ interface AnimatedSectionProps {
   delay?: number;
   threshold?: number;
   once?: boolean;
+  onClick?: () => void;
 }
 
 const AnimatedSection = ({
@@ -25,6 +26,7 @@ const AnimatedSection = ({
   delay = 0,
   threshold = 0.1,
   once = true,
+  onClick,
 }: AnimatedSectionProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useIntersectionObserver({
@@ -63,6 +65,7 @@ const AnimatedSection = ({
           : getAnimationClass()
       )}
       style={{ transitionDelay: `${delay}ms` }}
+      onClick={onClick}
     >
       {children}
     </div>
