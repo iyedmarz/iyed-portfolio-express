@@ -18,7 +18,7 @@ const reviews = [
     role: "Project Manager",
     company: "LST",
     avatar: "/lovable-uploads/iyedchafroud.jpg",
-    linkedinUrl: "https://linkedin.com/in/sarah-johnson",
+    linkedinUrl: "https://www.linkedin.com/in/iyad-chafroud/",
     text: "Working with this developer was a fantastic experience. They delivered high-quality code ahead of schedule and was extremely responsive to feedback.",
     textFr:
       "Travailler avec ce développeur était une expérience fantastique. Il a livré un code de haute qualité avant la date prévue et était extrêmement réceptif aux commentaires.",
@@ -29,7 +29,7 @@ const reviews = [
     role: "Academic Assistant",
     company: "Faculty Of Science Monastir",
     avatar: "/profile.jpg",
-    linkedinUrl: "https://linkedin.com/in/michael-chen",
+    linkedinUrl: "https://www.linkedin.com/in/dr-ichraf-chatti-3a151915b/",
     text: "Iyed demonstrated a high level of scientific rigor, autonomy, and technical skills, making him an ideal candidate for demanding environments.",
     textFr:
       "Iyed a démontré un haut niveau de rigueur scientifique, d'autonomie et de compétences techniques, faisant de lui un candidat idéal pour des environnements exigeants.",
