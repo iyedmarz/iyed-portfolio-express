@@ -49,24 +49,11 @@ const Index = () => {
 
     // Only proceed with normal app initialization if not under construction
     if (!showUnderConstruction) {
-      if (!entryOptionsShownInSession) {
-        resetEntryState();
-        const timer = setTimeout(() => {
-          setShowEntryOptions(true);
-          setEntryOptionsShownInSession(true);
-        }, 1000);
-        return () => clearTimeout(timer);
-      } else {
-        setContentVisible(true);
-      }
+      // Skip entry options and go directly to content
+      setContentVisible(true);
+      setEntryOptionsShownInSession(true);
     }
-  }, [
-    theme,
-    resetEntryState,
-    entryOptionsShownInSession,
-    setEntryOptionsShownInSession,
-    showUnderConstruction,
-  ]);
+  }, [theme, showUnderConstruction, setEntryOptionsShownInSession]);
 
   useEffect(() => {
     if (entryOption || showedRobotBuilder) {
