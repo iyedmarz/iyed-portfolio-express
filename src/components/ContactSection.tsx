@@ -1,4 +1,3 @@
-
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
@@ -30,18 +29,20 @@ const ContactSection = () => {
       if (result.text === "OK") {
         toast({
           title: language === "en" ? "Message sent!" : "Message envoyé !",
-          description: language === "en" 
-            ? "Thanks for reaching out. I'll get back to you soon." 
-            : "Merci de m'avoir contacté. Je vous répondrai bientôt.",
+          description:
+            language === "en"
+              ? "Thanks for reaching out. I'll get back to you soon."
+              : "Merci de m'avoir contacté. Je vous répondrai bientôt.",
         });
         formRef.current.reset();
       }
     } catch (error) {
       toast({
         title: language === "en" ? "Error" : "Erreur",
-        description: language === "en"
-          ? "Something went wrong. Please try again."
-          : "Un problème est survenu. Veuillez réessayer.",
+        description:
+          language === "en"
+            ? "Something went wrong. Please try again."
+            : "Un problème est survenu. Veuillez réessayer.",
         variant: "destructive",
       });
     } finally {
@@ -77,9 +78,13 @@ const ContactSection = () => {
             {language === "en" ? "Get in Touch" : "Contactez-moi"}
           </h2>
         </AnimatedSection>
-        
+
         <div className="grid md:grid-cols-2 gap-8">
-          <AnimatedSection animation="fade-right" delay={200} className="space-y-6">
+          <AnimatedSection
+            animation="fade-right"
+            delay={200}
+            className="space-y-6"
+          >
             <div className="flex items-start gap-4 group hover:scale-105 transition-all duration-300">
               <Mail
                 className="text-purple-400 mt-1 group-hover:rotate-12 transition-transform"
@@ -99,7 +104,7 @@ const ContactSection = () => {
                 <h3 className="font-semibold mb-1 text-white">
                   {language === "en" ? "Phone" : "Téléphone"}
                 </h3>
-                <p className="text-purple-200">+216 96 950 288</p>
+                <p className="text-purple-200">+33 746 52 49 17</p>
               </div>
             </div>
             <div className="flex items-start gap-4 group hover:scale-105 transition-all duration-300">
@@ -111,11 +116,11 @@ const ContactSection = () => {
                 <h3 className="font-semibold mb-1 text-white">
                   {language === "en" ? "Location" : "Localisation"}
                 </h3>
-                <p className="text-purple-200">Tunis, Tunisia</p>
+                <p className="text-purple-200">Île-de-France, France</p>
               </div>
             </div>
           </AnimatedSection>
-          
+
           <AnimatedSection animation="fade-left" delay={400}>
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
               <input
@@ -134,7 +139,9 @@ const ContactSection = () => {
               />
               <textarea
                 name="message"
-                placeholder={language === "en" ? "Your Message" : "Votre Message"}
+                placeholder={
+                  language === "en" ? "Your Message" : "Votre Message"
+                }
                 required
                 rows={4}
                 className="w-full px-4 py-3 rounded-lg bg-white/5 border border-purple-500/20 text-white placeholder:text-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300"
@@ -145,9 +152,13 @@ const ContactSection = () => {
                 className="w-full px-6 py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-500 transition-all duration-300 hover:scale-105 group flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span>
-                  {isSubmitting 
-                    ? (language === "en" ? "Sending..." : "Envoi en cours...") 
-                    : (language === "en" ? "Send Message" : "Envoyer le Message")}
+                  {isSubmitting
+                    ? language === "en"
+                      ? "Sending..."
+                      : "Envoi en cours..."
+                    : language === "en"
+                    ? "Send Message"
+                    : "Envoyer le Message"}
                 </span>
                 <Send
                   size={18}

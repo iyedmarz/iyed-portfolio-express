@@ -14,20 +14,20 @@ export const translations = {
       origin: "Origin",
       originValue: "Tunisia",
       currentBase: "Current Base",
-      currentBaseValue: "Tunisia, Tunis"
+      currentBaseValue: "Île-de-France, France"
     },
     experience: {
       title: "Professional Experience",
       jobs: [
         {
-          title: "Junior Web Developer",
-          company: "Freelance",
+          title: "Web Developer",
+          company: "Verse",
           location: "Tunis, Tunisia",
-          period: "Oct 2024 - Present",
+          period: "Nov 2024 - dec 2024",
           description: [
-            "Design and development of customized solutions for clients, including e-commerce platforms and interactive web applications.",
-            "Improved ability to convey ideas clearly and actively listen to client needs.",
-            "Independent project management, from planning to delivery, while adhering to agreed deadlines and budgets.",
+            "Participation in the development of the Trip Hive website, an eco-responsible tourism platform.",
+            "Contribution to a modern and efficient interface, with attention paid to the user experience and the ethical identity of the project.",
+            "Direct collaboration with the client to translate their vision into a functional, impactful and sustainable product.",
           ],
         },
         {
@@ -134,14 +134,14 @@ export const translations = {
       title: "Expérience Professionnelle",
       jobs: [
         {
-          title: "Développeur Web Junior",
-          company: "Freelance",
+          title: "Développeur Web",
+          company: "Verse",
           location: "Tunis, Tunisie",
-          period: "Oct 2024 - Présent",
+          period: "Nov 2024 - Dec 2024",
           description: [
-            "Travail sur des solutions personnalisées pour les clients, y compris des plateformes e-commerce et des tableaux de bord professionnels.",
-            "Amélioration de la capacité à transmettre clairement les idées et à écouter activement les besoins des clients.",
-            "Gestion autonome de projets, de la planification à la livraison, en respectant les délais et les budgets définis.",
+            "Participation au développement du site web Trip Hive, une plateforme de tourisme éco-responsable.",
+            "Contribution à une interface moderne et performante, avec attention portée à l'expérience utilisateur et à l'identité éthique du projet.",
+            "Collaboration directe avec le client pour traduire sa vision en un produit fonctionnel, impactant et durable.",
           ],
         },
         {

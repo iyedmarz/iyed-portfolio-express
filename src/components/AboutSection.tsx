@@ -1,4 +1,3 @@
-
 import { User, Award } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/utils/translations";
@@ -40,7 +39,11 @@ const AboutSection = () => {
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* About Content */}
-          <AnimatedSection animation="fade-right" delay={200} className="space-y-6 text-white z-10">
+          <AnimatedSection
+            animation="fade-right"
+            delay={200}
+            className="space-y-6 text-white z-10"
+          >
             <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-purple-500/20">
               <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <Award className="text-purple-400" />
@@ -62,7 +65,11 @@ const AboutSection = () => {
           </AnimatedSection>
 
           {/* Gallery Grid with smaller images */}
-          <AnimatedSection animation="fade-left" delay={400} className="grid grid-cols-3 gap-4 mx-auto">
+          <AnimatedSection
+            animation="fade-left"
+            delay={400}
+            className="grid grid-cols-3 gap-4 mx-auto"
+          >
             {/* Main Photo 1 - Top left */}
             <div className="relative aspect-square rounded-xl overflow-hidden bg-white/5 backdrop-blur-lg border border-purple-500/20 group">
               <img

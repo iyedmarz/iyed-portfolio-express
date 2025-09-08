@@ -1,4 +1,3 @@
-
 import { GraduationCap, Rocket } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/utils/translations";
@@ -29,14 +28,17 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="max-w-6xl w-full mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12 relative z-10">
-        <AnimatedSection animation="fade-right" className="text-center md:text-left md:flex-1">
+        <AnimatedSection
+          animation="fade-right"
+          className="text-center md:text-left md:flex-1"
+        >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 text-purple-400 mb-6 ">
             <Rocket size={18} className="animate-bounce" />
             <span className="text-sm font-medium">{t.role}</span>
             <GraduationCap size={18} />
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white">
-            Iyed Marzouki
+            Iyed Marzougui
           </h1>
           <p className="text-xl text-purple-200 max-w-2xl mx-auto md:mx-0 mb-8">
             {t.description}
@@ -56,8 +58,12 @@ const HeroSection = () => {
             </a>
           </div>
         </AnimatedSection>
-        
-        <AnimatedSection animation="fade-left" delay={300} className="md:flex-1 flex justify-center md:justify-end">
+
+        <AnimatedSection
+          animation="fade-left"
+          delay={300}
+          className="md:flex-1 flex justify-center md:justify-end"
+        >
           <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-600 to-purple-400/50 animate-pulse" />
             <img
