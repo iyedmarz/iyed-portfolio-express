@@ -128,7 +128,7 @@ export const translations = {
       origin: "Origine",
       originValue: "Tunisie",
       currentBase: "Base Actuelle",
-      currentBaseValue: "Tunisie, Tunis"
+      currentBaseValue: "Île-de-France, France"
     },
     experience: {
       title: "Expérience Professionnelle",
