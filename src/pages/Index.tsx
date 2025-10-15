@@ -52,8 +52,9 @@ const Index = () => {
       // Skip entry options and go directly to content
       setContentVisible(true);
       setEntryOptionsShownInSession(true);
+      setEntryOption("direct"); // Set direct entry option
     }
-  }, [theme, showUnderConstruction, setEntryOptionsShownInSession]);
+  }, [theme, showUnderConstruction, setEntryOptionsShownInSession, setEntryOption]);
 
   useEffect(() => {
     if (entryOption || showedRobotBuilder) {
