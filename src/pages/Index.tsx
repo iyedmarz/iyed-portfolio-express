@@ -42,7 +42,7 @@ const Index = () => {
   const [showEntryOptions, setShowEntryOptions] = useState(false);
   const [showRobotBuilder, setShowRobotBuilder] = useState(false);
   const [showCodingChallenge, setShowCodingChallenge] = useState(false);
-  const [contentVisible, setContentVisible] = useState(false);
+  const [contentVisible, setContentVisible] = useState(true);
 
   useEffect(() => {
     document.body.className = theme;
