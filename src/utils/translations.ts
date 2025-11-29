@@ -20,6 +20,17 @@ export const translations = {
       title: "Professional Experience",
       jobs: [
         {
+          title: "Developer, Internship ",
+          company: "PEAKSOURCE",
+          location: "Tunis, Tunisie",
+          period: "jan 2025 - jun 2025",
+          description: [
+            "Contributed to the development of interactive dashboards for business data visualization and monitoring.",
+            "Helped create modern user interfaces while following best practices in design and accessibility.",
+            "Strengthened skills in web development, teamwork, and professional communication.",
+          ],
+        },
+        {
           title: "Web Developer",
           company: "Verse",
           location: "Tunis, Tunisia",
@@ -133,6 +144,17 @@ export const translations = {
     experience: {
       title: "Expérience Professionnelle",
       jobs: [
+        {
+          title: "Développeur, Stage",
+          company: "PEAKSOURCE",
+          location: "Tunis, Tunisie",
+          period: "jan 2025 - juin 2025",
+          description: [
+            "Participation au développement de dashboards interactifs pour la visualisation et le suivi de données métiers.",
+            "Contribution à la création d’interfaces utilisateurs modernes, en respectant les bonnes pratiques de design et d’accessibilité.",
+            "Renforcement des compétences en développement web, en travail d’équipe et en communication professionnelle.",
+          ],
+        },
         {
           title: "Développeur Web",
           company: "Verse",
