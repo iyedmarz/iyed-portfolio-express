@@ -8,20 +8,36 @@ import AnimatedSection from "./AnimatedSection";
 
 const projects = [
   {
-    title: "EasyCarScan",
+    title: "IRIS Exam",
     description: {
-      en: "helps car owners identify issues with real-time image recognition and OBD scanning. Just scan and understand your car's problems easily!",
-      fr: "aide les propriétaires de voitures à identifier les problèmes grâce à la reconnaissance d'image en temps réel et à la numérisation OBD. Scannez et comprenez facilement les problèmes de votre voiture!",
+      en: "",
+      fr: "",
     },
     longDescription: {
-      en: "EasyCarScan is designed for everyday drivers with basic car knowledge who want a quick and easy way to diagnose their vehicle's issues. The app features a real-time camera scanner that recognizes car components and warning lights, providing possible causes and solutions. Additionally, it supports OBD scanning, allowing users to read and understand fault codes without needing advanced mechanical skills. With a user-friendly interface and clear explanations, ECS makes car troubleshooting accessible to everyone.",
-      fr: "EasyCarScan est conçu pour les conducteurs quotidiens ayant des connaissances de base en automobile qui souhaitent un moyen rapide et facile de diagnostiquer les problèmes de leur véhicule. L'application dispose d'un scanner de caméra en temps réel qui reconnaît les composants de la voiture et les voyants d'avertissement, fournissant les causes possibles et les solutions. De plus, elle prend en charge la numérisation OBD, permettant aux utilisateurs de lire et de comprendre les codes d'erreur sans avoir besoin de compétences mécaniques avancées. Avec une interface conviviale et des explications claires, ECS rend le dépannage automobile accessible à tous.",
+      en: "",
+      fr: "",
     },
     contribution: "",
-    image: ["/easycarScan1.png"],
-    tech: ["work under progress"],
+    image: [],
+    tech: ["Next.Js", "PostgreSQL", "tailwindCSS"],
     github: "#",
     live: "#",
+  },
+  {
+    title: "Twizzy",
+    description: {
+      en: "Twizzy is an online store specializing in trendy clothing and accessories for young adults.",
+      fr: "Twizzy est une boutique en ligne spécialisée dans la vente de vêtements et accessoires tendance pour les jeunes adultes.",
+    },
+    longDescription: {
+      en: "Twizzy is an online store specializing in trendy clothing and accessories for young adults. The site offers a smooth user experience with intuitive navigation, detailed product descriptions, and a secure checkout process. Customers can easily browse collections, add items to their cart, and complete their purchases with confidence.  https://twizzytn.myshopify.com/",
+      fr: "Twizzy est une boutique en ligne spécialisée dans la vente de vêtements et accessoires tendance pour les jeunes adultes. Le site offre une expérience utilisateur fluide avec une navigation intuitive, des descriptions détaillées des produits et un processus de paiement sécurisé. Les clients peuvent facilement parcourir les collections, ajouter des articles à leur panier et finaliser leurs achats en toute confiance.  https://twizzytn.myshopify.com/",
+    },
+    contribution: "",
+    image: ["/TWIZZY0.png", "/twizzy1.png", "/twizzy2.png"],
+    tech: ["Shopify"],
+    github: "#",
+    live: "",
   },
 
   {
