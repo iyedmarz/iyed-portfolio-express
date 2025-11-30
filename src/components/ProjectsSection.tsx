@@ -10,12 +10,12 @@ const projects = [
   {
     title: "IRIS Exam",
     description: {
-      en: "",
-      fr: "",
+      en: "IRIS Exam is a platform for IRIS students to practice exams and track their progress.",
+      fr: "IRIS Exam est une plateforme pour les étudiants IRIS afin de pratiquer des examens et suivre leurs progrès.",
     },
     longDescription: {
-      en: "",
-      fr: "",
+      en: "IRIS Exam is a platform for IRIS students to practice exams and track their progress.",
+      fr: "IRIS Exam est une plateforme pour les étudiants IRIS afin de pratiquer des examens et suivre leurs progrès.",
     },
     contribution: "",
     image: [],
